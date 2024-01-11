@@ -1,10 +1,10 @@
 //author: Adizen
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 public class Drone {
     private int id;
-    private String drone_type;
-    private LocalDateTime created;
+    private int drone_type;
+    private ZonedDateTime created;
     private String serial_number;
     private int carriage_weight;
     private String carriage_type;
@@ -13,10 +13,10 @@ public class Drone {
     public int get_id(){
         return id;
     }
-    public String get_drone_type(){
+    public int get_drone_type(){
         return drone_type;
     }
-    public LocalDateTime get_created(){
+    public ZonedDateTime get_created(){
         return created;
     }
     public String get_serial_number(){
@@ -33,11 +33,11 @@ public class Drone {
     public void set_id(int id){
         this.id = id;
     }
-    public void set_drone_type(String drone_type){
+    public void set_drone_type(int drone_type){
         this.drone_type = drone_type;
     }
     public void set_created(String created){
-        this.created = LocalDateTime.parse(created);
+        this.created = ZonedDateTime.parse(created);
     }
     public void set_serial_number(String serial_number){
         this.serial_number = serial_number;

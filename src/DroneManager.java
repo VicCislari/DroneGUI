@@ -10,22 +10,17 @@ public class DroneManager {
 
     public static void main(String[] args) {
         map_drones(ApiAdapter.api_results(drones_category));
+        System.out.println(drone_list[0].get_created());
     }
 
-    public static String format_date(String date){
-        if (date.length() > 18) {
-            String date_ending = String.valueOf(Math.round(Float.parseFloat(date.substring(18,20))));
-
-            return date.substring(0,18) + date_ending;
-        } else {
-            return date;
-        }
+    public static int format_drone_type(String drone_type){
+        return Integer.parseInt(drone_type.substring(47,49));
     }
     public static Drone map_drone(JSONObject drone_json){
         Drone drone = new Drone();
         drone.set_id(drone_json.getInt("id"));
-        drone.set_drone_type(drone_json.getString("dronetype"));
-        drone.set_created(format_date(drone_json.getString("created")));
+        drone.set_drone_type(format_drone_type(drone_json.getString("dronetype")));
+        drone.set_created(drone_json.getString("created"));
         drone.set_serial_number(drone_json.getString("serialnumber"));
         drone.set_carriage_weight(drone_json.getInt("carriage_weight"));
         drone.set_carriage_type(drone_json.getString("carriage_type"));
