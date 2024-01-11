@@ -26,7 +26,8 @@ public class Main {
 
     public static void main(String[] args) {
       //  ApiAdapter.api_results("drones");
-      runTest();
+      //runTest();
+      DroneList.rundummy();
     }
 
     public static void runTest(){
