@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fe79816b-6b76-450f-b2e1-7b9292222fa4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DroneGUI.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Milestone 1/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Milestone 1/Documentation.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Milestone 1/HelloRest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Milestone 1/milestones.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/CDL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/Cookie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/CookieList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/HTTP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/HTTPTokener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONArray.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONArray.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONML.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONMLParserConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONObject.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPointer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPointer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPointerException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPointerException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPropertyIgnore.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPropertyIgnore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPropertyName.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPropertyName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONString.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONStringer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONTokener.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONTokener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONWriter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/JSONWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/ParseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/ParserConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/Property.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/XML.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/XMLParserConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/XMLTokener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/json/XMLXsiTypeConverter.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2ao7AVVM0Py0uJuIQSot99DNN0D" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/vicis/DroneGUI",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="DroneGUI" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fe79816b-6b76-450f-b2e1-7b9292222fa4" name="Changes" comment="" />
+      <created>1704972938814</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1704972938814</updated>
+      <workItem from="1704972940028" duration="768000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
