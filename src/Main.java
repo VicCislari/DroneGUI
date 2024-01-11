@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+// test123
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -12,7 +12,7 @@ import org.json.JSONTokener;
 public class Main {
     private static final String USER_AGENT = "MOzilla FIrefox Awesome version";
     //private static final String ENDPOINT_URL = "https://dronesim.facets-labs.com/api/drones/?format=json";
-    private static final String ENDPOINT_URL = "https://dronesim.facets-labs.com/api/drones/?format=json&limit=0&offset=20";
+    private static final String ENDPOINT_URL = "https://dronesim.facets-labs.com/api/drones/?format=json&limit=10&offset=10";
     //private static final String ENDPOINT_URL = "http://dronesim.facets-labs.com/api/drones/?format=json&limit=20&offset=40";
     private static final String TOKEN = "Token 1bbbbd05efe3c733efcf8f443582a09cac4ca02c";
 
@@ -25,7 +25,8 @@ public class Main {
     */
 
     public static void main(String[] args) {
-        ApiAdapter.api_results("drones");
+      //  ApiAdapter.api_results("drones");
+      runTest();
     }
 
     public static void runTest(){
