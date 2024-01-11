@@ -9,6 +9,17 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+/*TODO:
+1. alle Dronen bekommen und in Dronen Objekte konvertieren
+    a) die Links erstellen für alle Dronen
+        Prio 1: https://dronesim.facets-labs.com/api/drones/?format=json&limit=30&offset=10
+        Prio 3: additionally: zukunftsorienteirt machen. Was ist wenn mehr Dronen hinzugefügt werden
+        -> extra Tools.java Datei, Funktion  - String getAll() - gibt ein String zurück in JSON Format
+        -> Json String muss bearbeitet werden, extra Funktion, 
+        -> schauen ob ApiAdapter das eigentlich schon erfüllt.
+*/
+
+
 public class Main {
     private static final String USER_AGENT = "MOzilla FIrefox Awesome version";
     //private static final String ENDPOINT_URL = "https://dronesim.facets-labs.com/api/drones/?format=json";
@@ -25,9 +36,10 @@ public class Main {
     */
 
     public static void main(String[] args) {
-      //  ApiAdapter.api_results("drones");
+      ApiAdapter.api_results("drones");
       //runTest();
-      DroneList.rundummy();
+      //DroneList.rundummy();
+
     }
 
     public static void runTest(){
@@ -74,7 +86,6 @@ public class Main {
                 System.out.println("Drone " + id + ": carriage type " + a + " (weight: " + b + "g)");
             }
         }
-
     }
 
     public static String formatJson(String input) {

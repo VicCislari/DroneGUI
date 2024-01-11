@@ -46,6 +46,18 @@ public class ApiAdapter {
         }
         return jsonResponse;
     }
+
+    /**
+     * @functionality
+     * Example: [This method takes two integers as input and returns their sum.
+     * It performs addition and returns the result]
+     *
+     * @param category ::::.
+     * @return :::::.
+     * @author AdiZen
+     * @version 1.0
+     * @last_modified 2024.01.11
+     */
     public static JSONArray api_results(String category){
         JSONArray results = new JSONArray();
         JSONObject fetch = api_fetch(category);
@@ -58,6 +70,9 @@ public class ApiAdapter {
             offset = offset + 10;
             fetch = api_fetch(category);
         }
+        System.out.println(results);
+        System.out.println("-----------------");
+        System.out.println(fetch);
         return results;
     }
 }
