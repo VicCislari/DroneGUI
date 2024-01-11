@@ -39,4 +39,8 @@ public class DroneManager {
             drone_list[i] = map_drone(drones.getJSONObject(i));
         }
     }
+
+    public static Drone[] get_Drone_list(){
+        return drone_list;
+    }
 }

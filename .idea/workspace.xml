@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe79816b-6b76-450f-b2e1-7b9292222fa4" name="Changes" comment="I don't think I need this but it is here anyway now">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="fe79816b-6b76-450f-b2e1-7b9292222fa4" name="Changes" comment="Renaming to DroneManager and some more attributes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ApiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DroneMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DroneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DroneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DroneManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +83,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704977411382</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Renaming to DroneManager and some more attributes">
+      <created>1705003872692</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705003872692</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,6 +110,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="I don't think I need this but it is here anyway now" />
-    <option name="LAST_COMMIT_MESSAGE" value="I don't think I need this but it is here anyway now" />
+    <MESSAGE value="Renaming to DroneManager and some more attributes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renaming to DroneManager and some more attributes" />
   </component>
 </project>
