@@ -21,7 +21,6 @@ public class ApiAdapter {
     private static final String QUERY = "&limit=10&offset=";
     private static final String TOKEN = "Token 1bbbbd05efe3c733efcf8f443582a09cac4ca02c";
     private static JSONObject jsonResponse;
-    private static int count;
 
     public static JSONObject api_fetch(String category) {
         URL url;
