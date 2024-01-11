@@ -20,6 +20,7 @@ public class DroneMapper {
             return date;
         }
     }
+
     public static void map_drone(JSONObject drone_json){
         Drone drone = new Drone();
         drone.set_id(drone_json.getInt("id"));
@@ -29,6 +30,7 @@ public class DroneMapper {
         drone.set_carriage_weight(drone_json.getInt("carriage_weight"));
         drone.set_carriage_type(drone_json.getString("carriage_type"));
     }
+
     public static void map_drones(JSONArray drones){
         int i;
         for (i = 0; i < drones.length(); i++){

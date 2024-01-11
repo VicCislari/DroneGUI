@@ -46,6 +46,7 @@ public class ApiAdapter {
         }
         return jsonResponse;
     }
+
     public static JSONArray api_results(String category){
         JSONArray results = new JSONArray();
         JSONObject fetch = api_fetch(category);

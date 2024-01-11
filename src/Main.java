@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,6 +9,9 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+import javax.swing.*; // library for gui
+import java.awt.BorderLayout;
 
 public class Main {
     private static final String USER_AGENT = "MOzilla FIrefox Awesome version";
@@ -25,7 +29,9 @@ public class Main {
     */
 
     public static void main(String[] args) {
-        ApiAdapter.api_results("drones");
+        //ApiAdapter.api_results("drones");
+        //SwingUtilities.invokeLater(() -> new GUI());
+        GUI.runGUI();
     }
 
     public static void runTest(){
