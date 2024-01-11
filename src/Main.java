@@ -25,9 +25,12 @@ public class Main {
     */
 
     public static void main(String[] args) {
+        ApiAdapter.api_results("drones");
+    }
 
+    public static void runTest(){
         System.out.println("Test started. -------------");
-        System.out.println("halloswefrsdfsdfsdfsdfsfdsdfsdf");
+        System.out.println("hallo");
 
         URL url;
         try {
