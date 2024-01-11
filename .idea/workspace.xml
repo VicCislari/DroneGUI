@@ -4,53 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe79816b-6b76-450f-b2e1-7b9292222fa4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DroneGUI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Milestone 1/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Milestone 1/Documentation.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Milestone 1/HelloRest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Milestone 1/milestones.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/CDL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/Cookie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/CookieList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/HTTP.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/HTTPTokener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONArray.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONArray.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONML.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONMLParserConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONObject.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPointer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPointer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPointerException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPointerException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPropertyIgnore.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPropertyIgnore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPropertyName.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPropertyName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONString.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONString.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONStringer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONTokener.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONTokener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONWriter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/ParseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/ParserConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/Property.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/XML.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/XMLParserConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/XMLTokener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/XMLXsiTypeConverter.java" afterDir="false" />
+    <list default="true" id="fe79816b-6b76-450f-b2e1-7b9292222fa4" name="Changes" comment="first commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,11 +64,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704972938814</updated>
-      <workItem from="1704972940028" duration="768000" />
+      <workItem from="1704972940028" duration="2137000" />
     </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1704973909388</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1704973909388</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
   </component>
 </project>
