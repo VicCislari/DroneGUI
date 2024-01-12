@@ -16,16 +16,16 @@ public class DroneList extends JFrame
 	}
 	
 	/**
-     * @functionality
-	 * creates a new interface for the drone list.
-	 * as for now, it only presents a dummy list
-	 * used in GUIPT.java to list drones
-	 * 
-	 * @Layout FlowLayout
-     * @author Wassabie
-     * @version 1.0
-     * @last_modified 2024.01.12
-     */
+    * @functionality
+	* creates a new interface for the drone list.
+	* as for now, it only presents a dummy list
+	* used in GUIPT.java to list drones
+	* 
+	* @Layout FlowLayout
+    * @author Wassabie
+    * @version 1.0
+    * @last_modified 2024.01.12
+    */
 
 	private void initializeUI()
 	{
@@ -42,14 +42,14 @@ public class DroneList extends JFrame
 	}
 	
 	/**
-     * @functionality
-	 * the mentioned dummy dronelist
-	 * returns the dummy drone list to DroneList function
-	 * 
-     * @author Wassabie
-     * @version 1.0
-     * @last_modified 2024.01.12
-     */
+    * @functionality
+	* the mentioned dummy dronelist
+	* returns the dummy drone list to DroneList function
+	* 
+    * @author Wassabie
+    * @version 1.0
+    * @last_modified 2024.01.12
+	*/
 	
 	public static void rundummy()
 	{
