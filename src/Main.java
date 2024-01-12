@@ -25,7 +25,7 @@ public class Main {
     */
 
     public static void main(String[] args) {
-        ApiAdapter.api_results("drones");
+        ApiAdapter.apiResults("drones");
     }
 
     public static void runTest(){
