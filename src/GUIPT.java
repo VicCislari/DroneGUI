@@ -1,24 +1,22 @@
 import javax.swing.*; // library for gui
 import java.awt.BorderLayout;
 
-
 public class GUIPT extends JFrame
 {
-	
 	/**
      * @functionality
-     * The following constructor creates a GUI with a single button
+     * The following constructor creates a GUI with a one button
 	 * After clicking on the button, it should present a list of all drones to the user
-	 * v1.0 -> presents just a example of drones (dummyDroneList)
-	 * @BUG: WORKS ON ECLIPSEIDE BUT WONT OPEN VIA STUDIO CODE
+	 * As of for the first version it will only return a dummy drone list as example
+	 * @BUG: WORKS ON ECLIPSEIDE BUT WONT OPEN VIA STUDIO CODE --FIXED--
 	 * 
-	 * @Layout Borderlayout
+	 * @Layout BorderLayout
      * @author Wassabie
-     * @version 1.0
-     * @last_modified 2024.01.11
+     * @version 1.1
+     * @last_modified 2024.01.12
      */
 
-	public void GUIPT()
+	public void createGUI()
 	{
 		JLabel label = new JLabel("Drone GUI ");
 		JButton button = new JButton("Open Drone List");
@@ -40,9 +38,8 @@ public class GUIPT extends JFrame
 		
 	}
 	
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
-		SwingUtilities.invokeLater( () -> new GUIPT() );
+		SwingUtilities.invokeLater( () -> new GUIPT().createGUI() ); // BUGFIX -> changed method name & added method in main function
 	}
-
 }
