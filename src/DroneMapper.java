@@ -7,10 +7,21 @@ import java.lang.Math;
 public class DroneMapper {
     private static final String drones_category = "drones";
 
+<<<<<<< HEAD
     public static void main(String[] args) {
         map_drones(ApiAdapter.api_results(drones_category));
     }
 
+=======
+    /**
+     * Formats the date string by rounding the seconds to the nearest whole number.
+     * @param date The original date in String type.
+     * @return The formatted date string with rounded seconds.
+     * @author Adizen
+     * @since 1.0
+     * @last_modified 2024.01.10
+     */
+>>>>>>> 9d8d70db40ffcd1651057e12f8c262b5e0eac862
     public static String format_date(String date){
         if (date.length() > 18) {
             String date_ending = String.valueOf(Math.round(Float.parseFloat(date.substring(18,20))));
