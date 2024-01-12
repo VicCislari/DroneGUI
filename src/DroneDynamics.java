@@ -92,7 +92,7 @@ public class DroneDynamics {
         this.lastSeen = lastSeen;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

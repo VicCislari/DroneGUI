@@ -13,13 +13,13 @@ public class DroneManager {
         System.out.println(droneList[0].getCreated());
     }
 
-    public static int format_drone_type(String droneType){
+    public static int formatDroneType(String droneType){
         return Integer.parseInt(droneType.substring(47,49));
     }
     public static Drone mapDrone(JSONObject droneJson){
         Drone drone = new Drone();
         drone.setId(droneJson.getInt("id"));
-        drone.setDroneType(format_drone_type(droneJson.getString("dronetype")));
+        drone.setDroneType(formatDroneType(droneJson.getString("dronetype")));
         drone.setCreated(droneJson.getString("created"));
         drone.setSerialNumber(droneJson.getString("serialnumber"));
         drone.setCarriageWeight(droneJson.getInt("carriage_weight"));
