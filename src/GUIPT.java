@@ -8,11 +8,11 @@ public class GUIPT extends JFrame
     * The following constructor creates a GUI with a one button
 	* After clicking on the button, it should present a list of all drones to the user
 	* As of for the first version it will only return a dummy drone list as example
-	* @BUG: WORKS ON ECLIPSEIDE BUT WONT OPEN VIA STUDIO CODE --FIXED--
+	* @bug WORKS ON ECLIPSEIDE BUT WONT OPEN VIA STUDIO CODE --FIXED--
 	* 
 	* @Layout BorderLayout
     * @author Wassabie
-    * @version 1.1
+    * @since 1.1
     * @last_modified 2024.01.12
     */
 

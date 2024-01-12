@@ -22,6 +22,14 @@ public class ApiAdapter {
     private static final String TOKEN = "Token 1bbbbd05efe3c733efcf8f443582a09cac4ca02c";
     private static JSONObject jsonResponse;
 
+    /**
+     * Fetches data from an API based on a specified category.
+     * @param category The category for API data retrieval.
+     * @return JSONObject containing API response.
+     * @author Müller Bady and Adizen
+     * @since 1.0
+     * @last_modified 2024.01.10
+     */
     public static JSONObject api_fetch(String category) {
         URL url;
         try {
@@ -48,15 +56,12 @@ public class ApiAdapter {
     }
 
     /**
-     * @functionality
-     * Example: [This method takes two integers as input and returns their sum.
-     * It performs addition and returns the result]
-     *
-     * @param category ::::.
-     * @return :::::.
+     * Fetches and aggregates results from an API for a given category.
+     * @param category The category for API data retrieval.
+     * @return JSONArray containing aggregated results.
      * @author AdiZen
-     * @version 1.0
-     * @last_modified 2024.01.11
+     * @since 1.0
+     * @last_modified 2024.01.10
      */
     public static JSONArray api_results(String category){
         JSONArray results = new JSONArray();
