@@ -9,6 +9,8 @@ public class GUIPT extends JFrame
      * @functionality
      * The following constructor creates a GUI with a single button
 	 * After clicking on the button, it should present a list of all drones to the user
+	 * v1.0 -> presents just a example of drones (dummyDroneList)
+	 * @BUG: WORKS ON ECLIPSEIDE BUT WONT OPEN VIA STUDIO CODE
 	 * 
 	 * @Layout Borderlayout
      * @author Wassabie
@@ -16,7 +18,7 @@ public class GUIPT extends JFrame
      * @last_modified 2024.01.11
      */
 
-	public void GUI() //constructor for gui class
+	public void GUIPT()
 	{
 		JLabel label = new JLabel("Drone GUI ");
 		JButton button = new JButton("Open Drone List");
@@ -26,14 +28,10 @@ public class GUIPT extends JFrame
 		add(label, BorderLayout.NORTH);
 		add(button, BorderLayout.CENTER);
 		
-		button.addActionListener(new ActionListener()  {
-			
-			public void actionPerformed(ActionEvent e) {
-				SwingUtilities.invokeLater(() -> {
-					List<String> dummyDroneList = List.of("Drone 1", "Drohne32", "Drohne 3");
-					new DroneList(dummyDroneList);
-				});
-			}
+		button.addActionListener( e-> {
+
+			DroneList.rundummy();
+
 		});
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,11 +40,9 @@ public class GUIPT extends JFrame
 		
 	}
 	
-	
-	
-	public static void testGUI(String[] args) 
+	public static void main(String[] args) 
 	{
-		SwingUtilities.invokeLater(() -> new GUI());
+		SwingUtilities.invokeLater( () -> new GUIPT() );
 	}
 
 }
