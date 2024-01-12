@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe79816b-6b76-450f-b2e1-7b9292222fa4" name="Changes" comment="I don't think I need this but it is here anyway now">
+    <list default="true" id="fe79816b-6b76-450f-b2e1-7b9292222fa4" name="Changes" comment="Added some nice comments just about everywhere">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ApiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DroneList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DroneList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DroneMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DroneMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIPT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIPT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +26,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/Users/vicis/DroneGUI/src",
     "node.js.detected.package.eslint": "true",
@@ -88,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704977411382</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added some nice comments just about everywhere">
+      <created>1705078612279</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705078612279</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +126,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="I don't think I need this but it is here anyway now" />
-    <option name="LAST_COMMIT_MESSAGE" value="I don't think I need this but it is here anyway now" />
+    <MESSAGE value="Added some nice comments just about everywhere" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some nice comments just about everywhere" />
   </component>
 </project>

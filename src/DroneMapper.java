@@ -7,12 +7,6 @@ import java.lang.Math;
 public class DroneMapper {
     private static final String drones_category = "drones";
 
-    /*
-    public static void main(String[] args) {
-        map_drones(ApiAdapter.api_results(drones_category));
-    }
-    */
-
     /**
      * Formats the date string by rounding the seconds to the nearest whole number.
      * @param date The original date in String type.

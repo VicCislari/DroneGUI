@@ -17,6 +17,7 @@ TODO:
         -> extra Tools.java Datei, Funktion  - String getAll() - gibt ein String zurück in JSON Format
         -> Json String muss bearbeitet werden, extra Funktion, 
         -> schauen ob ApiAdapter das eigentlich schon erfüllt.
+        -> es werden neue Werte kommen, deshalb das Programm zukunftsorientiert. (Skalierbarer Code, Error)
 2. Globalising the main variables
 3. Frontend... you are welcome to add some comments
 4. Backend... same here
@@ -45,6 +46,7 @@ public class Main {
       ApiAdapter.api_results("drones");
       //runTest();
       //DroneList.rundummy();
+        // ApiAdapter.api_fetch("drones");
     }
 
     /**
