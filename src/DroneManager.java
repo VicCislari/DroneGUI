@@ -5,37 +5,33 @@ import org.json.JSONObject;
 
 
 public class DroneManager {
-    private static final String dronesCategory = "drones";
+    private static final String category = "drones";
     private static Drone[] droneList;
-
-    public static void main(String[] args) {
-        mapDrones(ApiAdapter.apiResults(dronesCategory));
-        System.out.println(droneList[0].getCreated());
-    }
-
-    public static int formatDroneType(String droneType){
+    private static int formatDroneType(String droneType){
         return Integer.parseInt(droneType.substring(47,49));
     }
-    public static Drone mapDrone(JSONObject droneJson){
-        Drone drone = new Drone();
-        drone.setId(droneJson.getInt("id"));
-        drone.setDroneType(formatDroneType(droneJson.getString("dronetype")));
-        drone.setCreated(droneJson.getString("created"));
-        drone.setSerialNumber(droneJson.getString("serialnumber"));
-        drone.setCarriageWeight(droneJson.getInt("carriage_weight"));
-        drone.setCarriageType(droneJson.getString("carriage_type"));
-        return drone;
+    private static Drone mapDrone(JSONObject droneJson){
+        int id = droneJson.getInt("id");
+        int droneType = formatDroneType(droneJson.getString("dronetype"));
+        String created = droneJson.getString("created");
+        String serialNumber = droneJson.getString("serialnumber");
+        int carriageWeight = droneJson.getInt("carriage_weight");
+        String carriageType = droneJson.getString("carriage_type");
+        return new Drone(id, droneType, created, serialNumber, carriageWeight, carriageType);
     }
-    public static void mapDrones(JSONArray drones){
+    private static void mapDrones(JSONArray drones){
         int i;
         droneList = new Drone[drones.length()];
         for (i = 0; i < drones.length(); i++){
-            System.out.println(drones.getJSONObject(i).toString());
+            //System.out.println(drones.getJSONObject(i).toString());
             droneList[i] = mapDrone(drones.getJSONObject(i));
         }
     }
 
     public static Drone[] getDroneList(){
         return droneList;
+    }
+    public static void initializeDrones(){
+        mapDrones(ApiAdapter.apiResults(category));
     }
 }

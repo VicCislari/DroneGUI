@@ -17,19 +17,24 @@ public class ApiAdapter {
     private static final String USER_AGENT = "Group 26";
     private static final String URL = "https://dronesim.facets-labs.com/api/";
     private static final String JSON_FORMAT = "/?format=json";
-    private static int offset;
-    private static final String QUERY = "&limit=10&offset=";
+    private static int limit = 1;
+    private static int offset = 0;
+    private static final String LIMIT_STR = "&limit=";
+    private static final String OFFSET_STR = "&offset=";
     private static final String TOKEN = "Token 1bbbbd05efe3c733efcf8f443582a09cac4ca02c";
     private static JSONObject jsonResponse;
 
     public static JSONObject apiFetch(String category) {
         URL url;
         try {
-            url = new URL(URL + category + JSON_FORMAT + QUERY + offset);
+            url = new URL(URL + category + JSON_FORMAT + LIMIT_STR + limit + OFFSET_STR + offset);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("Authorization", TOKEN);
             connection.setRequestMethod("GET");
             connection.setRequestProperty("User-Agent", USER_AGENT);
+
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code " + responseCode);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             JSONTokener tokener = new JSONTokener(in);
@@ -49,15 +54,18 @@ public class ApiAdapter {
     public static JSONArray apiResults(String category){
         JSONArray results = new JSONArray();
         JSONObject fetch = apiFetch(category);
+        limit = (int)(Math.ceil(Math.sqrt(fetch.getDouble("count"))));
+        fetch = apiFetch(category);
         int j=0;
-        while(fetch.getInt("count") > j){ // while next block is not null
-            for (int i=0; i < fetch.getJSONArray("results").length(); i++) {
+        while(limit > j){ // while next block is not null
+            for(int i=0; i < fetch.getJSONArray("results").length(); i++) { //
                 results.put(fetch.getJSONArray("results").getJSONObject(i));
-                j++;
             }
-            offset = offset + 10;
+            j++;
+            offset = offset + limit;
             fetch = apiFetch(category);
         }
+        offset = 0;
         return results;
     }
 }
