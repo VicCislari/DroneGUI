@@ -10,7 +10,23 @@ public class DroneDynamics {
     private float latitude;
     private int batteryStatus;
     private ZonedDateTime lastSeen;
-    private boolean status;
+    private boolean isActive;
+
+    public DroneDynamics(int droneId, String timestamp, int speed, float alignRoll, float alignYaw,
+                         float alignPitch, float longitude, float latitude, int batteryStatus, String lastSeen,
+                         boolean isActive){
+        this.setDroneId(droneId);
+        this.setTimestamp(timestamp);
+        this.setSpeed(speed);
+        this.setAlignRoll(alignRoll);
+        this.setAlignYaw(alignYaw);
+        this.setAlignPitch(alignPitch);
+        this.setLongitude(longitude);
+        this.setLatitude(latitude);
+        this.setBatteryStatus(batteryStatus);
+        this.setLastSeen(lastSeen);
+        this.setIsActive(isActive);
+    }
 
     public int getDroneId() {
         return droneId;
@@ -24,8 +40,8 @@ public class DroneDynamics {
         return timestamp;
     }
 
-    public void setTimestamp(ZonedDateTime timestamp) {
-        this.timestamp = timestamp;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = ZonedDateTime.parse(timestamp);
     }
 
     public int getSpeed() {
@@ -88,15 +104,15 @@ public class DroneDynamics {
         return lastSeen;
     }
 
-    public void setLastSeen(ZonedDateTime lastSeen) {
-        this.lastSeen = lastSeen;
+    public void setLastSeen(String lastSeen) {
+        this.lastSeen = ZonedDateTime.parse(lastSeen);
     }
 
-    public boolean getStatus() {
-        return status;
+    public boolean getIsActive() {
+        return isActive;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 }
