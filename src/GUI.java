@@ -27,7 +27,6 @@ public class GUI extends JFrame // class GUi extended by JFrame which is in lib
 		
 	}
 	
-	
 	public static void runGUI()
 	{
 		SwingUtilities.invokeLater(() -> new GUI());
