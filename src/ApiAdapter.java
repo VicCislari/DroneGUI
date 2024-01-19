@@ -22,7 +22,7 @@ public class ApiAdapter {
     private static final String TOKEN = "Token 1bbbbd05efe3c733efcf8f443582a09cac4ca02c";
     private static JSONObject jsonResponse;
 
-    public static JSONObject api_fetch(String category) {
+    public static JSONObject apiFetch(String category) {
         URL url;
         try {
             url = new URL(URL + category + JSON_FORMAT + QUERY + offset);
@@ -46,10 +46,14 @@ public class ApiAdapter {
         }
         return jsonResponse;
     }
+<<<<<<< HEAD
 
     public static JSONArray api_results(String category){
+=======
+    public static JSONArray apiResults(String category){
+>>>>>>> 23fa67e7811582e2e4d167715cdadc1a7241a503
         JSONArray results = new JSONArray();
-        JSONObject fetch = api_fetch(category);
+        JSONObject fetch = apiFetch(category);
         int j=0;
         while(fetch.getInt("count") > j){ // while next block is not null
             for (int i=0; i < fetch.getJSONArray("results").length(); i++) {
@@ -57,7 +61,7 @@ public class ApiAdapter {
                 j++;
             }
             offset = offset + 10;
-            fetch = api_fetch(category);
+            fetch = apiFetch(category);
         }
         return results;
     }
