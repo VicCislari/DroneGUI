@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe79816b-6b76-450f-b2e1-7b9292222fa4" name="Changes" comment="Adizens code">
-      <change afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ApiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DroneMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DroneMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,11 +33,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/vicis/DroneGUI/src",
+    "last_opened_file_path": "/Users/vicis/My Drive/FUAS/Lectures/Sem.7.WiSe.2023_24/Java/DroneGUI",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -77,6 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1704972938814</updated>
       <workItem from="1704972940028" duration="10381000" />
+      <workItem from="1706120567403" duration="964000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1704973909388</created>
