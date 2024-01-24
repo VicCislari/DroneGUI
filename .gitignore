@@ -33,3 +33,5 @@ bin/
 
 ### development IDEA ###
 .idea/
+.idea/*
+.idea/*.xml
