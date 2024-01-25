@@ -27,3 +27,12 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Java ###
+*.class
+
+### development IDEA ###
+.idea/
+.idea/*
+.idea/*.xml
+workspace.xml
