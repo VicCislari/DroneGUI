@@ -36,3 +36,4 @@ bin/
 .idea/*
 .idea/*.xml
 workspace.xml
+*.iml
