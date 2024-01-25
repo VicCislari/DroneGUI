@@ -33,3 +33,7 @@ bin/
 
 ### development IDEA ###
 .idea/
+.idea/*
+.idea/*.xml
+workspace.xml
+DroneGUI.iml
