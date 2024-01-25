@@ -1,4 +1,9 @@
-//author: Adizen
+/**
+ * Represents a Drone with various attributes such as ID, type, creation date, serial number, carriage weight, and carriage type.
+ * @author: Adizen
+ * @version 1.0
+ * @last_modified 2024.01.10
+ */
 
 import java.time.ZonedDateTime;
 public class Drone {

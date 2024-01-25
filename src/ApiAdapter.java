@@ -22,7 +22,15 @@ public class ApiAdapter {
     private static final String TOKEN = "Token 1bbbbd05efe3c733efcf8f443582a09cac4ca02c";
     private static JSONObject jsonResponse;
 
-    public static JSONObject apiFetch(String category) {
+    /**
+     * Fetches data from an API based on a specified category.
+     * @param category The category for API data retrieval.
+     * @return JSONObject containing API response.
+     * @author Müller Bady and Adizen
+     * @since 1.0
+     * @last_modified 2024.01.10
+     */
+    public static JSONObject api_fetch(String category) {
         URL url;
         try {
             url = new URL(URL + category + JSON_FORMAT + QUERY + offset);
@@ -46,8 +54,15 @@ public class ApiAdapter {
         }
         return jsonResponse;
     }
-<<<<<<< HEAD
 
+    /**
+     * Fetches and aggregates results from an API for a given category.
+     * @param category The category for API data retrieval.
+     * @return JSONArray containing aggregated results.
+     * @author AdiZen
+     * @since 1.0
+     * @last_modified 2024.01.10
+     */
     public static JSONArray api_results(String category){
 =======
     public static JSONArray apiResults(String category){
@@ -63,6 +78,9 @@ public class ApiAdapter {
             offset = offset + 10;
             fetch = apiFetch(category);
         }
+        System.out.println(results);
+        System.out.println("-----------------");
+        System.out.println(fetch);
         return results;
     }
 }
