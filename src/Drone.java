@@ -29,6 +29,8 @@ public class Drone {
         setCarriageType(carriageType);
     }
 
+    public Drone(){}
+
     public int getId() {
         return id;
     }
