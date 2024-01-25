@@ -1,6 +1,17 @@
-//author: Adizen
+/**
+ * Represents a Drone with various attributes such as ID, type, creation date, serial number, carriage weight, and carriage type.
+ * @author: Adizen
+ * @version 1.0
+ * @last_modified 2024.01.10
+ */
 
+ /* 
+ TODO:
+    - add setID(String)
+  * 
+  */
 import java.time.ZonedDateTime;
+
 public class Drone {
     private int id;
     private int droneType;
@@ -9,12 +20,27 @@ public class Drone {
     private int carriageWeight;
     private String carriageType;
 
+    public Drone(int id, int droneType, String created, String serialNumber, int carriageWeight, String carriageType) {
+        setId(id);
+        setDroneType(droneType);
+        setCreated(created);
+        setSerialNumber(serialNumber);
+        setCarriageWeight(carriageWeight);
+        setCarriageType(carriageType);
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    ///polymorphism
+    //this needs some attentipon
+    public void setId(String id) {
+        //this.id = id;
     }
 
     public int getDroneType() {

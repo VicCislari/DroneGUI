@@ -36,3 +36,18 @@ bin/
 .idea/*
 .idea/*.xml
 workspace.xml
+.idea/workspace.xml
+DroneGUI.iml
+
+.idea/DroneGUI.iml
+
+
+### Java ###
+*.class
+
+### development IDEA ###
+.idea/
+.idea/*
+.idea/*.xml
+workspace.xml
+DroneGUI.iml
