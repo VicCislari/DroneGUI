@@ -46,12 +46,8 @@ public class ApiAdapter {
         }
         return jsonResponse;
     }
-<<<<<<< HEAD
 
     public static JSONArray api_results(String category){
-=======
-    public static JSONArray apiResults(String category){
->>>>>>> 23fa67e7811582e2e4d167715cdadc1a7241a503
         JSONArray results = new JSONArray();
         JSONObject fetch = apiFetch(category);
         int j=0;
