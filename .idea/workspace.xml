@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe79816b-6b76-450f-b2e1-7b9292222fa4" name="Changes" comment="Veränderung">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DroneDynamicsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DroneDynamicsManager.java" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/DroneDynamicsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ApiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DroneDynamics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DroneDynamics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DroneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DroneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+>>>>>>> 90f3c1a1a4b64042d40234c9e3aa0fe76a759010
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
