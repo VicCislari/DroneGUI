@@ -1,7 +1,5 @@
-//test
-
 public class Main {
-    public static void main(String[] args) {
+    public static void AdiZenTest() {
         DroneManager.initializeDrones();
         DroneDynamicsManager.initializeDroneDynamics();
         System.out.println(DroneDynamicsManager.getDroneDynamicsList()[0].getTimestamp());
