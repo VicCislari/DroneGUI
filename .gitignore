@@ -35,4 +35,9 @@ bin/
 .idea/
 .idea/*
 .idea/*.xml
-workspace.xml<<<<<<< HEAD
+<<<<<<< HEAD
+workspace.xml
+=======
+workspace.xml
+DroneGUI.iml
+>>>>>>> 90f3c1a1a4b64042d40234c9e3aa0fe76a759010
