@@ -13,7 +13,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class ApiAdapter {
-
     private static final String USER_AGENT = "Group 26";
     private static final String URL = "https://dronesim.facets-labs.com/api/";
     private static final String JSON_FORMAT = "/?format=json";

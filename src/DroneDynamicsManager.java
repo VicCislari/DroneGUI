@@ -1,9 +1,5 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
-<<<<<<< HEAD
-=======
-
->>>>>>> 90f3c1a1a4b64042d40234c9e3aa0fe76a759010
 import java.util.Objects;
 
 public class DroneDynamicsManager {
@@ -18,7 +14,7 @@ public class DroneDynamicsManager {
         return isActive;
     }
     public static void initializeDroneDynamics(){
-        mapAllDroneDynamics(ApiAdapter.apiResults(category));
+        mapAllDroneDynamics(ApiAdapter.api_results(category));
     }
 
     private static DroneDynamics mapDroneDynamics(JSONObject droneDynJson){
