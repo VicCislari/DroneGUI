@@ -28,6 +28,12 @@ TODO:
 */
 
 public class Main {
+    public static void AdiZenTest() {
+        DroneManager.initializeDrones();
+        DroneDynamicsManager.initializeDroneDynamics();
+        System.out.println(DroneDynamicsManager.getDroneDynamicsList()[0].getTimestamp());
+        System.out.println((DroneDynamicsManager.getDroneDynamicsList().length));
+    }
     private static final String USER_AGENT = "Mozilla FIrefox Awesome version";
     //private static final String ENDPOINT_URL = "https://dronesim.facets-labs.com/api/drones/?format=json";
     private static final String ENDPOINT_URL = "https://dronesim.facets-labs.com/api/drones/?format=json&limit=10&offset=10";

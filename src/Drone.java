@@ -11,6 +11,7 @@
   * 
   */
 import java.time.ZonedDateTime;
+
 public class Drone {
     private int id;
     private int droneType;
@@ -18,6 +19,15 @@ public class Drone {
     private String serialNumber;
     private int carriageWeight;
     private String carriageType;
+
+    public Drone(int id, int droneType, String created, String serialNumber, int carriageWeight, String carriageType) {
+        setId(id);
+        setDroneType(droneType);
+        setCreated(created);
+        setSerialNumber(serialNumber);
+        setCarriageWeight(carriageWeight);
+        setCarriageType(carriageType);
+    }
 
     public int getId() {
         return id;
