@@ -5,6 +5,11 @@
  * @last_modified 2024.01.10
  */
 
+ /* 
+ TODO:
+    - add setID(String)
+  * 
+  */
 import java.time.ZonedDateTime;
 public class Drone {
     private int id;
@@ -20,6 +25,12 @@ public class Drone {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    ///polymorphism
+    //this needs some attentipon
+    public void setId(String id) {
+        //this.id = id;
     }
 
     public int getDroneType() {
