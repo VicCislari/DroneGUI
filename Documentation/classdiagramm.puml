@@ -83,9 +83,9 @@ class DroneDynamicsManager {
     +mapAllDroneDynamics(droneDyns: JSONArray): void
 }
 
-class GUIPT {
+class GUI {
     +createGUI(): void
-    +test_GUIPT(args: String[]): void
+    +test_GUI(): void
 }
 
 class DroneList {
@@ -135,5 +135,5 @@ DroneDynamicsManager <|--- DroneDynamics
 
 Main <|--- ApiAdapter
 Drone --- DroneMapper
-GUIPT <|--- DroneList
+GUI <|--- DroneList
 @enduml
