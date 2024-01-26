@@ -3,6 +3,20 @@ import java.awt.BorderLayout;
 
 public class GUI extends JFrame // class GUi extended by JFrame which is in lib
 {
+	/**
+	 * @functionality
+	 *                The following constructor creates a GUI with one button
+	 *                After clicking on the button, it should present a list of all
+	 *                drones to the user
+	 *                As of for the first version it will only return a dummy drone
+	 *                list as example
+	 * @bug WORKS ON ECLIPSEIDE BUT WONT OPEN VIA STUDIO CODE --FIXED--
+	 * 
+	 * @Layout BorderLayout
+	 * @author Wassabie
+	 * @since 1.1
+	 * @last_modified 2024.01.12
+	 */
 
 	public GUI() // constructor for gui class
 	{
@@ -15,9 +29,7 @@ public class GUI extends JFrame // class GUi extended by JFrame which is in lib
 		add(button, BorderLayout.CENTER); // position of label is center window
 
 		button.addActionListener(e -> { // e -> for compact little function without creating new method or class
-
-			// Action code here
-
+			DroneList.rundummy(); // VICTOR: TODO: ICH WIß NICHT OB ICH HIER ZWEI BEFEHLE HABEN DARF
 			JOptionPane.showMessageDialog(this, "still need some wokring bruv"); // JOption for Pop-Up
 		});
 

@@ -128,10 +128,12 @@ class Main {
     +formatJson(input: String): String
 }
 
-DroneManager --|> ApiAdapter
-DroneDynamicsManager --|> ApiAdapter
-Main --|> ApiAdapter
-Drone --|> DroneMapper
-GUIPT --|> DroneList
+DroneManager <--- ApiAdapter
+DroneManager --- Drone
+DroneDynamicsManager <--- ApiAdapter
+DroneDynamicsManager <|--- DroneDynamics
 
+Main <|--- ApiAdapter
+Drone --- DroneMapper
+GUIPT <|--- DroneList
 @enduml

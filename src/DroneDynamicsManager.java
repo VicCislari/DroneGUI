@@ -21,7 +21,7 @@ public class DroneDynamicsManager {
         mapAllDroneDynamics(ApiAdapter.api_results(category));
     }
 
-     /**
+    /**
      * Gets the array of DroneDynamics objects.
      *
      * @return The array of DroneDynamics objects.
