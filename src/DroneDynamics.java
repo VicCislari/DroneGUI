@@ -1,17 +1,26 @@
 import java.time.ZonedDateTime;
 
+/**
+ * @class DroneDynamics
+ * @description Represents the dynamics and status of a drone, including its
+ *              location,
+ *              battery status, and activity status.
+ * @author Atheesen
+ * @version 1.0
+ * @since 2024-01-26
+ */
 public class DroneDynamics {
-    private int droneId;
-    private ZonedDateTime timestamp;
-    private int speed;
-    private float alignRoll;
-    private float alignYaw;
-    private float alignPitch;
-    private float longitude;
-    private float latitude;
-    private int batteryStatus;
-    private ZonedDateTime lastSeen;
-    private boolean isActive;
+    private int droneId; // Unique identifier
+    private ZonedDateTime timestamp; // Drone Data Timestamp
+    private int speed; // Dronespeed (unit = second)
+    private float alignRoll; // Roll alignment
+    private float alignYaw; // Yaw alignment
+    private float alignPitch; // Pitch alignment
+    private float longitude; // Longitude coordinate of the drone's location
+    private float latitude; // Latitude coordinate of the drone's location
+    private int batteryStatus; // Battery status
+    private ZonedDateTime lastSeen; // Timestamp of the last time the drone was seen/data was logged
+    private boolean isActive; // Activity status of the drone //Victor:WHAT?
 
     public DroneDynamics(int droneId, String timestamp, int speed, float alignRoll, float alignYaw,
             float alignPitch, float longitude, float latitude, int batteryStatus, String lastSeen,
@@ -27,6 +36,10 @@ public class DroneDynamics {
         this.setBatteryStatus(batteryStatus);
         this.setLastSeen(lastSeen);
         this.setIsActive(isActive);
+    }
+
+    // TODO: this requires some attention
+    public DroneDynamics() {
     }
 
     public int getDroneId() {

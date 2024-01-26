@@ -1,0 +1,137 @@
+@startuml
+
+class Drone {
+    -id: int
+    -droneType: int
+    -created: ZonedDateTime
+    -serialNumber: String
+    -carriageWeight: int
+    -carriageType: String
+
+    +Drone(id: int, droneType: int, created: String, serialNumber: String, carriageWeight: int, carriageType: String)
+    +getId(): int
+    +setId(id: int): void
+    +setDroneType(droneType: int): void
+    +getCreated(): ZonedDateTime
+    +setCreated(created: String): void
+    +getSerialNumber(): String
+    +setSerialNumber(serialNumber: String): void
+    +getCarriageWeight(): int
+    +setCarriageWeight(carriageWeight: int): void
+    +getCarriageType(): String
+    +setCarriageType(carriageType: String): void
+}
+
+class DroneDynamics {
+    -droneId: int
+    -timestamp: ZonedDateTime
+    -speed: int
+    -alignRoll: float
+    -alignYaw: float
+    -alignPitch: float
+    -longitude: float
+    -latitude: float
+    -batteryStatus: int
+    -lastSeen: ZonedDateTime
+    -isActive: boolean
+
+    +DroneDynamics(droneId: int, timestamp: String, speed: int, alignRoll: float, alignYaw: float, alignPitch: float, longitude: float, latitude: float, batteryStatus: int, lastSeen: String, isActive: boolean)
+    +getDroneId(): int
+    +setDroneId(droneId: int): void
+    +getTimestamp(): ZonedDateTime
+    +setTimestamp(timestamp: String): void
+    +getSpeed(): int
+    +setSpeed(speed: int): void
+    +getAlignRoll(): float
+    +setAlignRoll(alignRoll: float): void
+    +getAlignYaw(): float
+    +setAlignYaw(alignYaw: float): void
+    +getAlignPitch(): float
+    +setAlignPitch(alignPitch: float): void
+    +getLongitude(): float
+    +setLongitude(longitude: float): void
+    +getLatitude(): float
+    +setLatitude(latitude: float): void
+    +getBatteryStatus(): int
+    +setBatteryStatus(batteryStatus: int): void
+    +getLastSeen(): ZonedDateTime
+    +setLastSeen(lastSeen: String): void
+    +getIsActive(): boolean
+    +setIsActive(isActive: boolean): void
+}
+
+class DroneManager {
+    -category: String
+    -droneList: Drone[]
+
+    +formatDroneType(droneType: String): int
+    +mapDrone(droneJson: JSONObject): Drone
+    +mapDrones(drones: JSONArray): void
+    +getDroneList(): Drone[]
+    +initializeDrones(): void
+}
+
+class DroneDynamicsManager {
+    -category: String
+    -droneDynamicsList: DroneDynamics[]
+
+    +formatDroneId(droneId: String): int
+    +formatIsActive(isActiveStr: String): boolean
+    +initializeDroneDynamics(): void
+    +mapDroneDynamics(droneDynJson: JSONObject): DroneDynamics
+    +getDroneDynamicsList(): DroneDynamics[]
+    +mapAllDroneDynamics(droneDyns: JSONArray): void
+}
+
+class GUIPT {
+    +createGUI(): void
+    +test_GUIPT(args: String[]): void
+}
+
+class DroneList {
+    -droneList: List<String>
+
+    +DroneList(droneList: List<String>)
+    +initializeUI(): void
+    +rundummy(): void
+}
+
+class ApiAdapter {
+    -USER_AGENT: String
+    -URL: String
+    -JSON_FORMAT: String
+    -limit: int
+    -offset: int
+    -LIMIT_STR: String
+    -OFFSET_STR: String
+    -TOKEN: String
+    -jsonResponse: JSONObject
+
+    +api_fetch(category: String): JSONObject
+    +api_results(category: String): JSONArray
+}
+
+class DroneMapper {
+    -drones_category: String
+
+    +test_DroneMapper(date: String): String
+    +format_date(date: String): String
+    +map_drone(drone_json: JSONObject): void
+    +map_drones(drones: JSONArray): void
+}
+
+class Main {
+    +AdiZenTest(): void
+    +main(args: String[]): void
+    +runTest(): void
+    +test(input: String): void
+    +formatJson(input: String): String
+}
+
+DroneManager --|> ApiAdapter
+DroneDynamicsManager --|> ApiAdapter
+Main --|> ApiAdapter
+Drone --|> DroneMapper
+GUIPT --|> DroneList
+
+@enduml

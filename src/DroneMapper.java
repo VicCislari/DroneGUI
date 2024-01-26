@@ -7,7 +7,7 @@ import java.lang.Math;
 public class DroneMapper {
     private static final String drones_category = "drones";
 
-    public static void main(String[] args) {
+    public static void test_DroneMapper() {
         map_drones(ApiAdapter.api_results(drones_category));
     }
 

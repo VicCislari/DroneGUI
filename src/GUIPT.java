@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 public class GUIPT extends JFrame {
 	/**
 	 * @functionality
-	 *                The following constructor creates a GUI with a one button
+	 *                The following constructor creates a GUI with one button
 	 *                After clicking on the button, it should present a list of all
 	 *                drones to the user
 	 *                As of for the first version it will only return a dummy drone
@@ -38,8 +38,7 @@ public class GUIPT extends JFrame {
 
 	}
 
-	public static void main(String[] args) {
+	public static void test_GUIPT(String[] args) {
 		SwingUtilities.invokeLater(() -> new GUIPT().createGUI()); // BUGFIX -> changed method name & added method in
-																	// main function
 	}
 }
