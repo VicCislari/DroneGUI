@@ -25,6 +25,7 @@ public class ApiAdapter {
 
     /**
      * Fetches data from an API based on a specified category.
+     * 
      * @param category The category for API data retrieval.
      * @return JSONObject containing API response.
      * @author Müller Bady and Adizen
@@ -51,8 +52,7 @@ public class ApiAdapter {
         } catch (MalformedURLException e) {
             System.err.println("Malformed URL: " + e.getLocalizedMessage());
             e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("General IO Exception: " + e.getLocalizedMessage());
             e.printStackTrace();
         }
@@ -61,20 +61,21 @@ public class ApiAdapter {
 
     /**
      * Fetches and aggregates results from an API for a given category.
+     * 
      * @param category The category for API data retrieval.
      * @return JSONArray containing aggregated results.
      * @author AdiZen
      * @since 1.0
      * @last_modified 2024.01.10
      */
-    public static JSONArray api_results(String category){
+    public static JSONArray api_results(String category) {
         JSONArray results = new JSONArray();
         JSONObject fetch = api_fetch(category);
-        limit = (int)(Math.ceil(Math.sqrt(fetch.getDouble("count"))));
+        limit = (int) (Math.ceil(Math.sqrt(fetch.getDouble("count"))));
         fetch = api_fetch(category);
-        int j=0;
-        while(limit > j){ // while next block is not null
-            for(int i=0; i < fetch.getJSONArray("results").length(); i++) { //
+        int j = 0;
+        while (limit > j) { // while next block is not null
+            for (int i = 0; i < fetch.getJSONArray("results").length(); i++) { //
                 results.put(fetch.getJSONArray("results").getJSONObject(i));
             }
             j++;

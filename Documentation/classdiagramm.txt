@@ -1,0 +1,35 @@
+@startuml
+
+class Main {
+  + AdiZenTest()
+  + main(String[] args)
+  + runTest()
+  + test(String input)
+  + formatJson(String input)
+}
+
+class DroneManager {
+  + initializeDrones()
+}
+
+class DroneDynamicsManager {
+  + initializeDroneDynamics()
+  + getDroneDynamicsList(): DroneDynamics[]
+}
+
+class ApiAdapter {
+  + api_results(String endpoint)
+  + api_fetch(String endpoint)
+}
+
+class DroneDynamics {
+  - timestamp: String
+  // Add other attributes as needed
+}
+
+Main --> DroneManager
+Main --> DroneDynamicsManager
+Main --> ApiAdapter
+Main --> DroneDynamics
+
+@enduml

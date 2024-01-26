@@ -1,4 +1,5 @@
 import java.time.ZonedDateTime;
+
 public class DroneDynamics {
     private int droneId;
     private ZonedDateTime timestamp;
@@ -13,8 +14,8 @@ public class DroneDynamics {
     private boolean isActive;
 
     public DroneDynamics(int droneId, String timestamp, int speed, float alignRoll, float alignYaw,
-                         float alignPitch, float longitude, float latitude, int batteryStatus, String lastSeen,
-                         boolean isActive){
+            float alignPitch, float longitude, float latitude, int batteryStatus, String lastSeen,
+            boolean isActive) {
         this.setDroneId(droneId);
         this.setTimestamp(timestamp);
         this.setSpeed(speed);
