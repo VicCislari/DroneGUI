@@ -62,7 +62,7 @@ public class ApiAdapter {
     /**
      * Fetches and aggregates results from an API for a given category.
      * 
-     * @param category The category for API data retrieval.
+     * @param category URL subsection
      * @return JSONArray containing aggregated results.
      * @author AdiZen
      * @since 1.0
