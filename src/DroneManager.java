@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,6 +22,7 @@ public class DroneManager {
      * @param droneType The raw drone type from the API response.
      * @return The formatted drone type.
      */
+
     private static int formatDroneType(String droneType) {
         return Integer.parseInt(droneType.substring(47, 49));
     }
@@ -67,4 +71,20 @@ public class DroneManager {
     public static void initializeDrones() {
         mapDrones(ApiAdapter.fetchAllDataFromCategory(dataCategory));
     }
+
+   /**
+     * Converts a list of Drone objects to a list of strings.
+     *
+     * @return List of strings representing drone data.
+     * @author bahadir
+     * @last_modified 28.01.2024
+     */
+    public static List<String> getDroneListAsString() {
+        List<String> droneStrings = new ArrayList<>();
+        for (Drone drone : droneList) {
+            droneStrings.add(drone.toString());
+        }
+        return droneStrings;
+    }
+    
 }

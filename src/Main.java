@@ -39,8 +39,21 @@ public class Main {
 
     }
 
+    /*
+     * test for listing the drones in GUI
+     * @author bahadir
+     * 
+     */
+    public static void ListDronesGUI(){
+        DroneManager.initializeDrones();
+        DroneCatalog.main(null);
+    }
+
+
+
     public static void main(String[] args) {
-        AdiZenTest();
+        //AdiZenTest();
         //ApiAdapter.api_results("drones");
+        ListDronesGUI();
     }
 }
