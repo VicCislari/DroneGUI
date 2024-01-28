@@ -48,3 +48,7 @@ Dronetypes.java, handled by Atheesen, should contain relevant data for drone typ
 ## Documentation
 
 At the end of the project, focus on documenting the code. Ensure clean code practices, including CamelCasing for all variables and functions. Create a comprehensive README with instructions and explanations for the entire project.
+
+
+Drone.java:
+public Drone(){} - wäre gut Überlegungen zu machen was mit der Klasse geschehen soll. Polymorphism.
