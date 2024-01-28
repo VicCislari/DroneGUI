@@ -41,8 +41,10 @@ public class DroneDynamics {
     }
 
     // TODO: this requires some attention
+    // polymoprphism, just some extra points
     public DroneDynamics() {
     }
+
     public long getDroneDynamicsId(){ return droneDynamicsId; }
     public void setDroneDynamicsId(long droneDynamicsId) {this.droneDynamicsId = droneDynamicsId;}
     public int getDroneId() {

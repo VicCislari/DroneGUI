@@ -12,6 +12,7 @@ import org.json.JSONObject;
 public class DroneManager {
     private static final String dataCategory = "drones";
     private static Drone[] droneList;
+    private static int count = ApiAdapter.getCountOfDataFromCategory(dataCategory);
 
     /**
      * Formats the drone type from the API response.
@@ -62,9 +63,19 @@ public class DroneManager {
     }
 
     /**
+     * this is the link which is being requested https://dronesim.facets-labs.com/api/drones/?format=json&limit=10&offset=0
      * Initializes the drone data by fetching and mapping from the API.
+     * This Data can be found under the following link: https://dronesim.facets-labs.com/api/drones/?limit=10&offset=0
+     * This function maps the first 10 drones of the Dronelist on the web to the local droneList
      */
     public static void initializeDrones() {
         mapDrones(ApiAdapter.fetchAllDataFromCategory(dataCategory));
+    }
+
+    // TODO: Victor
+    // this could be more automatised and oriented towards more expension for the api expansion or more drones.
+    // siehe DroneDynamicManager.java getDroneDashboardData()
+    public static int getCount(){
+        return count; //25 in development
     }
 }
