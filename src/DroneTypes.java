@@ -7,6 +7,18 @@ public class DroneTypes {
     private static int batteryCapacity;
     private static int controlRange;
     private static int maxCarriage;
+
+    public DroneTypes(int id, String manufacturer, String typeName, int weight, int maxSpeed, int batteryCapacity, int controlRange, int maxCarriage) {
+        setId(id);
+        setManufacturer(manufacturer);
+        setTypeName(typeName);
+        setWeight(weight);
+        setMaxSpeed(maxSpeed);
+        setBatteryCapacity(batteryCapacity);
+        setControlRange(controlRange);
+        setMaxCarriage(maxCarriage);
+    }
+
     public static int getId() {
         return id;
     }
