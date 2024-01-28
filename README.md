@@ -53,3 +53,4 @@ At the end of the project, focus on documenting the code. Ensure clean code prac
 Drone.java:
 - public Drone(){} - wäre gut Überlegungen zu machen was mit der Klasse geschehen soll. Polymorphism.
 - the resulting product has to be a simply executable .jar file.
+- is there some way of receiving all of the maximum and minimum limits of the dronelist. Or is it really just and only just go by the link recursively or iterativelly and get your data like that.
