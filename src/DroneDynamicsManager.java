@@ -23,13 +23,9 @@ public class DroneDynamicsManager {
     private static int currentPageIndex = 0;
     private static boolean previousPageExists = true;
     private static boolean nextPageExists = false;
-    private static Map<Integer, DroneDynamics[]> cache = new HashMap<>();
-    /**
-     * Gets the array of DroneDynamics objects.
-     *
-     * @return The array of DroneDynamics objects.
-     */
-    // TODO: what was this? why do we have this comment
+
+    //this is for a more seemless transition between windows. No more need to rerequest data
+    private static Map<Integer, DroneDynamics[]> cache = new HashMap<>(); 
 
     /**
      * Formats the drone ID from the API response.
@@ -60,6 +56,7 @@ public class DroneDynamicsManager {
      * @return DroneDynamics object representing the mapped data.
      */
     private static DroneDynamics mapDroneDynamics(JSONObject droneDynJson) {
+        //index https://dronesim.facets-labs.com/simulator/dronedynamics/?page=3603
         long droneDynamicsId = index; //@VicCislari: verstehe Index gerade nicht ganz
         int droneId = formatDroneId(droneDynJson.getString("drone"));
         String timestamp = droneDynJson.getString("timestamp");
@@ -91,11 +88,13 @@ public class DroneDynamicsManager {
     private static DroneDynamics[] mapAndCacheDroneDynamics(JSONObject droneJsonObject) {
         JSONArray resultsArray = droneJsonObject.getJSONArray("results");
         DroneDynamics[] dynamicsArray = new DroneDynamics[resultsArray.length()];
+        
+        //die droneDynamicsId = offset also die 71 ist 36001, die 95 ist dann 36002.
 
         for (int i = 0; i < resultsArray.length(); i++) {
             JSONObject droneDynJson = resultsArray.getJSONObject(i);
 
-            long droneDynamicsId = index; // //@VicCislari: verstehe Index gerade nicht ganz
+            long droneDynamicsId = index; //ich sollte es eigentlich auf null setzen  //@VicCislari: verstehe Index gerade nicht ganz
             int droneId = formatDroneId(droneDynJson.getString("drone"));
             String timestamp = droneDynJson.getString("timestamp");
             int speed = droneDynJson.getInt("speed");
@@ -148,15 +147,6 @@ public class DroneDynamicsManager {
     }
 
     /**
-     * this function returns the count from the following request:
-     * https://dronesim.facets-labs.com/api/dronedynamics/
-     * TODO: needs automation
-     **/
-    private static int getCountOfDronesDynamics() {
-        return 36025;
-    }
-
-    /**
      * https://dronesim.facets-labs.com/api/dronedynamics/
      * Gets the drone dynamics data for a specific page.
      * Fetches from the API and caches it if not already in cache.
@@ -179,28 +169,10 @@ public class DroneDynamicsManager {
      *                  pages. in most cases you have 3,x ≈ 4 pages spread
      **/
     public static DroneDynamics[] getDroneDashboardData() {
-
-        int maxAmountOfPages = 4; // I have explained it
         int countDrones = DroneManager.getCount(); // for now it is basically just 25 and that is it.
-        int droneDynamicsCount = getCountOfDronesDynamics();
-        int itemsPerPage = 10;
-        int startingPage = droneDynamicsCount / 10;
-
-        // System.out.println(maxAmountOfPages);
-        // System.out.println(countDrones);
-        // System.out.println(droneDynamicsCount);
-        // System.out.println(startingPage);
-        System.out.println("count of droneDynamics:" + count);
-        System.out.println("count of the amount of drones" + countDrones);
-        // you can just generate it fro mthe string:
-        // https://dronesim.facets-labs.com/api/dronedynamics/?limit=25&offset=36000
-        // https://dronesim.facets-labs.com/api/dronedynamics/?limit=countDrones&offset={count
-        // - countDrones}
-        int offset = droneDynamicsCount - countDrones;
         String myString = "https://dronesim.facets-labs.com/api/dronedynamics/?format=json&limit=" + countDrones
                 + "&offset=" + (count - countDrones);
         System.out.println(myString);
-        // System.out.println(ApiAdapter.fetchApiRequest(myString));
 
         JSONObject apiResponse = ApiAdapter.fetchApiRequest(myString);
         System.out.println(apiResponse);
@@ -210,17 +182,5 @@ public class DroneDynamicsManager {
         } else {
             return null;// new DroneDynamics[0]; // or handle the error as needed //or some warnnig of some sort.
         }
-        // offset // this is the max
-        // 0. create the first string for the first page with limit=0, offsest=0
-        // 1. get count from the response, because that gives you the maximum
-        // 2. limit = 25 //25 drones max, this could be automatised, something like a
-        // function which gives you the amount of
-        // - actually writing a function in DroneManager.java exactly for this.
-        // 2. offset = count - limit
-
-        // if (!cache.containsKey(pageIndex)) {
-        // fetchAndCachePage(pageIndex);
-        // }
-        // return null;// cache.get(pageIndex); // DroneDynamics[]
     }
 }
