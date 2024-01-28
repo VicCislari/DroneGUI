@@ -28,6 +28,7 @@ public class Main {
         System.out.println(DroneManager.getDroneList()[23].getDroneType());
         System.out.println(DroneManager.getDroneList().length);
         System.out.println(DroneDynamicsManager.getDroneDynamicsPage(7)[0].getDroneId());
+        System.out.println(DroneDynamicsManager.getMostRecentDroneDynamicsForAllDronesPage()[3].getDroneId());
         //DroneDynamicsManager.initializeDroneDynamics();
         //System.out.println(DroneDynamicsManager.getDroneDynamicsList()[20].getTimestamp());
         //System.out.println((DroneDynamicsManager.getDroneDynamicsList().length));
