@@ -10,7 +10,7 @@ import java.time.ZonedDateTime;
  * @since 2024-01-26
  */
 public class DroneDynamics {
-    private long droneDynamicsId;
+    private long droneDynamicsId; //
     private int droneId; // Unique identifier
     private ZonedDateTime timestamp; // Drone Data Timestamp
     private int speed; // Dronespeed (unit = second)
@@ -41,8 +41,10 @@ public class DroneDynamics {
     }
 
     // TODO: this requires some attention
+    // polymoprphism, just some extra points
     public DroneDynamics() {
     }
+
     public long getDroneDynamicsId(){ return droneDynamicsId; }
     public void setDroneDynamicsId(long droneDynamicsId) {this.droneDynamicsId = droneDynamicsId;}
     public int getDroneId() {

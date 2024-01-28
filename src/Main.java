@@ -1,27 +1,3 @@
-
-/**
- * TODO:
- * 1. alle Dronen bekommen und in Dronen Objekte konvertieren
- * a) die Links erstellen für alle Dronen
- * Prio 1:
- * https://dronesim.facets-labs.com/api/drones/?format=json&limit=30&offset=10
- * Prio 3: additionally: zukunftsorienteirt machen. Was ist wenn mehr Dronen
- * hinzugefügt werden
- * -> extra Tools.java Datei, Funktion - String getAll() - gibt ein String
- * zurück in JSON Format
- * -> Json String muss bearbeitet werden, extra Funktion,
- * -> schauen ob ApiAdapter das eigentlich schon erfüllt.
- * -> es werden neue Werte kommen, deshalb das Programm zukunftsorientiert.
- * (Skalierbarer Code, Error)
- * 2. Globalising the main variables
- * 3. Frontend... you are welcome to add some comments
- * 4. Backend... same here
- * 5. Diagrams
- * a) Flowchart
- * b) Data Chart
- * c) Class diagram
- */
-
 public class Main {
     public static void AdiZenTest() {
         DroneManager.initializeDrones();
@@ -35,8 +11,14 @@ public class Main {
 
     }
 
+    public static void testDroneDashboard(){ 
+        System.out.println(DroneDynamicsManager.getDroneDashboardData().length + " hello");
+    }
+
     public static void main(String[] args) {
-        AdiZenTest();
+        testDroneDashboard();
+    
+        //AdiZenTest();
         //ApiAdapter.api_results("drones");
     }
 }

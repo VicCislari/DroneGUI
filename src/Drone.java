@@ -29,6 +29,7 @@ public class Drone {
         setCarriageType(carriageType);
     }
 
+    //TODO:
     public Drone() {
     }
 
