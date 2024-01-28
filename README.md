@@ -55,4 +55,4 @@ Drone.java:
 - the resulting product has to be a simply executable .jar file.
 - is there some way of receiving all of the maximum and minimum limits of the dronelist. Or is it really just and only just go by the link recursively or iterativelly and get your data like that.
 - we have to add a lot of try_catch_errorHandlers, like everywhere
-
+- man könnte natürlich auch schreiben wie wir das Projekt getestet haben, welche Art und Weise wir benutzt haben das ganze zu testen
