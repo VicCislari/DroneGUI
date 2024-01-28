@@ -51,4 +51,5 @@ At the end of the project, focus on documenting the code. Ensure clean code prac
 
 
 Drone.java:
-public Drone(){} - wäre gut Überlegungen zu machen was mit der Klasse geschehen soll. Polymorphism.
+- public Drone(){} - wäre gut Überlegungen zu machen was mit der Klasse geschehen soll. Polymorphism.
+- the resulting product has to be a simply executable .jar file.
