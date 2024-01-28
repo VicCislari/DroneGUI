@@ -1,7 +1,7 @@
 import java.time.ZonedDateTime;
 
 /**
- * @class DroneDynamics
+ * @class DroneDynamic
  * @description Represents the dynamics and status of a drone, including its
  *              location,
  *              battery status, and activity status.
@@ -9,9 +9,9 @@ import java.time.ZonedDateTime;
  * @version 1.0
  * @since 2024-01-26
  */
-public class DroneDynamics {
-    private long droneDynamicsId; //
-    private int droneId; // Unique identifier
+public class DroneDynamic {
+    private int droneDynamicId; //
+    private Drone drone; // Unique identifier
     private ZonedDateTime timestamp; // Drone Data Timestamp
     private int speed; // Dronespeed (unit = second)
     private float alignRoll; // Roll alignment
@@ -23,11 +23,11 @@ public class DroneDynamics {
     private ZonedDateTime lastSeen; // Timestamp of the last time the drone was seen/data was logged
     private boolean isActive; // Activity status of the drone //Victor:WHAT?
 
-    public DroneDynamics(long droneDynamicsId, int droneId, String timestamp, int speed, float alignRoll, float alignYaw,
-            float alignPitch, float longitude, float latitude, int batteryStatus, String lastSeen,
-            boolean isActive) {
-        this.setDroneDynamicsId(droneDynamicsId);
-        this.setDroneId(droneId);
+    public DroneDynamic(int droneDynamicId, Drone drone, String timestamp, int speed, float alignRoll, float alignYaw,
+                        float alignPitch, float longitude, float latitude, int batteryStatus, String lastSeen,
+                        boolean isActive) {
+        this.setDroneDynamicId(droneDynamicId);
+        this.setDroneId(drone);
         this.setTimestamp(timestamp);
         this.setSpeed(speed);
         this.setAlignRoll(alignRoll);
@@ -40,19 +40,16 @@ public class DroneDynamics {
         this.setIsActive(isActive);
     }
 
-    // TODO: this requires some attention
-    // polymoprphism, just some extra points
-    public DroneDynamics() {
+
+
+    public int getDroneDynamicId(){ return droneDynamicId; }
+    public void setDroneDynamicId(int droneDynamicsId) {this.droneDynamicId = droneDynamicsId;}
+    public Drone getDrone() {
+        return drone;
     }
 
-    public long getDroneDynamicsId(){ return droneDynamicsId; }
-    public void setDroneDynamicsId(long droneDynamicsId) {this.droneDynamicsId = droneDynamicsId;}
-    public int getDroneId() {
-        return droneId;
-    }
-
-    public void setDroneId(int droneId) {
-        this.droneId = droneId;
+    public void setDroneId(Drone drone) {
+        this.drone = drone;
     }
 
     public ZonedDateTime getTimestamp() {

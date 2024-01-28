@@ -3,8 +3,8 @@ public class Main {
         DroneManager.initializeDrones();
         System.out.println(DroneManager.getDroneList()[23].getDroneType());
         System.out.println(DroneManager.getDroneList().length);
-        System.out.println(DroneDynamicsManager.getDroneDynamicsPage(7)[0].getDroneId());
-        System.out.println(DroneDynamicsManager.getMostRecentDroneDynamicsForAllDronesPage()[3].getDroneId());
+        System.out.println(DroneDynamicManager.getDroneDynamicsPage(7)[0].getDrone().getId());
+        System.out.println(DroneDynamicManager.getMostRecentDroneDynamicsForAllDronesPage()[3].getDrone().getId());
         //DroneDynamicsManager.initializeDroneDynamics();
         //System.out.println(DroneDynamicsManager.getDroneDynamicsList()[20].getTimestamp());
         //System.out.println((DroneDynamicsManager.getDroneDynamicsList().length));
@@ -12,7 +12,7 @@ public class Main {
     }
 
     public static void testDroneDashboard(){ 
-        System.out.println(DroneDynamicsManager.getDroneDashboardData().length + " hello");
+        System.out.println(DroneDynamicManager.getDroneDashboardData().length + " hello");
     }
 
     public static void main(String[] args) {

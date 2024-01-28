@@ -17,11 +17,13 @@ public class DroneManager {
     /**
      * Formats the drone type from the API response.
      *
-     * @param droneType The raw drone type from the API response.
+     * @param droneTypeId The raw drone type from the API response.
      * @return The formatted drone type.
      */
-    private static int formatDroneType(String droneType) {
-        return Integer.parseInt(droneType.substring(47, 49));
+
+    private static DroneType droneTypeIdToDroneType(String droneTypeId) {
+        int i = Integer.parseInt(droneTypeId.substring(47, 49));
+        return  DroneTypeManager.getDroneTypeList()[i - 71];
     }
 
     /**
@@ -32,7 +34,7 @@ public class DroneManager {
      */
     private static Drone mapDrone(JSONObject droneJson) {
         int id = droneJson.getInt("id");
-        int droneType = formatDroneType(droneJson.getString("dronetype"));
+        DroneType droneType = droneTypeIdToDroneType(droneJson.getString("dronetype"));
         String created = droneJson.getString("created");
         String serialNumber = droneJson.getString("serialnumber");
         int carriageWeight = droneJson.getInt("carriage_weight");

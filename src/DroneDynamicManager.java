@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- * @class DroneDynamicsManager
+ * @class DroneDynamicManager
  * @description Manages the retrieval and mapping of drone dynamics data from an
  *              API,
  *              providing functionality to initialize and access the drone
@@ -15,7 +15,7 @@ import java.util.HashMap;
  * @since 2024-01-26
  */
 
-public class DroneDynamicsManager {
+public class DroneDynamicManager {
     private static final String dataCategory = "dronedynamics";
 
     private static int index;
@@ -25,7 +25,7 @@ public class DroneDynamicsManager {
     private static boolean nextPageExists = false;
 
     //this is for a more seemless transition between windows. No more need to rerequest data
-    private static Map<Integer, DroneDynamics[]> cache = new HashMap<>(); 
+    private static Map<Integer, DroneDynamic[]> cache = new HashMap<>();
 
     /**
      * Formats the drone ID from the API response.
@@ -33,8 +33,9 @@ public class DroneDynamicsManager {
      * @param droneId The raw drone ID from the API response.
      * @return The formatted drone ID.
      */
-    private static int formatDroneId(String droneId) {
-        return Integer.parseInt(droneId.substring(43, 45));
+    private static Drone droneIdToDrone(String droneId) {
+        int i = Integer.parseInt(droneId.substring(43, 45));
+        return  DroneManager.getDroneList()[i - 71];
     }
 
     /**
@@ -55,10 +56,10 @@ public class DroneDynamicsManager {
      * @param droneDynJson JSON object containing drone dynamics data.
      * @return DroneDynamics object representing the mapped data.
      */
-    private static DroneDynamics mapDroneDynamics(JSONObject droneDynJson) {
+    private static DroneDynamic mapDroneDynamic(JSONObject droneDynJson) {
         //index https://dronesim.facets-labs.com/simulator/dronedynamics/?page=3603
-        long droneDynamicsId = index; //@VicCislari: verstehe Index gerade nicht ganz
-        int droneId = formatDroneId(droneDynJson.getString("drone"));
+        int droneDynamicId = index; //@VicCislari: verstehe Index gerade nicht ganz
+        Drone drone = droneIdToDrone(droneDynJson.getString("drone"));
         String timestamp = droneDynJson.getString("timestamp");
         int speed = droneDynJson.getInt("speed");
         float alignRoll = droneDynJson.getFloat("align_roll");
@@ -69,7 +70,7 @@ public class DroneDynamicsManager {
         int batteryStatus = droneDynJson.getInt("battery_status");
         String lastSeen = droneDynJson.getString("last_seen");
         boolean isActive = formatIsActive(droneDynJson.getString("status"));
-        return new DroneDynamics(droneDynamicsId, droneId, timestamp, speed, alignRoll,
+        return new DroneDynamic(droneDynamicId, drone, timestamp, speed, alignRoll,
                 alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
     }
 
@@ -85,17 +86,17 @@ public class DroneDynamicsManager {
      *                //NOTE: Not sure if the best thing here is to put cache
      *                immediately. I wonder what @plotarmor27 thinks
      */
-    private static DroneDynamics[] mapAndCacheDroneDynamics(JSONObject droneJsonObject) {
+    private static DroneDynamic[] mapAndCacheDroneDynamics(JSONObject droneJsonObject) {
         JSONArray resultsArray = droneJsonObject.getJSONArray("results");
-        DroneDynamics[] dynamicsArray = new DroneDynamics[resultsArray.length()];
+        DroneDynamic[] dynamicsArray = new DroneDynamic[resultsArray.length()];
         
         //die droneDynamicsId = offset also die 71 ist 36001, die 95 ist dann 36002.
 
         for (int i = 0; i < resultsArray.length(); i++) {
             JSONObject droneDynJson = resultsArray.getJSONObject(i);
 
-            long droneDynamicsId = index; //ich sollte es eigentlich auf null setzen  //@VicCislari: verstehe Index gerade nicht ganz
-            int droneId = formatDroneId(droneDynJson.getString("drone"));
+            int droneDynamicsId = index; //ich sollte es eigentlich auf null setzen  //@VicCislari: verstehe Index gerade nicht ganz
+            Drone drone = droneIdToDrone(droneDynJson.getString("drone"));
             String timestamp = droneDynJson.getString("timestamp");
             int speed = droneDynJson.getInt("speed");
             float alignRoll = droneDynJson.getFloat("align_roll");
@@ -107,7 +108,7 @@ public class DroneDynamicsManager {
             String lastSeen = droneDynJson.getString("last_seen");
             boolean isActive = formatIsActive(droneDynJson.getString("status"));
 
-            dynamicsArray[i] = new DroneDynamics(droneDynamicsId, droneId, timestamp, speed, alignRoll,
+            dynamicsArray[i] = new DroneDynamic(droneDynamicsId, drone, timestamp, speed, alignRoll,
                     alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
         }
 
@@ -123,10 +124,10 @@ public class DroneDynamicsManager {
      */
     private static void fetchAndCachePage(int pageIndex) {
         JSONArray droneDyns = ApiAdapter.fetchDataPageFromCategory(dataCategory, pageIndex);
-        DroneDynamics[] dynamics = new DroneDynamics[droneDyns.length()];
+        DroneDynamic[] dynamics = new DroneDynamic[droneDyns.length()];
         for (int i = 0; i < droneDyns.length(); i++) {
             index = 10 * pageIndex + i;
-            dynamics[i] = mapDroneDynamics(droneDyns.getJSONObject(i));
+            dynamics[i] = mapDroneDynamic(droneDyns.getJSONObject(i));
         }
         cache.put(pageIndex, dynamics);
     }
@@ -139,7 +140,7 @@ public class DroneDynamicsManager {
      * @param pageIndex The page index to retrieve.
      * @return Array of DroneDynamics for the given page.
      */
-    public static DroneDynamics[] getDroneDynamicsPage(int pageIndex) {
+    public static DroneDynamic[] getDroneDynamicsPage(int pageIndex) {
         if (!cache.containsKey(pageIndex)) {
             fetchAndCachePage(pageIndex);
         }
@@ -168,7 +169,7 @@ public class DroneDynamicsManager {
      *                  2,5 ≈ 3
      *                  pages. in most cases you have 3,x ≈ 4 pages spread
      **/
-    public static DroneDynamics[] getDroneDashboardData() {
+    public static DroneDynamic[] getDroneDashboardData() {
         int countDrones = DroneManager.getCount(); // for now it is basically just 25 and that is it.
         String myString = 
         "https://dronesim.facets-labs.com/api/dronedynamics/?format=json&limit=" + countDrones + "&offset=" + (count - countDrones);
@@ -184,16 +185,16 @@ public class DroneDynamicsManager {
         }
     }
 
-    public static DroneDynamics[] getDroneDynamicsForAllDronesPage(int pageIndex){
+    public static DroneDynamic[] getDroneDynamicsForAllDronesPage(int pageIndex){
         JSONArray droneDyns = ApiAdapter.fetchDataPageForAllDronesFromCategory(dataCategory,pageIndex);
-        DroneDynamics[] dynamics = new DroneDynamics[droneDyns.length()];
+        DroneDynamic[] dynamics = new DroneDynamic[droneDyns.length()];
         for (int i = 0; i < droneDyns.length(); i++) {
-            dynamics[i] = mapDroneDynamics(droneDyns.getJSONObject(i));
+            dynamics[i] = mapDroneDynamic(droneDyns.getJSONObject(i));
         }
         return dynamics;
     }
 
-    public static DroneDynamics[] getMostRecentDroneDynamicsForAllDronesPage(){
+    public static DroneDynamic[] getMostRecentDroneDynamicsForAllDronesPage(){
         return getDroneDynamicsForAllDronesPage(count/ApiAdapter.getCountOfDataFromCategory("drones")-1);
     }
 }

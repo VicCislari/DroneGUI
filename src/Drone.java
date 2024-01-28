@@ -14,13 +14,13 @@ import java.time.ZonedDateTime;
 
 public class Drone {
     private int id;
-    private int droneType;
+    private DroneType droneType;
     private ZonedDateTime created;
     private String serialNumber;
     private int carriageWeight;
     private String carriageType;
 
-    public Drone(int id, int droneType, String created, String serialNumber, int carriageWeight, String carriageType) {
+    public Drone(int id, DroneType droneType, String created, String serialNumber, int carriageWeight, String carriageType) {
         setId(id);
         setDroneType(droneType);
         setCreated(created);
@@ -41,17 +41,11 @@ public class Drone {
         this.id = id;
     }
 
-    /// polymorphism
-    // this needs some attentipon
-    public void setId(String id) {
-        // this.id = id;
-    }
-
-    public int getDroneType() {
+    public DroneType getDroneType() {
         return droneType;
     }
 
-    public void setDroneType(int droneType) {
+    public void setDroneType(DroneType droneType) {
         this.droneType = droneType;
     }
 

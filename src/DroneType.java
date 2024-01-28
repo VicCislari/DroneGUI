@@ -1,4 +1,4 @@
-public class DroneTypes {
+public class DroneType {
     private static int id;
     private static String manufacturer;
     private static String typeName;
@@ -8,7 +8,7 @@ public class DroneTypes {
     private static int controlRange;
     private static int maxCarriage;
 
-    public DroneTypes(int id, String manufacturer, String typeName, int weight, int maxSpeed, int batteryCapacity, int controlRange, int maxCarriage) {
+    public DroneType(int id, String manufacturer, String typeName, int weight, int maxSpeed, int batteryCapacity, int controlRange, int maxCarriage) {
         setId(id);
         setManufacturer(manufacturer);
         setTypeName(typeName);
@@ -52,34 +52,34 @@ public class DroneTypes {
     }
 
     public static void setId(int id) {
-        DroneTypes.id = id;
+        DroneType.id = id;
     }
 
     public static void setManufacturer(String manufacturer) {
-        DroneTypes.manufacturer = manufacturer;
+        DroneType.manufacturer = manufacturer;
     }
 
     public static void setTypeName(String typeName) {
-        DroneTypes.typeName = typeName;
+        DroneType.typeName = typeName;
     }
 
     public static void setWeight(int weight) {
-        DroneTypes.weight = weight;
+        DroneType.weight = weight;
     }
 
     public static void setMaxSpeed(int maxSpeed) {
-        DroneTypes.maxSpeed = maxSpeed;
+        DroneType.maxSpeed = maxSpeed;
     }
 
     public static void setBatteryCapacity(int batteryCapacity) {
-        DroneTypes.batteryCapacity = batteryCapacity;
+        DroneType.batteryCapacity = batteryCapacity;
     }
 
     public static void setControlRange(int controlRange) {
-        DroneTypes.controlRange = controlRange;
+        DroneType.controlRange = controlRange;
     }
 
     public static void setMaxCarriage(int maxCarriage) {
-        DroneTypes.maxCarriage = maxCarriage;
+        DroneType.maxCarriage = maxCarriage;
     }
 }

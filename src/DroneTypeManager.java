@@ -1,14 +1,14 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class DroneTypesManager {
+public class DroneTypeManager {
     private static final String dataCategory = "dronetypes";
-    private static DroneTypes[] droneTypesList;
-    public static DroneTypes[] getDroneTypesList() {
-        return droneTypesList;
+    private static DroneType[] droneTypeList;
+    public static DroneType[] getDroneTypeList() {
+        return droneTypeList;
     }
 
-    private static DroneTypes mapDroneTypes(JSONObject droneTypeJson) {
+    private static DroneType mapDroneType(JSONObject droneTypeJson) {
         int id = droneTypeJson.getInt("id");
         String manufacturer = droneTypeJson.getString("manufacturer");
         String typeName = droneTypeJson.getString("typename");
@@ -17,17 +17,17 @@ public class DroneTypesManager {
         int batteryCapacity = droneTypeJson.getInt("battery_capacity");
         int controlRange = droneTypeJson.getInt("control_range");
         int maxCarriage = droneTypeJson.getInt("max_carriage");
-        return new DroneTypes(id, manufacturer, typeName, weight, maxSpeed, batteryCapacity, controlRange, maxCarriage);
+        return new DroneType(id, manufacturer, typeName, weight, maxSpeed, batteryCapacity, controlRange, maxCarriage);
     }
 
-    private static void mapAllDroneTypes(JSONArray droneTypes) {
+    private static void mapDroneTypes(JSONArray droneTypes) {
         int i;
-        droneTypesList = new DroneTypes[droneTypes.length()];
+        droneTypeList = new DroneType[droneTypes.length()];
         for (i = 0; i < droneTypes.length(); i++) {
-            droneTypesList[i] = mapDroneTypes(droneTypes.getJSONObject(i));
+            droneTypeList[i] = mapDroneType(droneTypes.getJSONObject(i));
         }
     }
     public static void initializeDroneTypes() {
-        mapAllDroneTypes(ApiAdapter.fetchAllDataFromCategory(dataCategory));
+        mapDroneTypes(ApiAdapter.fetchAllDataFromCategory(dataCategory));
     }
 }
