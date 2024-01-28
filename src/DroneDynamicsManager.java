@@ -102,4 +102,17 @@ public class DroneDynamicsManager {
         }
         return cache.get(pageIndex);
     }
+
+    public static DroneDynamics[] getDroneDynamicsForAllDronesPage(int pageIndex){
+        JSONArray droneDyns = ApiAdapter.fetchDataPageForALlDronesFromCategory(dataCategory,pageIndex);
+        DroneDynamics[] dynamics = new DroneDynamics[droneDyns.length()];
+        for (int i = 0; i < droneDyns.length(); i++) {
+            dynamics[i] = mapDroneDynamics(droneDyns.getJSONObject(i));
+        }
+        return dynamics;
+    }
+
+    public static DroneDynamics[] getMostRecentDroneDynamicsForAllDronesPage(){
+        return getDroneDynamicsForAllDronesPage(count/ApiAdapter.getCountOfDataFromCategory("drones")-1);
+    }
 }

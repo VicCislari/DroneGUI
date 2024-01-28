@@ -100,6 +100,22 @@ public class ApiAdapter {
         return results;
     }
 
+    public static JSONArray fetchDataPageForALlDronesFromCategory(String dataCategory, int pageIndex) {
+        JSONArray results = new JSONArray();
+        limit = getCountOfDataFromCategory("drones");
+        offset = pageIndex * limit;
+        JSONObject apiResult = fetchApi(dataCategory);
+        offset = 0;
+        nextPageExists(apiResult);
+        previousPageExists(apiResult);
+        int c = getCountOfDataFromCategory(dataCategory);
+        for (int i = 0; i < apiResult.getJSONArray("results").length(); i++) {
+            results.put(apiResult.getJSONArray("results").getJSONObject(i));
+        }
+        limit = 10;
+        return results;
+    }
+
     public static int getCountOfDataFromCategory(String dataCategory){
         return fetchApi(dataCategory).getInt("count");
     }
