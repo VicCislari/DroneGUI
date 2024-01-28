@@ -146,7 +146,7 @@ public class ApiAdapter {
         return results;
     }
 
-    public static JSONArray fetchDataPageForALlDronesFromCategory(String dataCategory, int pageIndex) {
+    public static JSONArray fetchDataPageForAllDronesFromCategory(String dataCategory, int pageIndex) {
         JSONArray results = new JSONArray();
         limit = getCountOfDataFromCategory("drones");
         offset = pageIndex * limit;
