@@ -57,3 +57,5 @@ Drone.java:
 - we have to add a lot of try_catch_errorHandlers, like everywhere
 - man könnte natürlich auch schreiben wie wir das Projekt getestet haben, welche Art und Weise wir benutzt haben das ganze zu testen
 - Clean Code: Interfaces
+- Rechtschreibung im Code, entweder Drone Dynamics oder nur DroneDynamics, auch in den Kommentaremn
+- Adizen-> plotarm, Victor -> @[GithubName]
