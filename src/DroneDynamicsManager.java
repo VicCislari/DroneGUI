@@ -1,6 +1,9 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.Objects;
+import java.util.Map;
+import java.util.HashMap;
+
 /**
  * @class DroneDynamicsManager
  * @description Manages the retrieval and mapping of drone dynamics data from an API,
@@ -11,24 +14,20 @@ import java.util.Objects;
  */
 
 public class DroneDynamicsManager {
-    private static final String category = "dronedynamics";
-    private static DroneDynamics[] droneDynamicsList;
+    private static final String dataCategory = "dronedynamics";
 
-    /**
-     * Initializes the drone dynamics data by fetching and mapping from the API.
-     */
-    public static void initializeDroneDynamics() {
-        mapAllDroneDynamics(ApiAdapter.api_results(category));
-    }
-
+    private static int index;
+    private static int count = ApiAdapter.getCountOfDataFromCategory(dataCategory);
+    private static int currentPageIndex = 0;
+    private static boolean previousPageExists = true;
+    private static boolean nextPageExists = false;
+    private static Map<Integer, DroneDynamics[]> cache = new HashMap<>();
     /**
      * Gets the array of DroneDynamics objects.
      *
      * @return The array of DroneDynamics objects.
      */
-    public static DroneDynamics[] getDroneDynamicsList() {
-        return droneDynamicsList;
-    }
+
 
     /**
      * Formats the drone ID from the API response.
@@ -59,6 +58,7 @@ public class DroneDynamicsManager {
      * @return DroneDynamics object representing the mapped data.
      */
     private static DroneDynamics mapDroneDynamics(JSONObject droneDynJson) {
+        long droneDynamicsId = index;
         int droneId = formatDroneId(droneDynJson.getString("drone"));
         String timestamp = droneDynJson.getString("timestamp");
         int speed = droneDynJson.getInt("speed");
@@ -70,21 +70,36 @@ public class DroneDynamicsManager {
         int batteryStatus = droneDynJson.getInt("battery_status");
         String lastSeen = droneDynJson.getString("last_seen");
         boolean isActive = formatIsActive(droneDynJson.getString("status"));
-        return new DroneDynamics(droneId, timestamp, speed, alignRoll,
+        return new DroneDynamics(droneDynamicsId, droneId, timestamp, speed, alignRoll,
                 alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
     }
 
     /**
-     * Maps all drone dynamics data from the JSON array and populates the droneDynamicsList.
+     * Fetches drone dynamics data for a specific page and caches it.
      *
-     * @param droneDyns JSON array containing multiple drone dynamics data.
+     * @param pageIndex The page index to fetch.
      */
-    private static void mapAllDroneDynamics(JSONArray droneDyns) {
-        int i;
-        droneDynamicsList = new DroneDynamics[droneDyns.length()];
-        for (i = 0; i < droneDyns.length(); i++) {
-            // System.out.println(droneDyns.getJSONObject(i).toString());
-            droneDynamicsList[i] = mapDroneDynamics(droneDyns.getJSONObject(i));
+    private static void fetchAndCachePage(int pageIndex) {
+        JSONArray droneDyns = ApiAdapter.fetchDataPageFromCategory(dataCategory, pageIndex);
+        DroneDynamics[] dynamics = new DroneDynamics[droneDyns.length()];
+        for (int i = 0; i < droneDyns.length(); i++) {
+            index = 10 * pageIndex + i;
+            dynamics[i] = mapDroneDynamics(droneDyns.getJSONObject(i));
         }
+        cache.put(pageIndex, dynamics);
+    }
+
+    /**
+     * Gets the drone dynamics data for a specific page.
+     * Fetches from the API and caches it if not already in cache.
+     *
+     * @param pageIndex The page index to retrieve.
+     * @return Array of DroneDynamics for the given page.
+     */
+    public static DroneDynamics[] getDroneDynamicsPage(int pageIndex) {
+        if (!cache.containsKey(pageIndex)) {
+            fetchAndCachePage(pageIndex);
+        }
+        return cache.get(pageIndex);
     }
 }

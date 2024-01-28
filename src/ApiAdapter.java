@@ -16,26 +16,29 @@ public class ApiAdapter {
     private static final String USER_AGENT = "Group 26";
     private static final String URL = "https://dronesim.facets-labs.com/api/";
     private static final String JSON_FORMAT = "/?format=json";
-    private static int limit = 1;
+    private static int limit = 10;
     private static int offset = 0;
     private static final String LIMIT_STR = "&limit=";
     private static final String OFFSET_STR = "&offset=";
     private static final String TOKEN = "Token 1bbbbd05efe3c733efcf8f443582a09cac4ca02c";
     private static JSONObject jsonResponse;
 
+    public static boolean nextPageExists;
+    public static boolean previousPageExists;
+
     /**
      * Fetches data from an API based on a specified category.
      * 
-     * @param category The category for API data retrieval.
+     * @param dataCategory The category for API data retrieval.
      * @return JSONObject containing API response.
      * @author Müller Bady and Adizen
      * @since 1.0
      * @last_modified 2024.01.10
      */
-    public static JSONObject api_fetch(String category) {
+    public static JSONObject fetchApi(String dataCategory) {
         URL url;
         try {
-            url = new URL(URL + category + JSON_FORMAT + LIMIT_STR + limit + OFFSET_STR + offset);
+            url = new URL(URL + dataCategory + JSON_FORMAT + LIMIT_STR + limit + OFFSET_STR + offset);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("Authorization", TOKEN);
             connection.setRequestMethod("GET");
@@ -62,30 +65,59 @@ public class ApiAdapter {
     /**
      * Fetches and aggregates results from an API for a given category.
      * 
-     * @param category URL subsection
+     * @param dataCategory URL subsection
      * @return JSONArray containing aggregated results.
      * @author AdiZen
      * @since 1.0
      * @last_modified 2024.01.10
      */
-    public static JSONArray api_results(String category) {
+
+    public static JSONArray fetchDataPageFromCategory(String dataCategory, int pageIndex) {
         JSONArray results = new JSONArray();
-        JSONObject fetch = api_fetch(category);
-        limit = (int) (Math.ceil(Math.sqrt(fetch.getDouble("count"))));
-        fetch = api_fetch(category);
-        int j = 0;
-        while (limit > j) { // while next block is not null
-            for (int i = 0; i < fetch.getJSONArray("results").length(); i++) { //
-                results.put(fetch.getJSONArray("results").getJSONObject(i));
-            }
-            j++;
-            offset = offset + limit;
-            fetch = api_fetch(category);
-        }
+        offset = pageIndex * limit;
+        JSONObject apiResult = fetchApi(dataCategory);
         offset = 0;
-        System.out.println(results);
-        System.out.println("-----------------");
-        System.out.println(fetch);
+        nextPageExists(apiResult);
+        previousPageExists(apiResult);
+        int c = getCountOfDataFromCategory(dataCategory);
+        for (int i = 0; i < apiResult.getJSONArray("results").length(); i++) {
+                results.put(apiResult.getJSONArray("results").getJSONObject(i));
+        }
         return results;
     }
+
+    public static JSONArray fetchAllDataFromCategory(String dataCategory) {
+        JSONArray results = new JSONArray();
+        JSONObject apiResult = fetchApi(dataCategory);
+        int c = getCountOfDataFromCategory(dataCategory);
+        for (offset = 0; offset < c; offset += limit){
+            for (int i = 0; i < apiResult.getJSONArray("results").length(); i++) { //
+                results.put(apiResult.getJSONArray("results").getJSONObject(i));
+            }
+            apiResult = fetchApi(dataCategory);
+        }
+        offset = 0;
+        return results;
+    }
+
+    public static int getCountOfDataFromCategory(String dataCategory){
+        return fetchApi(dataCategory).getInt("count");
+    }
+
+    private static void previousPageExists (JSONObject apiResults){
+        previousPageExists = !apiResults.isNull("previous");
+    }
+
+    private static void nextPageExists (JSONObject apiResults){
+        nextPageExists = !apiResults.isNull("next");
+    }
+
+    public static boolean getNextPageExists(){
+        return nextPageExists;
+    }
+
+    public static boolean getPreviousPageExists(){
+        return previousPageExists;
+    }
 }
+

@@ -25,7 +25,9 @@
 public class Main {
     public static void AdiZenTest() {
         DroneManager.initializeDrones();
-        System.out.println(DroneManager.getDroneList()[0].getDroneType());
+        System.out.println(DroneManager.getDroneList()[23].getDroneType());
+        System.out.println(DroneManager.getDroneList().length);
+        System.out.println(DroneDynamicsManager.getDroneDynamicsPage(7)[0].getDroneId());
         //DroneDynamicsManager.initializeDroneDynamics();
         //System.out.println(DroneDynamicsManager.getDroneDynamicsList()[20].getTimestamp());
         //System.out.println((DroneDynamicsManager.getDroneDynamicsList().length));

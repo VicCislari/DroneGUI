@@ -10,7 +10,7 @@ import org.json.JSONObject;
  * @since 2024-01-26
  */
 public class DroneManager {
-    private static final String category = "drones";
+    private static final String dataCategory = "drones";
     private static Drone[] droneList;
 
     /**
@@ -48,7 +48,6 @@ public class DroneManager {
         int i;
         droneList = new Drone[drones.length()];
         for (i = 0; i < drones.length(); i++) {
-            // System.out.println(drones.getJSONObject(i).toString());
             droneList[i] = mapDrone(drones.getJSONObject(i));
         }
     }
@@ -66,6 +65,6 @@ public class DroneManager {
      * Initializes the drone data by fetching and mapping from the API.
      */
     public static void initializeDrones() {
-        mapDrones(ApiAdapter.api_results(category));
+        mapDrones(ApiAdapter.fetchAllDataFromCategory(dataCategory));
     }
 }
