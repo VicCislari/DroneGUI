@@ -7,7 +7,7 @@ import javafx.scene.Stage;
 public class FXMLLOADER extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("start_gui.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Users/wassabie/start_gui.fxml"));
 
         primaryStage.setTitle("Dronefleet Viewer");
 
