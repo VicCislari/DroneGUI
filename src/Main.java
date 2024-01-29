@@ -1,4 +1,20 @@
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+public class Main extends Application{
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+        primaryStage.setTitle("My Application");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
     public static void AdiZenTest() {
         DroneManager.initializeDrones();
         System.out.println(DroneManager.getDroneList()[23].getDroneType());
@@ -9,16 +25,5 @@ public class Main {
         //System.out.println(DroneDynamicsManager.getDroneDynamicsList()[20].getTimestamp());
         //System.out.println((DroneDynamicsManager.getDroneDynamicsList().length));
 
-    }
-
-    public static void testDroneDashboard(){ 
-        System.out.println(DroneDynamicManager.getDroneDashboardData().length + " hello");
-    }
-
-    public static void main(String[] args) {
-        testDroneDashboard();
-    
-        //AdiZenTest();
-        //ApiAdapter.api_results("drones");
     }
 }
