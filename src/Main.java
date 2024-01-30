@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         primaryStage.setTitle("My Application");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
