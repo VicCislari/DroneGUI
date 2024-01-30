@@ -2,19 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
    <children>
-      <BorderPane fx:id="mainWindow" prefHeight="400.0" prefWidth="600.0">
+      <BorderPane fx:id="mainWindow" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <BorderPane BorderPane.alignment="CENTER">
                <left>
@@ -25,44 +23,31 @@
                   </Label>
                </left>
                <right>
-                  <MenuBar BorderPane.alignment="CENTER">
-                    <menus>
-                      <Menu mnemonicParsing="false" text="Drones">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="Close" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Flight Dynamics">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="Delete" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="History">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
-                        </items>
-                      </Menu>
-                    </menus>
-                  </MenuBar>
-               </right>
-               <top>
-                  <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
+                  <HBox BorderPane.alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" text="-" />
-                        <Button mnemonicParsing="false" text="O" />
-                        <Button mnemonicParsing="false" text="x" />
+                        <Button mnemonicParsing="false" text="Drones" />
+                        <Button mnemonicParsing="false" text="Flight Dynamics" />
+                        <Button mnemonicParsing="false" text="History" />
                      </children>
                   </HBox>
-               </top>
+               </right>
             </BorderPane>
          </top>
          <left>
-            <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-              </content>
-            </ScrollPane>
+             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS">
+               <content>
+                  <VBox fx:id="vBoxButtonList">
+                     <children>
+                        <Button maxWidth="Infinity" mnemonicParsing="false" text="Button" />
+                        <Button maxWidth="Infinity" mnemonicParsing="false" text="Button" />
+                     </children>
+                  </VBox>
+               </content>
+             </ScrollPane>
          </left>
+          <center>
+              <Pane /> <!-- Placeholder for center region -->
+          </center>
       </BorderPane>
    </children>
 </AnchorPane>

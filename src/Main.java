@@ -15,6 +15,7 @@ public class Main extends Application{
     public static void main(String[] args) {
         launch(args);
     }
+    /*
     public static void AdiZenTest() {
         DroneManager.initializeDrones();
         System.out.println(DroneManager.getDroneList()[23].getDroneType());
@@ -25,5 +26,5 @@ public class Main extends Application{
         //System.out.println(DroneDynamicsManager.getDroneDynamicsList()[20].getTimestamp());
         //System.out.println((DroneDynamicsManager.getDroneDynamicsList().length));
 
-    }
+    } */
 }
