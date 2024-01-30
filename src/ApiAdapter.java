@@ -63,42 +63,6 @@ public class ApiAdapter {
     }
 
     /**
-     * Fetches data from an API based on a specified request.
-     * 
-     * @param dataCategory The category for API data retrieval.
-     * @return JSONObject containing API response.
-     * @author Müller Bady, Adizen, Victor
-     * @since 1.0
-     * @last_modified 2024.01.28
-     */
-    public static JSONObject fetchApiRequest(String request) {
-        URL url;
-        try {
-            url = new URL(request);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestProperty("Authorization", TOKEN);
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("User-Agent", USER_AGENT);
-
-            int responseCode = connection.getResponseCode();
-            System.out.println("Response Code " + responseCode);
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            JSONTokener tokener = new JSONTokener(in);
-            jsonResponse = new JSONObject(tokener);
-            in.close();
-
-        } catch (MalformedURLException e) {
-            System.err.println("Malformed URL: " + e.getLocalizedMessage());
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("General IO Exception: " + e.getLocalizedMessage());
-            e.printStackTrace();
-        }
-        return jsonResponse;
-    }
-
-    /**
      * Fetches and aggregates results from an API for a given category.
      * 
      * @param dataCategory URL subsection
@@ -134,13 +98,12 @@ public class ApiAdapter {
      */
     public static JSONArray fetchAllDataFromCategory(String dataCategory) {
         JSONArray results = new JSONArray();
-        JSONObject apiResult = fetchApi(dataCategory);
         int c = getCountOfDataFromCategory(dataCategory);
         for (offset = 0; offset < c; offset += limit){
-            for (int i = 0; i < apiResult.getJSONArray("results").length(); i++) { //
+            JSONObject apiResult = fetchApi(dataCategory);
+            for (int i=0; i < (apiResult.getJSONArray("results").length()); i++) {
                 results.put(apiResult.getJSONArray("results").getJSONObject(i));
             }
-            apiResult = fetchApi(dataCategory);
         }
         offset = 0;
         return results;

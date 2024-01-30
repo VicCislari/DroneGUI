@@ -169,21 +169,7 @@ public class DroneDynamicManager {
      *                  2,5 ≈ 3
      *                  pages. in most cases you have 3,x ≈ 4 pages spread
      **/
-    public static DroneDynamic[] getDroneDashboardData() {
-        int countDrones = DroneManager.getCount(); // for now it is basically just 25 and that is it.
-        String myString = 
-        "https://dronesim.facets-labs.com/api/dronedynamics/?format=json&limit=" + countDrones + "&offset=" + (count - countDrones);
-        System.out.println(myString);
 
-        JSONObject apiResponse = ApiAdapter.fetchApiRequest(myString);
-        System.out.println(apiResponse);
-        if (apiResponse != null) {
-            System.out.println("hello 2 ");
-            return mapAndCacheDroneDynamics(apiResponse);
-        } else {
-            return null;// new DroneDynamics[0]; // or handle the error as needed //or some warnnig of some sort.
-        }
-    }
 
     public static DroneDynamic[] getDroneDynamicsForAllDronesPage(int pageIndex){
         JSONArray droneDyns = ApiAdapter.fetchDataPageForAllDronesFromCategory(dataCategory,pageIndex);
