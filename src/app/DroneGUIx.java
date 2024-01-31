@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 package app;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -32,4 +30,3 @@ public class DroneGUIx extends Application {
         launch(args);
     }
 }
->>>>>>> a6c9d3b (@Wassabie)
