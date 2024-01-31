@@ -9,9 +9,10 @@ import javafx.stage.Stage;
 
 	/**
 	 * @functionality
-     * Simple FXML Loader
+     * Simple FXML Loader for DroneGUI 
      * 
-	 * @author Wassabie
+     * 
+	 * @author Wassabie // NEEDS FURTHER MODIFICATION FOR OTHER SPECS
 	 * @since 1.0
 	 * @last_modified 2024.01.31
 	 */
