@@ -11,7 +11,11 @@ import javafx.stage.Stage;
      * Simple FXML Loader for FlightDynamics -> FlightDynamics.fxml ; FlightDynamics.java
 =======
      * same as StartingGUI -> this time it needs file FlightDynamics.fxml & FlightDynamics.java to load
+<<<<<<< HEAD
 >>>>>>> 7ffef53 (FlightDynamics GUI)
+=======
+     * Simple FXML Loader
+>>>>>>> 205434f (small changes)
      * 
 	 * @author Wassabie
 	 * @since 1.0

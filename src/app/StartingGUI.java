@@ -10,6 +10,8 @@ import javafx.stage.Stage;
      * uses StartGUI.fxml as GUI, needs the StartGUI.java in addition to launch the GUI.
      * to work in vscode, package app; must be implemented -> automatically created the "App" folder.
      * 
+     * Simple FXML Loader
+     * 
 	 * @author Wassabie
 	 * @since 1.0
 	 * @last_modified 2024.01.30
