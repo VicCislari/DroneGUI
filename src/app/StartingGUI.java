@@ -15,9 +15,6 @@ import javafx.stage.Stage;
 	 * @last_modified 2024.01.30
 	 */
 
-
-
-
 public class StartingGUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
