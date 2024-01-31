@@ -4,7 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class StartGUI extends Application{
+public class StartGUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -17,3 +17,4 @@ public class StartGUI extends Application{
     public static void main(String[] args) {
         launch(args);
     }
+}
