@@ -21,7 +21,7 @@ public class StartingGUI extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("StartGUI.fxml"));
 
-        primaryStage.setTitle("Dronefleet Viewer");
+        primaryStage.setTitle("Dronefleet-Viewer");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
