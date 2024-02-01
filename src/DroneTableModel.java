@@ -1,79 +1,72 @@
-/*
- * Represents the Drone class for use in JavaFX GUI. In JavaFX, the Properties API is used for e.g. binding. 
- * If the value of a property changes, it is shown in the JavaFX GUI accordingly.
- * 
- * @author bahadir
- * @last_modified 28.01.2024
- */
-
-import javafx.beans.property.*;
-
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DroneTableModel {
-    private final IntegerProperty id;
-    private final SimpleIntegerProperty droneType;
-    private final ObjectProperty<ZonedDateTime> created;
-    private final StringProperty serialNumber;
-    private final IntegerProperty carriageWeight;
-    private final StringProperty carriageType;
+    private final int id;
+    private final String manufacturer;
+    private final String typeName;
+    private final int weight;
+    private final int maxSpeed;
+    private final int batteryCapacity;
+    private final int controlRange;
+    private final int maxCarriage;
 
-    public DroneTableModel(Drone drone) {
-        this.id = new SimpleIntegerProperty(drone.getId());
-        this.droneType = new SimpleIntegerProperty(drone.getDroneType());
-        this.created = new SimpleObjectProperty<>(drone.getCreated());
-        this.serialNumber = new SimpleStringProperty(drone.getSerialNumber());
-        this.carriageWeight = new SimpleIntegerProperty(drone.getCarriageWeight());
-        this.carriageType = new SimpleStringProperty(drone.getCarriageType());
+    public DroneTableModel(DroneType droneType) {
+        this.id = droneType.getId();
+        this.manufacturer = droneType.getManufacturer();
+        this.typeName = droneType.getTypeName();
+        this.weight = droneType.getWeight();
+        this.maxSpeed = droneType.getMaxSpeed();
+        this.batteryCapacity = droneType.getBatteryCapacity();
+        this.controlRange = droneType.getControlRange();
+        this.maxCarriage = droneType.getMaxCarriage();
     }
 
     // Getters for each property
 
     public int getId() {
-        return id.get();
-    }
-
-    public IntegerProperty idProperty() {
         return id;
     }
 
-    public int getDroneType() {
-        return droneType.get();
+    public String getManufacturer() {
+        return manufacturer;
     }
 
-    public IntegerProperty droneTypeProperty() {
-        return droneType;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public ZonedDateTime getCreated() {
-        return created.get();
+    public int getWeight() {
+        return weight;
     }
 
-    public ObjectProperty<ZonedDateTime> createdProperty() {
-        return created;
+    public int getMaxSpeed() {
+        return maxSpeed;
     }
 
-    public String getSerialNumber() {
-        return serialNumber.get();
+    public int getBatteryCapacity() {
+        return batteryCapacity;
     }
 
-    public StringProperty serialNumberProperty() {
-        return serialNumber;
+    public int getControlRange() {
+        return controlRange;
     }
 
-    public int getCarriageWeight() {
-        return carriageWeight.get();
+    public int getMaxCarriage() {
+        return maxCarriage;
     }
 
-    public IntegerProperty carriageWeightProperty() {
-        return carriageWeight;
-    }
-
-    public String getCarriageType() {
-        return carriageType.get();
-    }
-
-    public StringProperty carriageTypeProperty() {
-        return carriageType;
+    /**
+     * Create a list of DroneTableModel instances for all drone types.
+     *
+     * @return List of DroneTableModel instances.
+     */
+    public static List<DroneTableModel> createTableModelList() {
+        List<DroneTableModel> modelList = new ArrayList<>();
+        for (DroneType droneType : DroneTypeManager.getDroneTypeList()) {
+            modelList.add(new DroneTableModel(droneType));
+        }
+        return modelList;
     }
 }

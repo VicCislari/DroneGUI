@@ -8,24 +8,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.List;
-
-public class DroneCatalog extends Application{
+public class DroneCatalog extends Application {
 
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Drone Catalog");
 
-        // Get the list of drones as an array
-        Drone[] droneArray = DroneManager.getDroneList();
+        // Initialize DroneTypeManager to fetch drone types
+        DroneTypeManager.initializeDroneTypes();
 
-        // Get the list of drones as objects
-        List<Drone> droneList = Arrays.asList(droneArray);
+        // Get the list of drone types as objects
+        DroneType[] droneTypeArray = DroneTypeManager.getDroneTypeList();
 
-        // Create a TableView to display the drone list
-        TableView<DroneTableModel> tableView = createDroneTableView(droneList);
+        // Create a TableView to display the drone type list
+        TableView<DroneTableModel> tableView = createDroneTypeTableView(droneTypeArray);
 
         // Create a VBox layout and add the TableView to it
         VBox root = new VBox();
@@ -39,44 +35,49 @@ public class DroneCatalog extends Application{
         primaryStage.show();
     }
 
-    public TableView<DroneTableModel> createDroneTableView(List<Drone> droneList) {
+    public TableView<DroneTableModel> createDroneTypeTableView(DroneType[] droneTypeArray) {
         TableView<DroneTableModel> tableView = new TableView<>();
-        ObservableList<DroneTableModel> droneDataList = FXCollections.observableArrayList();
+        ObservableList<DroneTableModel> droneTypeDataList = FXCollections.observableArrayList();
 
-        // Convert Drone objects to DroneTableModel objects
-        for (Drone drone : droneList) {
-            droneDataList.add(new DroneTableModel(drone));
+        // Convert DroneType objects to DroneTableModel objects
+        for (DroneType droneType : droneTypeArray) {
+            droneTypeDataList.add(new DroneTableModel(droneType));
         }
 
         // Create columns for the TableView
         TableColumn<DroneTableModel, Integer> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-        TableColumn<DroneTableModel, Integer> droneTypeColumn = new TableColumn<>("Drone Type");
-        droneTypeColumn.setCellValueFactory(new PropertyValueFactory<>("droneType"));
+        TableColumn<DroneTableModel, String> manufacturerColumn = new TableColumn<>("Manufacturer");
+        manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
 
-        TableColumn<DroneTableModel, ZonedDateTime> createdColumn = new TableColumn<>("Created");
-        createdColumn.setCellValueFactory(new PropertyValueFactory<>("created"));
+        TableColumn<DroneTableModel, String> typeNameColumn = new TableColumn<>("Type Name");
+        typeNameColumn.setCellValueFactory(new PropertyValueFactory<>("typeName"));
 
-        TableColumn<DroneTableModel, String> serialNumberColumn = new TableColumn<>("Serial Number");
-        serialNumberColumn.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
+        TableColumn<DroneTableModel, Integer> weightColumn = new TableColumn<>("Weight");
+        weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
 
-        TableColumn<DroneTableModel, Integer> carriageWeightColumn = new TableColumn<>("Carriage Weight");
-        carriageWeightColumn.setCellValueFactory(new PropertyValueFactory<>("carriageWeight"));
+        TableColumn<DroneTableModel, Integer> maxSpeedColumn = new TableColumn<>("Max Speed");
+        maxSpeedColumn.setCellValueFactory(new PropertyValueFactory<>("maxSpeed"));
 
-        TableColumn<DroneTableModel, String> carriageTypeColumn = new TableColumn<>("Carriage Type");
-        carriageTypeColumn.setCellValueFactory(new PropertyValueFactory<>("carriageType"));
+        TableColumn<DroneTableModel, Integer> batteryCapacityColumn = new TableColumn<>("Battery Capacity");
+        batteryCapacityColumn.setCellValueFactory(new PropertyValueFactory<>("batteryCapacity"));
+
+        TableColumn<DroneTableModel, Integer> controlRangeColumn = new TableColumn<>("Control Range");
+        controlRangeColumn.setCellValueFactory(new PropertyValueFactory<>("controlRange"));
+
+        TableColumn<DroneTableModel, Integer> maxCarriageColumn = new TableColumn<>("Max Carriage");
+        maxCarriageColumn.setCellValueFactory(new PropertyValueFactory<>("maxCarriage"));
 
         // Add columns to the TableView
-        tableView.getColumns().addAll(idColumn, droneTypeColumn, createdColumn, serialNumberColumn, carriageWeightColumn, carriageTypeColumn);
+        tableView.getColumns().addAll(idColumn, manufacturerColumn, typeNameColumn, weightColumn, maxSpeedColumn,
+                batteryCapacityColumn, controlRangeColumn, maxCarriageColumn);
 
         // Set the data in the TableView
-        tableView.setItems(droneDataList);
+        tableView.setItems(droneTypeDataList);
 
         return tableView;
     }
-
-
 
     public static void main(String[] args) {
         launch(args);
