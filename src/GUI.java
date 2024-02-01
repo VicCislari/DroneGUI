@@ -11,6 +11,7 @@ public class GUI extends JFrame // class GUi extended by JFrame which is in lib
 	 *                As of for the first version it will only return a dummy drone
 	 *                list as example
 	 * @bug WORKS ON ECLIPSEIDE BUT WONT OPEN VIA STUDIO CODE --FIXED--
+	 * @change old prototype, refer to App folder for the real GUIs
 	 * 
 	 * @Layout BorderLayout
 	 * @author Wassabie

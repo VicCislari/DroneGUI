@@ -1,36 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="981.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="app.FlightDynamics">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="399.0" prefWidth="964.0" translateY="-1.0">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.FlightDynamics">
+   <top>
+      <AnchorPane prefHeight="78.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="99.0" layoutY="23.0" text="ID" />
-            <Label layoutX="160.0" layoutY="22.0" text="Manufacturer" />
-            <Label layoutX="284.0" layoutY="22.0" text="Model / Typename" />
-            <Label layoutX="440.0" layoutY="22.0" text="Serialnumber" />
-            <Label layoutX="29.0" layoutY="23.0" text="Status" />
-            <Label layoutX="572.0" layoutY="22.0" text="Roll" />
-            <Label layoutX="637.0" layoutY="23.0" text="Yaw" />
-            <Label layoutX="703.0" layoutY="22.0" text="Pitch" />
-            <Label layoutX="760.0" layoutY="23.0" text="Longitude" />
-            <Label layoutX="830.0" layoutY="23.0" text="Latitude" />
-            <Label layoutX="901.0" layoutY="22.0" text="Battery" />
-            <TextField alignment="CENTER" editable="false" layoutX="12.0" layoutY="42.0" prefHeight="26.0" prefWidth="68.0" />
-            <TextField alignment="CENTER" editable="false" layoutX="80.0" layoutY="42.0" prefHeight="26.0" prefWidth="50.0" />
-            <TextField alignment="CENTER" editable="false" layoutX="130.0" layoutY="42.0" prefHeight="26.0" prefWidth="135.0" />
-            <TextField alignment="CENTER" editable="false" layoutX="265.0" layoutY="42.0" prefHeight="26.0" prefWidth="141.0" />
-            <TextField alignment="CENTER" editable="false" layoutX="547.0" layoutY="42.0" prefHeight="26.0" prefWidth="68.0" />
-            <TextField alignment="CENTER" editable="false" layoutX="615.0" layoutY="42.0" prefHeight="26.0" prefWidth="68.0" />
-            <TextField alignment="CENTER" editable="false" layoutX="683.0" layoutY="42.0" prefHeight="26.0" prefWidth="68.0" />
-            <TextField alignment="CENTER" editable="false" layoutX="751.0" layoutY="42.0" prefHeight="26.0" prefWidth="68.0" />
-            <TextField alignment="CENTER" editable="false" layoutX="819.0" layoutY="42.0" prefHeight="26.0" prefWidth="68.0" />
-            <TextField alignment="CENTER" editable="false" layoutX="887.0" layoutY="42.0" prefHeight="26.0" prefWidth="68.0" />
-            <TextField alignment="CENTER" editable="false" layoutX="406.0" layoutY="42.0" prefHeight="26.0" prefWidth="141.0" />
-         </children></AnchorPane>
-  </content>
-</ScrollPane>
+            <TextField layoutX="802.0" layoutY="28.0" prefHeight="26.0" prefWidth="63.0" />
+            <Label layoutX="720.0" layoutY="33.0" text="Jump to page:" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="360.0" prefWidth="87.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="12.0" layoutY="153.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="61.0" text="Previous">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="360.0" prefWidth="87.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="17.0" layoutY="151.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="61.0" text="Next" />
+         </children>
+      </AnchorPane>
+   </right>
+   <bottom>
+      <AnchorPane prefHeight="62.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="381.0" layoutY="23.0" text="Seite: " />
+            <Label layoutX="414.0" layoutY="23.0" text="Label" />
+            <Label layoutX="447.0" layoutY="22.0" text="/" />
+            <Label layoutX="454.0" layoutY="23.0" text="Label" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField alignment="CENTER" editable="false" layoutY="45.0" prefHeight="26.0" prefWidth="40.0" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField alignment="CENTER" editable="false" layoutX="40.0" layoutY="45.0" prefHeight="26.0" prefWidth="100.0" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField alignment="CENTER" editable="false" layoutX="140.0" layoutY="45.0" prefHeight="26.0" prefWidth="100.0" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField alignment="CENTER" editable="false" layoutX="240.0" layoutY="45.0" prefHeight="26.0" prefWidth="100.0" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField alignment="CENTER" editable="false" layoutX="340.0" layoutY="45.0" prefHeight="26.0" prefWidth="53.0" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField alignment="CENTER" editable="false" layoutX="393.0" layoutY="45.0" prefHeight="26.0" prefWidth="50.0" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField alignment="CENTER" editable="false" layoutX="443.0" layoutY="45.0" prefHeight="26.0" prefWidth="56.0" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField alignment="CENTER" editable="false" layoutX="499.0" layoutY="45.0" prefHeight="26.0" prefWidth="54.0" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField alignment="CENTER" editable="false" layoutX="553.0" layoutY="45.0" prefHeight="26.0" prefWidth="60.0" translateY="-21.0" />
+            <TextField alignment="CENTER" editable="false" layoutX="613.0" layoutY="45.0" prefHeight="26.0" prefWidth="55.0" translateY="-21.0" />
+            <TextField alignment="CENTER" editable="false" layoutX="668.0" layoutY="45.0" prefHeight="26.0" prefWidth="53.0" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="29.0" text="ID" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="62.0" layoutY="29.0" text="Manufacturer" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="29.0" text="Model / Typename" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="263.0" layoutY="29.0" text="Serialnumber" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="355.0" layoutY="29.0" text="Roll" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="404.0" layoutY="29.0" text="Yaw" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="457.0" layoutY="29.0" text="Pitch" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="503.0" layoutY="29.0" text="Longitude" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="565.0" layoutY="29.0" text="Latitude" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="625.0" layoutY="29.0" text="Battery" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="679.0" layoutY="29.0" text="Status" textAlignment="CENTER" translateY="-21.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
