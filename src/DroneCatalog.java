@@ -1,3 +1,10 @@
+/**
+ * Makes a table and shows all the Drone Types as a list.
+ * @author: Bahadir
+ * @version 1.0
+ * @last_modified 2024.02.01
+ */
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +35,14 @@ public class DroneCatalog extends Application {
         root.getChildren().add(tableView);
 
         // Create the scene and set it on the stage
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root);
+        scene.widthProperty().addListener((observable, oldValue, newValue) -> {
+            tableView.setPrefWidth(newValue.doubleValue());
+        });
+        scene.heightProperty().addListener((observable, oldValue, newValue) -> {
+            tableView.setPrefHeight(newValue.doubleValue());
+        });
+
         primaryStage.setScene(scene);
 
         // Show the stage
@@ -72,6 +86,9 @@ public class DroneCatalog extends Application {
         // Add columns to the TableView
         tableView.getColumns().addAll(idColumn, manufacturerColumn, typeNameColumn, weightColumn, maxSpeedColumn,
                 batteryCapacityColumn, controlRangeColumn, maxCarriageColumn);
+
+        // Adjust table to the size of the columns
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
 
         // Set the data in the TableView
         tableView.setItems(droneTypeDataList);
