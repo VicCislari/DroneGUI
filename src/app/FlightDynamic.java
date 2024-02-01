@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 
 	/**
 	 * @functionality
-      * Simple FXML Loader for FlightDynamics -> FlightDynamics.fxml ; FlightDynamics.java
-      *
+     * Simple FXML Loader for FlightDynamics -> FlightDynamics.fxml ; FlightDynamics.java
+     *
 	 * @author Wassabie
 	 * @since 1.0
 	 * @last_modified 2024.01.31
