@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -74,6 +71,14 @@ public class DroneManager {
      * This function maps the first 10 drones of the Dronelist on the web to the local droneList
      */
     public static void initializeDrones() {
-        mapDrones(ApiAdapter.fetchAllDataFromCategory(dataCategory));
+        System.out.println("hello");
+        mapDrones(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
+        count = ApiAdapter.getLastCount();
     }
+
+    // TODO: Victor
+    // this could be more automatised and oriented towards more expension for the api expansion or more drones.
+    // siehe DroneDynamicManager.java getDroneDashboardData()
+    public static int getCount(){ return count;}
+
 }

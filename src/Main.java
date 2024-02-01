@@ -31,10 +31,5 @@ public class Main extends Application{
         //System.out.println(DroneDynamicsManager.getDroneDynamicsList()[20].getTimestamp());
         //System.out.println((DroneDynamicsManager.getDroneDynamicsList().length));
 
-    }
-
-    public static void main(String[] args) {
-        AdiZenTest();
-        //ApiAdapter.api_results("drones");
-    }
+    } */
 }
