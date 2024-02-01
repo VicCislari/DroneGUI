@@ -71,7 +71,6 @@ public class DroneManager {
      * This function maps the first 10 drones of the Dronelist on the web to the local droneList
      */
     public static void initializeDrones() {
-        System.out.println("hello");
         mapDrones(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
         count = ApiAdapter.getLastCount();
     }

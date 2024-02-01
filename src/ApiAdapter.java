@@ -96,16 +96,17 @@ public class ApiAdapter {
         lastCount = getCountOfDataFromCategory(dataCategory);
         if(amount == 0 && pageNr == 0){ //fetch all elements inside category
             for (offset = 0; offset < lastCount; offset += limit){
-                System.out.println(limit + " " + offset);
                 apiResult = fetchApi(dataCategory);
                 results.putAll(addFetchedResultIntoNewList(apiResult));
             }
             offset = 0;
-        } else if (amount == 0 && pageNr != 0) { //fetch elements with default limit = 10
-            results = fetchDataFromCategoryPagewise(dataCategory, amount, pageNr);
         } else if (amount > 0 && pageNr != 0){ //fetch page with amount of elements in it
             limit = amount;
             results = fetchDataFromCategoryPagewise(dataCategory, amount, pageNr);
+        } else if (amount > 0){ //fetch elements with default limit = 10
+            results = fetchDataFromCategoryPagewise(dataCategory, amount, pageNr);
+        } else {
+            System.out.println("Amount can't be negative!");
         }
         return results;
     }
@@ -122,11 +123,22 @@ public class ApiAdapter {
     private static JSONArray fetchDataFromCategoryPagewise(String dataCategory, int amount, int pageNr){
         JSONObject apiResult;
         JSONArray results;
-        if(pageNr > 0) {
-            offset = (pageNr - 1) * limit;
-        } else {
-            offset = lastCount + (pageNr * limit) - 1;
-        }
+        if (pageNr > 0){pageNr -= 1;}
+        offset= (lastCount+(pageNr)*amount)%lastCount;
+        apiResult = fetchApi(dataCategory);
+        setNextPageExists(apiResult);
+        setPreviousPageExists(apiResult);
+        results = addFetchedResultIntoNewList(apiResult);
+        offset = 0;
+        limit = 10;
+        return results;
+    }
+
+    public static JSONArray fetchDataFromCategoryOffsetwise(String dataCategory, int startIndex, int amount){
+        JSONObject apiResult;
+        JSONArray results;
+        offset = startIndex;
+        limit = amount;
         apiResult = fetchApi(dataCategory);
         setNextPageExists(apiResult);
         setPreviousPageExists(apiResult);

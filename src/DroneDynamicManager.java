@@ -24,8 +24,6 @@ public class DroneDynamicManager {
     private static int currentPageIndex = 0;
     private static boolean previousPageExists = true;
     private static boolean nextPageExists = false;
-
-    //this is for a more seemless transition between windows. No more need to rerequest data
     private static Map<Integer, DroneDynamic> cache = new HashMap<>();
 
     /**
@@ -58,7 +56,6 @@ public class DroneDynamicManager {
      * @return DroneDynamics object representing the mapped data.
      */
     private static void mapDroneDynamic(JSONObject droneDynJson) {
-        //index https://dronesim.facets-labs.com/simulator/dronedynamics/?page=3603
         int droneDynamicId = index; //@VicCislari: verstehe Index gerade nicht ganz
         Drone drone = droneIdToDrone(droneDynJson.getString("drone"));
         String timestamp = droneDynJson.getString("timestamp");
@@ -76,133 +73,60 @@ public class DroneDynamicManager {
         cache.put(index, droneDyn);
     }
 
-    /**
-     * Maps individual drone dynamics data from the JSON object obtained from API
-     * response.
-     * Caching the DroneDynamics Objects.
-     * 
-     * @author Adizen, Victor
-     * @param droneJsonObject JSON object containing drone dynamics data.
-     * @return Array of DroneDynamics representing the mapped data.
-     * @last_modified 2024.01.28
-     *                //NOTE: Not sure if the best thing here is to put cache
-     *                immediately. I wonder what @plotarmor27 thinks
-     */
-
-    /**
-     * Fetches drone dynamics data for a specific page and caches it.
-     *
-     * @param pageIndex The page index to fetch.
-     */
-    /*
-    private static void fetchAndCachePage(int pageIndex) {
-        JSONArray droneDyns = ApiAdapter.fetchDataPageFromCategory(dataCategory, pageIndex);
-        DroneDynamic[] dynamics = new DroneDynamic[droneDyns.length()];
-        for (int i = 0; i < droneDyns.length(); i++) {
-            index = 10 * pageIndex + i;
-            dynamics[i] = mapDroneDynamic(droneDyns.getJSONObject(i));
-        }
-        cache.put(pageIndex, dynamics);
-    }
-    */
-
-    /**
-     * https://dronesim.facets-labs.com/api/dronedynamics/
-     * Gets the drone dynamics data for a specific page.
-     * Fetches from the API and caches it if not already in cache.
-     *
-     * @param pageIndex The page index to retrieve.
-     * @return Array of DroneDynamics for the given page.
-     */
-
-    /**
-     * https://dronesim.facets-labs.com/api/dronedynamics/
-     * Gets the drone dynamics data for a specific page.
-     * Fetches from the API and caches it if not already in cache.
-     * 
-     * @author Victor
-     * @return Array of DroneDynamics of the most current 25 entries.
-     * @Explanation_for maxAmountOfPages = 4
-     *                  I think though that we need to request the last 4 pages,
-     *                  because if
-     *                  ther is a max of 10 entries per pagee and you have
-     *                  25 drones
-     *                  10 entries per page.
-     *                  minimum is 2,5 ≈ 3 pages
-     *                  maximum of 3,x pages ≈ 4 pages
-     *                  because you have 10 in a row which fit perfectly on 2 pages
-     *                  and then
-     *                  the 5 (0 to 5 can be on 1 page behind and 0 to 5
-     *                  can be in front). only in the case of 0 and 5 do you have
-     *                  2,5 ≈ 3
-     *                  pages. in most cases you have 3,x ≈ 4 pages spread
-     **/
-
-    /*
-    public static DroneDynamic[] getDroneDynamicsForAllDronesPage(int pageIndex){
-        JSONArray droneDyns = ApiAdapter.fetchDataPageForAllDronesFromCategory(dataCategory,pageIndex);
-        DroneDynamic[] dynamics = new DroneDynamic[droneDyns.length()];
-        for (int i = 0; i < droneDyns.length(); i++) {
-            dynamics[i] = mapDroneDynamic(droneDyns.getJSONObject(i));
-        }
-        return dynamics;
-    }
-
-    public static DroneDynamic[] getMostRecentDroneDynamicsForAllDronesPage(){
-        return getDroneDynamicsForAllDronesPage((count/ApiAdapter.getCountOfDataFromCategory("drones"))-1);
-    }
-    */
-
     public static DroneDynamic[] getDroneDynamicsPage(int amount, int pageNr) {
         DroneDynamic[] result = new DroneDynamic[amount];
-        int c = 0, i, index, j = 0;
+        int i, index;
         ArrayList<Integer> missingIds = new ArrayList<>();
         int[] tuple = new int[2];
-        System.out.println("Step 1");
-        if (pageNr < 0) {
-            index = count + (amount * (pageNr + 1));
-        } else {
-            index = amount * pageNr;
+        if(pageNr > 0){
+            pageNr -= 1;
         }
-        System.out.println("Step 2");
-        for (i = index - amount; i < index; i++) {
-
+        index = (count + pageNr*amount)%count;
+        for (i = index; i < index+amount; i++) {
             if (!cache.containsKey(i)) {
                 missingIds.add(i);
-
             }
         }
-        System.out.println(index);
-        System.out.println(missingIds.size());
-        System.out.println("Step 3");
         for (i=0; i < missingIds.size(); i++){
             int k;
-            for (k = i; k+1 < missingIds.size() && missingIds.get(k)+1 == missingIds.get(k+1); k++){
-                tuple[0] = missingIds.get(i);
-                tuple[1] = k+2-i;
+            for (k = i; k+1 < missingIds.size() && missingIds.get(k) == missingIds.get(k+1)-1; k++){
             }
-            i = k + 2;
-            System.out.println(tuple[1]+ " " + tuple[0]+ " " + (Math.floor((tuple[0] / tuple[1]))+1));
-            System.out.println((int) (double) (tuple[0] / tuple[1]) +1);
-            loadData(tuple[1], (int) (double) (tuple[0] / tuple[1]) +1);
+            tuple[0] = missingIds.get(i);
+            tuple[1] = k+1-i;
+            loadData(tuple[0], tuple[1]);
+            i = k;
         }
 
-        System.out.println("Step 4: " + cache.get(25).getLatitude());
-
         for (int l = 0; l < result.length; l++){
-            result[l] = cache.get(index - amount + l);
+            result[l] = cache.get(index + l);
+        }
+        return result;
+    }
+
+    public static DroneDynamic[] getLastDroneDynamicsForDrone(int id, int amount){
+        DroneDynamic[] result = new DroneDynamic[amount];
+        for(int  j= 0; j < amount; j++){
+            DroneDynamic[] droneDynamicsPage = getDroneDynamicsPage(DroneManager.getCount(), amount);
+            for(int i = 0; i < DroneManager.getCount(); i++){
+                if(droneDynamicsPage[i].getDrone().getId() == id){
+                    result[j] = droneDynamicsPage[i];
+                }
+            }
         }
         return result;
     }
 
     public static int getCount(){return count;}
 
-    private static void loadData(int amount, int pageNr){
-        JSONArray apiResult = ApiAdapter.fetchDataFromCategory(dataCategory, amount, pageNr);
+    private static void loadData(int startIndex, int amount){
+        JSONArray apiResult = ApiAdapter.fetchDataFromCategoryOffsetwise(dataCategory, startIndex, amount);
         for(int i = 0; i < amount; i++){
-            index = (amount*pageNr)-amount+i;
+            index = startIndex+i;
             mapDroneDynamic(apiResult.getJSONObject(i));
-            System.out.println(apiResult.getJSONObject(i).getInt("speed"));
         }
+    }
+
+    public static void initialize(){
+        count = ApiAdapter.getCountOfDataFromCategory(dataCategory);
     }
 }

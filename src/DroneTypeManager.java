@@ -29,7 +29,6 @@ public class DroneTypeManager {
         }
     }
     public static void initializeDroneTypes() {
-        System.out.println("Step 1");
         mapDroneTypes(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
         count = ApiAdapter.getLastCount();
     }
