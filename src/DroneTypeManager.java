@@ -4,6 +4,7 @@ import org.json.JSONObject;
 public class DroneTypeManager {
     private static final String dataCategory = "dronetypes";
     private static DroneType[] droneTypeList;
+    private static int count;
     public static DroneType[] getDroneTypeList() {
         return droneTypeList;
     }
@@ -28,6 +29,9 @@ public class DroneTypeManager {
         }
     }
     public static void initializeDroneTypes() {
-        mapDroneTypes(ApiAdapter.fetchAllDataFromCategory(dataCategory));
+        System.out.println("Step 1");
+        mapDroneTypes(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
+        count = ApiAdapter.getLastCount();
     }
+    public static int getCount(){return count;}
 }

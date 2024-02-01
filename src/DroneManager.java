@@ -12,7 +12,7 @@ import org.json.JSONObject;
 public class DroneManager {
     private static final String dataCategory = "drones";
     private static Drone[] droneList;
-    private static int count = ApiAdapter.getCountOfDataFromCategory(dataCategory);
+    private static int count;
 
     /**
      * Formats the drone type from the API response.
@@ -71,13 +71,14 @@ public class DroneManager {
      * This function maps the first 10 drones of the Dronelist on the web to the local droneList
      */
     public static void initializeDrones() {
-        mapDrones(ApiAdapter.fetchAllDataFromCategory(dataCategory));
+        System.out.println("hello");
+        mapDrones(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
+        count = ApiAdapter.getLastCount();
     }
 
     // TODO: Victor
     // this could be more automatised and oriented towards more expension for the api expansion or more drones.
     // siehe DroneDynamicManager.java getDroneDashboardData()
-    public static int getCount(){
-        return count; //25 in development
-    }
+    public static int getCount(){ return count;}
+
 }

@@ -18,6 +18,7 @@ public class ApiAdapter {
     private static final String JSON_FORMAT = "/?format=json";
     private static int limit = 10;
     private static int offset = 0;
+    private static int lastCount;
     private static final String LIMIT_STR = "&limit=";
     private static final String OFFSET_STR = "&offset=";
     private static final String TOKEN = "Token 1bbbbd05efe3c733efcf8f443582a09cac4ca02c";
@@ -62,68 +63,7 @@ public class ApiAdapter {
         return jsonResponse;
     }
 
-    /**
-     * Fetches and aggregates results from an API for a given category.
-     * 
-     * @param dataCategory URL subsection
-     * @return JSONArray containing aggregated results.
-     * @author AdiZen
-     * @since 1.0
-     * @last_modified 2024.01.10
-     */
 
-    public static JSONArray fetchDataPageFromCategory(String dataCategory, int pageIndex) {
-        JSONArray results = new JSONArray();
-        offset = pageIndex * limit;
-        JSONObject apiResult = fetchApi(dataCategory);
-        offset = 0;
-        nextPageExists(apiResult);
-        previousPageExists(apiResult);
-        int c = getCountOfDataFromCategory(dataCategory);
-        for (int i = 0; i < apiResult.getJSONArray("results").length(); i++) {
-                results.put(apiResult.getJSONArray("results").getJSONObject(i));
-        }
-        return results;
-    }
-
-    /**
-     * Fetches and aggregates results from an API for a given category and page index.
-     * 
-     * @param dataCategory URL subsection
-     * @param pageIndex Index of the page to fetch
-     * @return JSONArray containing aggregated results.
-     * @author AdiZen
-     * @since 1.0
-     * @last_modified 2024.01.10
-     */
-    public static JSONArray fetchAllDataFromCategory(String dataCategory) {
-        JSONArray results = new JSONArray();
-        int c = getCountOfDataFromCategory(dataCategory);
-        for (offset = 0; offset < c; offset += limit){
-            JSONObject apiResult = fetchApi(dataCategory);
-            for (int i=0; i < (apiResult.getJSONArray("results").length()); i++) {
-                results.put(apiResult.getJSONArray("results").getJSONObject(i));
-            }
-        }
-        offset = 0;
-        return results;
-    }
-
-    public static JSONArray fetchDataPageForAllDronesFromCategory(String dataCategory, int pageIndex) {
-        JSONArray results = new JSONArray();
-        limit = getCountOfDataFromCategory("drones");
-        offset = pageIndex * limit;
-        JSONObject apiResult = fetchApi(dataCategory);
-        offset = 0;
-        nextPageExists(apiResult);
-        previousPageExists(apiResult);
-        int c = getCountOfDataFromCategory(dataCategory);
-        for (int i = 0; i < apiResult.getJSONArray("results").length(); i++) {
-            results.put(apiResult.getJSONArray("results").getJSONObject(i));
-        }
-        limit = 10;
-        return results;
-    }
 
     /**
      * Gets the total count of data items in a given category.
@@ -133,15 +73,11 @@ public class ApiAdapter {
      * @since 1.0
      * @last_modified 2024.01.10
      */
-    public static int getCountOfDataFromCategory(String dataCategory){
-        return fetchApi(dataCategory).getInt("count");
-    }
+    public static int getCountOfDataFromCategory(String dataCategory){return fetchApi(dataCategory).getInt("count");}
 
-    private static void previousPageExists (JSONObject apiResults){
-        previousPageExists = !apiResults.isNull("previous");
-    }
+    private static void setPreviousPageExists (JSONObject apiResults){previousPageExists = !apiResults.isNull("previous");}
 
-    private static void nextPageExists (JSONObject apiResults){
+    private static void setNextPageExists (JSONObject apiResults){
         nextPageExists = !apiResults.isNull("next");
     }
 
@@ -151,6 +87,53 @@ public class ApiAdapter {
 
     public static boolean getPreviousPageExists(){
         return previousPageExists;
+    }
+
+
+    public static JSONArray fetchDataFromCategory(String dataCategory, int amount, int pageNr) {
+        JSONArray results = new JSONArray();
+        JSONObject apiResult;
+        lastCount = getCountOfDataFromCategory(dataCategory);
+        if(amount == 0 && pageNr == 0){ //fetch all elements inside category
+            for (offset = 0; offset < lastCount; offset += limit){
+                System.out.println(limit + " " + offset);
+                apiResult = fetchApi(dataCategory);
+                results.putAll(addFetchedResultIntoNewList(apiResult));
+            }
+            offset = 0;
+        } else if (amount == 0 && pageNr != 0) { //fetch elements with default limit = 10
+            results = fetchDataFromCategoryPagewise(dataCategory, amount, pageNr);
+        } else if (amount > 0 && pageNr != 0){ //fetch page with amount of elements in it
+            limit = amount;
+            results = fetchDataFromCategoryPagewise(dataCategory, amount, pageNr);
+        }
+        return results;
+    }
+    private static JSONArray addFetchedResultIntoNewList(JSONObject apiResult){
+        JSONArray results = new JSONArray();
+        for (int i = 0; i < apiResult.getJSONArray("results").length(); i++) {
+            results.put(apiResult.getJSONArray("results").getJSONObject(i));
+        }
+        return results;
+    }
+
+    public static int getLastCount(){return lastCount;}
+
+    private static JSONArray fetchDataFromCategoryPagewise(String dataCategory, int amount, int pageNr){
+        JSONObject apiResult;
+        JSONArray results;
+        if(pageNr > 0) {
+            offset = (pageNr - 1) * limit;
+        } else {
+            offset = lastCount + (pageNr * limit) - 1;
+        }
+        apiResult = fetchApi(dataCategory);
+        setNextPageExists(apiResult);
+        setPreviousPageExists(apiResult);
+        results = addFetchedResultIntoNewList(apiResult);
+        offset = 0;
+        limit = 10;
+        return results;
     }
 }
 

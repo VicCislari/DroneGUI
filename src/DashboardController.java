@@ -33,7 +33,9 @@ public class DashboardController{
 
         DroneTypeManager.initializeDroneTypes();
         DroneManager.initializeDrones();
-        Image mapImage = new Image(getClass().getResourceAsStream("/map.png"));
+        System.out.println("hello");
+        //ApiAdapter.fetchDataPageForAllDronesFromCategory("dronedynamics",0);
+        Image mapImage = new Image(getClass().getResourceAsStream("/resources/map.png"));
         mapView.setImage(mapImage);
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         mapView.setFitWidth(screenBounds.getWidth() * 0.8); // Use 50% of screen width
@@ -41,16 +43,14 @@ public class DashboardController{
         mapView.setPreserveRatio(true);
         Pane overlay = new Pane();
         overlay.getChildren().add(mapView);
-        double mapWidthPixels = mapImage.getWidth(); // Adjust based on your actual image width
-        double mapHeightPixels = mapImage.getHeight(); // Adjust based on your actual image height
-        double mapNorthLat = 50.5047;
-        double mapSouthLat = 49.7511;
-        double mapEastLon = 9.6075;
-        double mapWestLon = 7.7948;
-        double targetLat = DroneDynamicManager.getMostRecentDroneDynamicsForAllDronesPage()[0].getLatitude();
-        System.out.println(targetLat);
-        double targetLon = DroneDynamicManager.getMostRecentDroneDynamicsForAllDronesPage()[0].getLongitude();
-        System.out.println(targetLon);
+        double mapWidthPixels = mapView.getBoundsInLocal().getWidth(); // Adjust based on your actual image width
+        double mapHeightPixels = mapView.getBoundsInLocal().getHeight();// Adjust based on your actual image height
+        double mapNorthLat = 50.4225;
+        double mapSouthLat = 49.7777;
+        double mapEastLon = 9.2697;
+        double mapWestLon = 7.9596;
+        double targetLat = DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), 2)[1].getLatitude();
+        double targetLon = DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), 2)[1].getLongitude();
         // Convert to pixel coordinates
         double x = ((targetLon - mapWestLon) / (mapEastLon - mapWestLon)) * mapWidthPixels;
         double y = ((mapNorthLat - targetLat) / (mapNorthLat - mapSouthLat)) * mapHeightPixels;
@@ -65,5 +65,14 @@ public class DashboardController{
             droneButton.setMaxWidth(Double.MAX_VALUE);
             vBoxButtonList.getChildren().add(droneButton);
         }
+/*
+        for (int i = 0; i < DroneDynamicManager.getMostRecentDroneDynamicsForAllDronesPage().length; i++){
+            int id = DroneDynamicManager.getMostRecentDroneDynamicsForAllDronesPage()[i].getDrone().getId();
+            String droneSerialNr = DroneDynamicManager.getMostRecentDroneDynamicsForAllDronesPage()[i].getDrone().getSerialNumber();
+            String droneButtonText = "ID:" + (id + " ");
+            Button droneButton = new Button(droneButtonText + droneSerialNr);
+            droneButton.setMaxWidth(Double.MAX_VALUE);
+            vBoxButtonList.getChildren().add(droneButton);
+        }*/
     }
 }
