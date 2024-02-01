@@ -28,9 +28,8 @@ public class GUI extends JFrame // class GUi extended by JFrame which is in lib
 		add(label, BorderLayout.NORTH); // position of label is top of window
 		add(button, BorderLayout.CENTER); // position of label is center window
 
-		button.addActionListener(e -> { // e -> for compact little function without creating new method or class
+		button.addActionListener(e -> { // 
 			DroneList.rundummy(); // VICTOR: TODO: ICH WIß NICHT OB ICH HIER ZWEI BEFEHLE HABEN DARF
-			JOptionPane.showMessageDialog(this, "still need some wokring bruv"); // JOption for Pop-Up
 		});
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // standard for closing app -> closes window
@@ -39,7 +38,7 @@ public class GUI extends JFrame // class GUi extended by JFrame which is in lib
 
 	}
 
-	public static void runGUI() {
+	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> new GUI());
 	}
 

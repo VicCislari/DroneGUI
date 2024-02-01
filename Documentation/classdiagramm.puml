@@ -22,7 +22,7 @@ class Drone {
     +setCarriageType(carriageType: String): void
 }
 
-class DroneDynamics {
+class DroneDynamic {
     -droneId: int
     -timestamp: ZonedDateTime
     -speed: int
@@ -35,7 +35,7 @@ class DroneDynamics {
     -lastSeen: ZonedDateTime
     -isActive: boolean
 
-    +DroneDynamics(droneId: int, timestamp: String, speed: int, alignRoll: float, alignYaw: float, alignPitch: float, longitude: float, latitude: float, batteryStatus: int, lastSeen: String, isActive: boolean)
+    +DroneDynamic(droneId: int, timestamp: String, speed: int, alignRoll: float, alignYaw: float, alignPitch: float, longitude: float, latitude: float, batteryStatus: int, lastSeen: String, isActive: boolean)
     +getDroneId(): int
     +setDroneId(droneId: int): void
     +getTimestamp(): ZonedDateTime
@@ -73,13 +73,13 @@ class DroneManager {
 
 class DroneDynamicsManager {
     -category: String
-    -droneDynamicsList: DroneDynamics[]
+    -droneDynamicsList: DroneDynamic[]
 
     +formatDroneId(droneId: String): int
     +formatIsActive(isActiveStr: String): boolean
     +initializeDroneDynamics(): void
-    +mapDroneDynamics(droneDynJson: JSONObject): DroneDynamics
-    +getDroneDynamicsList(): DroneDynamics[]
+    +mapDroneDynamics(droneDynJson: JSONObject): DroneDynamic
+    +getDroneDynamicsList(): DroneDynamic[]
     +mapAllDroneDynamics(droneDyns: JSONArray): void
 }
 
@@ -131,7 +131,7 @@ class Main {
 DroneManager <--- ApiAdapter
 DroneManager --- Drone
 DroneDynamicsManager <--- ApiAdapter
-DroneDynamicsManager <|--- DroneDynamics
+DroneDynamicsManager <|--- DroneDynamic
 
 Main <|--- ApiAdapter
 Drone --- DroneMapper

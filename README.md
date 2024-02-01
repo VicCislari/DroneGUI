@@ -11,7 +11,7 @@ The Drone Dashboard, developed by Victor, aims to provide a comprehensive view o
 1. Load data from the Overview API for all drones.
 2. Create a map with markers for each drone, allowing users to filter by status (ON/OFF).
 3. Clicking on a drone marker should open a new window displaying the latest information for that specific drone.
-4. Display the most recent DroneDynamics data for each drone.
+4. Display the most recent DroneDynamic data for each drone.
 5. Show the last 25 updates for each drone.
 6. Implement a dynamic string to accommodate additional information in the future.
 
@@ -22,14 +22,14 @@ The Drone Catalog, managed by Bahadir, involves creating a graphical user interf
 1. Merge data from the Drones and DroneType APIs.
 2. Split the string in the DroneType API output and match Manufacturer and TypeName to create a mixed table.
 3. Recreate the table on each button press, considering changing variables.
-4. Integrate DroneList (essentially Drone) and add DroneTypes.java for API link changes.
+4. Integrate DroneList (essentially Drone) and add DroneType.java for API link changes.
 
 ## Flight Dynamics (Wassabie)
 
 The Flight Dynamics module, led by Wassabie, is responsible for displaying the flight behavior and parameters of each drone. Considerations include:
 
 1. Load data only when the specific drone's window is open.
-2. Display the most recent DroneDynamics data for each drone.
+2. Display the most recent DroneDynamic data for each drone.
 3. Clarify the concept of "dynamic presentation."
 4. Utilize the provided API link for the latest data.
 
@@ -48,3 +48,14 @@ Dronetypes.java, handled by Atheesen, should contain relevant data for drone typ
 ## Documentation
 
 At the end of the project, focus on documenting the code. Ensure clean code practices, including CamelCasing for all variables and functions. Create a comprehensive README with instructions and explanations for the entire project.
+- the api uses pagination
+
+Drone.java:
+- public Drone(){} - wäre gut Überlegungen zu machen was mit der Klasse geschehen soll. Polymorphism.
+- the resulting product has to be a simply executable .jar file.
+- is there some way of receiving all of the maximum and minimum limits of the dronelist. Or is it really just and only just go by the link recursively or iterativelly and get your data like that.
+- we have to add a lot of try_catch_errorHandlers, like everywhere
+- man könnte natürlich auch schreiben wie wir das Projekt getestet haben, welche Art und Weise wir benutzt haben das ganze zu testen
+- Clean Code: Interfaces
+- Rechtschreibung im Code, entweder Drone Dynamics oder nur DroneDynamic, auch in den Kommentaremn
+- Adizen-> plotarm, Victor -> @[GithubName]
