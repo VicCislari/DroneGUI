@@ -1,25 +1,27 @@
 @startuml
 
 class Drone {
-    -id: int
-    -droneType: int
-    -created: ZonedDateTime
-    -serialNumber: String
-    -carriageWeight: int
-    -carriageType: String
+    - id: int
+    - droneType: DroneType
+    - created: ZonedDateTime
+    - serialNumber: String
+    - carriageWeight: int
+    - carriageType: String
 
-    +Drone(id: int, droneType: int, created: String, serialNumber: String, carriageWeight: int, carriageType: String)
-    +getId(): int
-    +setId(id: int): void
-    +setDroneType(droneType: int): void
-    +getCreated(): ZonedDateTime
-    +setCreated(created: String): void
-    +getSerialNumber(): String
-    +setSerialNumber(serialNumber: String): void
-    +getCarriageWeight(): int
-    +setCarriageWeight(carriageWeight: int): void
-    +getCarriageType(): String
-    +setCarriageType(carriageType: String): void
+    + Drone(int, DroneType, String, String, int, String)
+    + toString(): String
+    + getId(): int
+    + setId(int): void
+    + getDroneType(): DroneType
+    + setDroneType(DroneType): void
+    + getCreated(): ZonedDateTime
+    + setCreated(String): void
+    + getSerialNumber(): String
+    + setSerialNumber(String): void
+    + getCarriageWeight(): int
+    + setCarriageWeight(int): void
+    + getCarriageType(): String
+    + setCarriageType(String): void
 }
 
 class DroneDynamic {
@@ -61,32 +63,33 @@ class DroneDynamic {
 }
 
 class DroneManager {
-    -category: String
-    -droneList: List<Drone>
-
-    +formatDroneType(droneType: String): int
-    +mapDrone(droneJson: JSONObject): Drone
-    +mapDrones(drones: JSONArray): void
-    +getDroneList(): List<Drone>
-    +initializeDrones(): void
+    - dataCategory: String
+    - droneList: Drone[]
+    - count: int
+    + getCount(): int
+    + getDroneList(): Drone[]
+    - doDroneTypeIdToDroneType(droneTypeId: String): DroneType
+    - doMapDrone(droneJson: JSONObject): Drone
+    - doMapDrones(drones: JSONArray): void
+    + initializeDrones(): void
 }
 
 class DroneDynamicManager {
-    -dataCategory: String
-    -index: int
-    -count: int
-    -currentPageIndex: int
-    -previousPageExists: boolean
-    -nextPageExists: boolean
-    -cache: Map<Integer, DroneDynamic>
+    - dataCategory: String
+    - index: int
+    - count: int
+    - currentPageIndex: int
+    - previousPageExists: boolean
+    - nextPageExists: boolean
+    - cache: Map<Integer, DroneDynamic>
 
-    +initialize(): void
-    +doDroneIdToDrone(droneId: String): Drone
-    +isFormatActive(isActiveStr: String): boolean
-    +doMapDroneDynamic(droneDynJson: JSONObject): void
-    +doGetDroneDynamicsPage(amount: int, pageNr: int): DroneDynamic[]
-    +doLoadData(startIndex: int, amount: int): void
-    +getCount(): int
+    + initialize(): void
+    + doDroneIdToDrone(droneId: String): Drone
+    + isFormatActive(isActiveStr: String): boolean
+    + doMapDroneDynamic(droneDynJson: JSONObject): void
+    + doGetDroneDynamicsPage(amount: int, pageNr: int): DroneDynamic[]
+    + doLoadData(startIndex: int, amount: int): void
+    + getCount(): int
 }
 
 class DroneList {
@@ -98,32 +101,31 @@ class DroneList {
 }
 
 class DroneType {
-    -id: int
-    -manufacturer: String
-    -typeName: String
-    -weight: int
-    -maxSpeed: int
-    -batteryCapacity: int
-    -controlRange: int
-    -maxCarriage: int
-
-    +DroneType(id: int, manufacturer: String, typeName: String, weight: int, maxSpeed: int, batteryCapacity: int, controlRange: int, maxCarriage: int)
-    +getId(): int
-    +getManufacturer(): String
-    +getTypeName(): String
-    +getWeight(): int
-    +getMaxSpeed(): int
-    +getBatteryCapacity(): int
-    +getControlRange(): int
-    +getMaxCarriage(): int
-    +setId(id: int): void
-    +setManufacturer(manufacturer: String): void
-    +setTypeName(typeName: String): void
-    +setWeight(weight: int): void
-    +setMaxSpeed(maxSpeed: int): void
-    +setBatteryCapacity(batteryCapacity: int): void
-    +setControlRange(controlRange: int): void
-    +setMaxCarriage(maxCarriage: int): void
+    - id: int
+    - manufacturer: String
+    - typeName: String
+    - weight: int
+    - maxSpeed: int
+    - batteryCapacity: int
+    - controlRange: int
+    - maxCarriage: int
+    + DroneType(id: int, manufacturer: String, typeName: String, weight: int, maxSpeed: int, batteryCapacity: int, controlRange: int, maxCarriage: int)
+    + getId(): int
+    + getManufacturer(): String
+    + getTypeName(): String
+    + getWeight(): int
+    + getMaxSpeed(): int
+    + getBatteryCapacity(): int
+    + getControlRange(): int
+    + getMaxCarriage(): int
+    + setId(id: int): void
+    + setManufacturer(manufacturer: String): void
+    + setTypeName(typeName: String): void
+    + setWeight(weight: int): void
+    + setMaxSpeed(maxSpeed: int): void
+    + setBatteryCapacity(batteryCapacity: int): void
+    + setControlRange(controlRange: int): void
+    + setMaxCarriage(maxCarriage: int): void
 }
 
 class ApiAdapter {
@@ -151,51 +153,49 @@ class ApiAdapter {
 }
 
 class DroneTableModel {
-    -id: int
-    -manufacturer: String
-    -typeName: String
-    -weight: int
-    -maxSpeed: int
-    -batteryCapacity: int
-    -controlRange: int
-    -maxCarriage: int
-
-    +DroneTableModel(droneType: DroneType)
-    +getId(): int
-    +getManufacturer(): String
-    +getTypeName(): String
-    +getWeight(): int
-    +getMaxSpeed(): int
-    +getBatteryCapacity(): int
-    +getControlRange(): int
-    +getMaxCarriage(): int
-    +doCreateTableModelList(): List<DroneTableModel>
+    - id: int
+    - manufacturer: String
+    - typeName: String
+    - weight: int
+    - maxSpeed: int
+    - batteryCapacity: int
+    - controlRange: int
+    - maxCarriage: int
+    + DroneTableModel(droneType: DroneType)
+    + getId(): int
+    + getManufacturer(): String
+    + getTypeName(): String
+    + getWeight(): int
+    + getMaxSpeed(): int
+    + getBatteryCapacity(): int
+    + getControlRange(): int
+    + getMaxCarriage(): int
+    + doCreateTableModelList(): List<DroneTableModel>
 }
 
 class FlightDynamicsController {
-    -currentPageNr: int
-    -jumpButton: Button
-    -currentPage: Label
-    -totalPages: Label
-    -dynamicsTable: TableView
-    -droneIdColumn: TableColumn
-    -statusColumn: TableColumn
-    -timestampColumn: TableColumn
-    -speedColumn: TableColumn
-    -batteryColumn: TableColumn
-    -longitudeColumn: TableColumn
-    -latitudeColumn: TableColumn
-    -lastSeenColumn: TableColumn
-    -rollColumn: TableColumn
-    -pitchColumn: TableColumn
-    -yawColumn: TableColumn
-    -pageJumper: TextField
-    -wrongInput: Label
-    -buttonNext: Button
-    -buttonPrevious: Button
-
-    +initialize(): void
-    +doUpdateTable(): void
+    - currentPageNr: int
+    - buttonNext: Button
+    - buttonPrevious: Button
+    - jumpButton: Button
+    - currentPage: Label
+    - totalPages: Label
+    - dynamicsTable: TableView
+    - droneIdColumn: TableColumn
+    - statusColumn: TableColumn
+    - timestampColumn: TableColumn
+    - speedColumn: TableColumn
+    - batteryColumn: TableColumn
+    - longitudeColumn: TableColumn
+    - latitudeColumn: TableColumn
+    - lastSeenColumn: TableColumn
+    - rollColumn: TableColumn
+    - pitchColumn: TableColumn
+    - yawColumn: TableColumn
+    - pageJumper: TextField
+    - wrongInput: Label
+    + initialize(): void
+    + doUpdateTable(): void
 }
 
 class DroneType {
@@ -250,6 +250,69 @@ class DashboardController {
     +updateData(Pane): void
 }
 
+
+class DroneController {
+    - title: Label
+    - serialNr: Label
+    - model: Label
+    - batteryPercentage: Label
+    - manufacturer: Label
+    - status: Label
+    - speed: Label
+    - lastSeen: Label
+    - flightTime: Label
+    - batteryLifeEstimation: Label
+    - avgSpeed: Label
+    - droneDynamic: DroneDynamic
+    - drone: Drone
+    - droneType: DroneType
+    - currentPage: int
+
+    + initialize(): void
+    + setDroneDyn(DroneDynamic): void
+    - getBatteryPercentage(int, int): String
+    - getFlightTime(Drone): int
+    - getBatteryLifeEstimation(): String
+    - getAverageSpeed(): String
+    + setCurrentPage(int): void
+}
+
+class DroneTypeManager {
+    - dataCategory: String
+    - droneTypeList: DroneType[]
+    - count: int
+    + doMapDroneType(droneTypeJson: JSONObject): DroneType
+    + doMapDroneTypes(droneTypes: JSONArray): void
+    + doInitializeDroneTypes(): void
+    + getCount(): int
+    + getDroneTypeList(): DroneType[]
+}
+
+class HistoryController {
+    - currentPageNr: int
+    - mapNorthLat: double
+    - mapSouthLat: double
+    - mapEastLon: double
+    - mapWestLon: double
+    - mainBody: BorderPane
+    - upperBody: BorderPane
+    - title: Label
+    - scrollPane: ScrollPane
+    - vBoxButtonList: VBox
+    - mapView: ImageView
+    - upperHbox: HBox
+    - currentPage: Label
+    - pageInput: TextField
+    - changePageButton: Button
+    - lowerHbox: HBox
+    - firstPage: Label
+    - pageSlider: Slider
+    - lastPage: Label
+    + initialize(): void
+    + openDroneHistory(DroneDynamic): void
+    - updatePage(Pane): void
+}
+
 class Main {
     +AdiZenTest(): void
     +main(args: String[]): void
@@ -258,15 +321,38 @@ class Main {
     +formatJson(input: String): String
 }
 
-DroneManager <--- ApiAdapter
-DroneManager --- Drone
 DroneDynamicsManager <--- ApiAdapter
 Main <|--- ApiAdapter
 Drone --- DroneMapper
-FlightDynamicsController --- DroneManager
-DroneTypeManager --- DroneTableModel
-DroneTypeManager <--- ApiAdapter
-DroneTypeManager --- DroneType
 
+DroneTypeManager <--- ApiAdapter
+DashboardController --> DroneDynamicManager
+DashboardController --> DroneDynamic
+DroneController --> DroneDynamic
+
+DroneDynamicManager --> ApiAdapter
+DroneDynamicManager --> Drone
+DroneDynamicManager --> DroneDynamic
+DroneDynamicManager --> Map
+
+DroneManager --> DroneType
+DroneManager --> DroneTypeManager
+DroneManager --> Drone
+DroneManager --> ApiAdapter
+
+DroneTableModel --> DroneType
+DroneTableModel --> DroneTypeManager 
+
+DroneTypeManager --> DroneType
+
+FlightDynamicsController --> DroneDynamicManager
+FlightDynamicsController --> DroneManager
+FlightDynamicsController --> DroneDynamic
+
+HistoryController --> DroneDynamicManager
+HistoryController --> DroneManager
+HistoryController --> DroneDynamic
+HistoryController --> DroneController
+HistoryController --> DroneDynamic
 
 @enduml
