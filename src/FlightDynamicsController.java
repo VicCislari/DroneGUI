@@ -42,7 +42,7 @@ public class FlightDynamicsController {
 
     public void initialize() {
         totalPages.setText(String.valueOf((int)Math.ceil(DroneDynamicManager.getCount() / DroneManager.getCount())));
-        updateTable();
+        doUpdateTable();
         jumpButton.setOnAction(event -> {
             try {
                 // Update currentPageNr based on the input from pageInput
@@ -51,7 +51,7 @@ public class FlightDynamicsController {
                 if((pageInput > 0) && (pageInput <= totalPagesNr)){
                     wrongInput.setVisible(false);
                     currentPageNr = pageInput;
-                    updateTable();
+                    doUpdateTable();
                 } else {
                     wrongInput.setVisible(true);
                 }
@@ -110,7 +110,7 @@ public class FlightDynamicsController {
         buttonPrevious.setOnAction(event -> {
             try {
                 currentPageNr--;
-                updateTable();
+                doUpdateTable();
             } catch (NumberFormatException e) {
             }
         });
@@ -118,7 +118,7 @@ public class FlightDynamicsController {
         buttonNext.setOnAction(event -> {
             try {
                 currentPageNr++;
-                updateTable();
+                doUpdateTable();
             } catch (NumberFormatException e) {
             }
         });

@@ -35,6 +35,7 @@ public class HistoryController {
     public Label firstPage;
     public Slider pageSlider;
     public Label lastPage;
+    public Label wrongInput;
     private int currentPageNr = 1;
     private double mapNorthLat = 50.2428;
     private double mapSouthLat = 49.7440;
@@ -67,10 +68,15 @@ public class HistoryController {
         updatePage(overlay);
         changePageButton.setOnAction(event -> {
             try {
+                int input = Integer.parseInt(pageInput.getText());
                 // Update currentPageNr based on the input from pageInput
-                currentPageNr = Integer.parseInt(pageInput.getText());
-                // Update the page content based on the new currentPageNr
-                updatePage(overlay);
+                if((input > 0) && (input <= lastPageNr)){
+                    wrongInput.setVisible(false);
+                    currentPageNr = input;
+                    updatePage(overlay);
+                } else {
+                    wrongInput.setVisible(true);
+                }
             } catch (NumberFormatException e) {
                 // Handle the case where the input is not a valid integer
                 System.out.println("Invalid page number");
