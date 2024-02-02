@@ -35,7 +35,7 @@ public class DashboardController {
     @FXML
     public void initialize() {
         DroneTypeManager.doInitializeDroneTypes();
-        DroneManager.doInitializeDrones();
+        DroneManager.initializeDrones();
         DroneDynamicManager.initialize();
         Image mapImage = new Image(getClass().getResourceAsStream("/resources/map.png"));
         mapView.setImage(mapImage);
@@ -50,7 +50,7 @@ public class DashboardController {
         double mapSouthLat = 49.7440;
         double mapEastLon = 8.9470;
         double mapWestLon = 8.1642;
-        DroneDynamic[] droneDynamics = DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), currentPage);
+        DroneDynamic[] droneDynamics = DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), currentPage);
         for (int i = 0; i < droneDynamics.length; i++) {
             int id = DroneManager.getDroneList()[i].getId();
             String droneSerialNr = DroneManager.getDroneList()[i].getSerialNumber();

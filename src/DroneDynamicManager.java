@@ -30,7 +30,7 @@ public class DroneDynamicManager {
      * @param droneId The raw drone ID from the API response.
      * @return The formatted drone ID.
      */
-    private static Drone droneIdToDrone(String droneId) {
+    private static Drone doDroneIdToDrone(String droneId) {
         int i = Integer.parseInt(droneId.substring(43, 45));
         return DroneManager.getDroneList()[i - 71];
     }
@@ -41,7 +41,7 @@ public class DroneDynamicManager {
      * @param isActiveStr The raw isActive status from the API response.
      * @return The formatted isActive status.
      */
-    private static boolean formatIsActive(String isActiveStr) {
+    private static boolean isFormatActive(String isActiveStr) {
         boolean isActive;
         isActive = isActiveStr.equals("ON");
         return isActive;
@@ -53,8 +53,8 @@ public class DroneDynamicManager {
      * @param droneDynJson JSON object containing drone dynamics data.
      * @return DroneDynamics object representing the mapped data.
      */
-    private static void mapDroneDynamic(JSONObject droneDynJson) {
-        Drone drone = droneIdToDrone(droneDynJson.getString("drone"));
+    private static void doMapDroneDynamic(JSONObject droneDynJson) {
+        Drone drone = doDroneIdToDrone(droneDynJson.getString("drone"));
         String timestamp = droneDynJson.getString("timestamp");
         int speed = droneDynJson.getInt("speed");
         float alignRoll = droneDynJson.getFloat("align_roll");
@@ -64,13 +64,14 @@ public class DroneDynamicManager {
         float latitude = droneDynJson.getFloat("latitude");
         int batteryStatus = droneDynJson.getInt("battery_status");
         String lastSeen = droneDynJson.getString("last_seen");
-        boolean isActive = formatIsActive(droneDynJson.getString("status"));
+        boolean isActive = isFormatActive(droneDynJson.getString("status"));
         DroneDynamic droneDyn = new DroneDynamic(drone, timestamp, speed, alignRoll,
                 alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
         cache.put(index, droneDyn);
     }
 
-    public static DroneDynamic[] getDroneDynamicsPage(int amount, int pageNr) {
+    //TODO: try catch
+    public static DroneDynamic[] doGetDroneDynamicsPage(int amount, int pageNr) {
         DroneDynamic[] result = new DroneDynamic[amount];
         int i, index;
         ArrayList<Integer> missingIds = new ArrayList<>();
@@ -90,7 +91,7 @@ public class DroneDynamicManager {
             }
             tuple[0] = missingIds.get(i);
             tuple[1] = k + 1 - i;
-            loadData(tuple[0], tuple[1]);
+            doLoadData(tuple[0], tuple[1]);
             i = k;
         }
 
@@ -106,11 +107,11 @@ public class DroneDynamicManager {
         return count;
     }
 
-    private static void loadData(int startIndex, int amount) {
+    private static void doLoadData(int startIndex, int amount) {
         JSONArray apiResult = ApiAdapter.fetchDataFromCategoryOffsetwise(dataCategory, startIndex, amount);
         for (int i = 0; i < amount; i++) {
             index = startIndex + i;
-            mapDroneDynamic(apiResult.getJSONObject(i));
+            doMapDroneDynamic(apiResult.getJSONObject(i));
         }
     }
 
