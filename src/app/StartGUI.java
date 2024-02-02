@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+// NEEDS REVIEW AND ADJUSTMENT READ COMMENTS BELOW
+
 public class StartGUI {
 
     @FXML
