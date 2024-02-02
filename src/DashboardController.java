@@ -72,7 +72,7 @@ public class DashboardController {
             public void handle(ActionEvent event) {
                 try {
                     DroneDynamicManager.initialize();
-                    if(droneDynamicsCount < DroneDynamicManager.getCount()){
+                    if (droneDynamicsCount < DroneDynamicManager.getCount()) {
                         updateData(overlay);
                     }
                 } catch (Exception e) {
@@ -114,8 +114,7 @@ public class DashboardController {
                 }
             }
         });
-
-        }
+    }
 
     /**
      * Opens a new window displaying details of a selected drone.
@@ -219,7 +218,6 @@ public class DashboardController {
             double x = ((targetLon - mapWestLon) / (mapEastLon - mapWestLon)) * mapWidthPixels;
             double y = ((mapNorthLat - targetLat) / (mapNorthLat - mapSouthLat)) * mapHeightPixels;
 
-
             // Create an SVGPath representing the drone icon
             SVGPath svgPath = new SVGPath();
             svgPath.setContent("M 50,5 95,97.5 5,97.5 z");
@@ -265,6 +263,6 @@ public class DashboardController {
 
             // Set the center of the main body to the overlay with drone icons
             mainBody.setCenter(overlay);
-    }
+        }
     }
 }
