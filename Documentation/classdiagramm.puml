@@ -71,16 +71,22 @@ class DroneManager {
     +initializeDrones(): void
 }
 
-class DroneDynamicsManager {
-    -category: String
-    -droneDynamicsList: List<DroneDynamic>
+class DroneDynamicManager {
+    -dataCategory: String
+    -index: int
+    -count: int
+    -currentPageIndex: int
+    -previousPageExists: boolean
+    -nextPageExists: boolean
+    -cache: Map<Integer, DroneDynamic>
 
-    +formatDroneId(droneId: String): int
-    +formatIsActive(isActiveStr: String): boolean
-    +initializeDroneDynamics(): void
-    +mapDroneDynamics(droneDynJson: JSONObject): DroneDynamic
-    +getDroneDynamicsList(): List<DroneDynamic>
-    +mapAllDroneDynamics(droneDyns: JSONArray): void
+    +initialize(): void
+    +doDroneIdToDrone(droneId: String): Drone
+    +isFormatActive(isActiveStr: String): boolean
+    +doMapDroneDynamic(droneDynJson: JSONObject): void
+    +doGetDroneDynamicsPage(amount: int, pageNr: int): DroneDynamic[]
+    +doLoadData(startIndex: int, amount: int): void
+    +getCount(): int
 }
 
 class DroneList {
@@ -130,18 +136,18 @@ class ApiAdapter {
     -OFFSET_STR: String
     -TOKEN: String
     -jsonResponse: JSONObject
+    -nextPageExists: boolean
+    -previousPageExists: boolean
+    -lastCount: int
 
-    +api_fetch(category: String): JSONObject
-    +api_results(category: String): JSONArray
-}
-
-class DroneMapper {
-    -drones_category: String
-
-    +test_DroneMapper(date: String): String
-    +format_date(date: String): String
-    +map_drone(drone_json: JSONObject): void
-    +map_drones(drones: JSONArray): void
+    +fetchApi(dataCategory: String): JSONObject
+    +fetchDataFromCategory(dataCategory: String, amount: int, pageNr: int): JSONArray
+    +fetchDataFromCategoryPagewise(dataCategory: String, amount: int, pageNr: int): JSONArray
+    +fetchDataFromCategoryOffsetwise(dataCategory: String, startIndex: int, amount: int): JSONArray
+    +getLastCount(): int
+    +getCountOfDataFromCategory(dataCategory: String): int
+    +getNextPageExists(): boolean
+    +getPreviousPageExists(): boolean
 }
 
 class DroneTableModel {
@@ -189,7 +195,59 @@ class FlightDynamicsController {
     -buttonPrevious: Button
 
     +initialize(): void
-    +updateTable(): void
+    +doUpdateTable(): void
+}
+
+class DroneType {
+    -id: int
+    -manufacturer: String
+    -typeName: String
+    -weight: int
+    -maxSpeed: int
+    -batteryCapacity: int
+    -controlRange: int
+    -maxCarriage: int
+
+    +DroneType(id: int, manufacturer: String, typeName: String, weight: int, maxSpeed: int, batteryCapacity: int, controlRange: int, maxCarriage: int)
+    +getId(): int
+    +getManufacturer(): String
+    +getTypeName(): String
+    +getWeight(): int
+    +getMaxSpeed(): int
+    +getBatteryCapacity(): int
+    +getControlRange(): int
+    +getMaxCarriage(): int
+    +setId(id: int): void
+    +setManufacturer(manufacturer: String): void
+    +setTypeName(typeName: String): void
+    +setWeight(weight: int): void
+    +setMaxSpeed(maxSpeed: int): void
+    +setBatteryCapacity(batteryCapacity: int): void
+    +setControlRange(controlRange: int): void
+    +setMaxCarriage(maxCarriage: int): void
+}
+
+class DashboardController {
+    -buttonHistory: Button
+    -buttonFlightDynamics: Button
+    -buttonDrones: Button
+    -refreshData: Button
+    -mapView: ImageView
+    -mainBody: BorderPane
+    -vBoxButtonList: VBox
+    -currentPage: int
+    -mapNorthLat: double
+    -mapSouthLat: double
+    -mapEastLon: double
+    -mapWestLon: double
+    -droneDynamicsCount: int
+
+    +initialize(): void
+    +openDrone(DroneDynamic): void
+    +openHistory(): void
+    +openDroneCatalog(): void
+    +openFlightDynamics(): void
+    +updateData(Pane): void
 }
 
 class Main {
@@ -203,10 +261,12 @@ class Main {
 DroneManager <--- ApiAdapter
 DroneManager --- Drone
 DroneDynamicsManager <--- ApiAdapter
-DroneDynamicsManager <|--- DroneDynamic
 Main <|--- ApiAdapter
 Drone --- DroneMapper
 FlightDynamicsController --- DroneManager
-FlightDynamicsController --- DroneDynamicManager
+DroneTypeManager --- DroneTableModel
+DroneTypeManager <--- ApiAdapter
+DroneTypeManager --- DroneType
+
 
 @enduml
