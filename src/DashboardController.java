@@ -35,7 +35,7 @@ public class DashboardController {
     @FXML
     public void initialize() {
         DroneTypeManager.doInitializeDroneTypes();
-        DroneManager.initializeDrones();
+        DroneManager.doInitializeDrones();
         DroneDynamicManager.initialize();
         Image mapImage = new Image(getClass().getResourceAsStream("/resources/map.png"));
         mapView.setImage(mapImage);
