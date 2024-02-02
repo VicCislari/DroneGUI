@@ -39,15 +39,15 @@ public class DroneType {
         return maxSpeed;
     }
 
-    public  int getBatteryCapacity() {
+    public int getBatteryCapacity() {
         return batteryCapacity;
     }
 
-    public  int getControlRange() {
+    public int getControlRange() {
         return controlRange;
     }
 
-    public  int getMaxCarriage() {
+    public int getMaxCarriage() {
         return maxCarriage;
     }
 

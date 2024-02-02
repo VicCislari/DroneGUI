@@ -28,6 +28,21 @@ public class Drone {
         setCarriageWeight(carriageWeight);
         setCarriageType(carriageType);
     }
+    /*
+     * return all data related to Drone object as String
+     * @author bahadir
+     */
+    public String toString() {
+        return "Drone{" +
+                "id=" + id +
+                ", droneType=" + droneType +
+                ", created='" + created + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", carriageWeight=" + carriageWeight +
+                ", carriageType='" + carriageType + '\'' +
+                '}';
+    }
+
 
     //TODO:
     public Drone() {
