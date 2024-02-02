@@ -18,7 +18,7 @@ import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-//erstmal zuende schreiben bitte
+
 public class HistoryController {
 
     public BorderPane mainBody;
