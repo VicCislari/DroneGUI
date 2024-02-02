@@ -9,9 +9,9 @@ import java.util.*;
  *              API,
  *              providing functionality to initialize and access the drone
  *              dynamics list.
- * @author Atheesan
+ * @author @plotarmor27
  * @version 1.0
- * @since 2024-01-26
+ * @since 2024.01.26
  */
 
 public class DroneDynamicManager {

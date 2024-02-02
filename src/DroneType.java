@@ -1,3 +1,5 @@
+//AI-generated
+
 public class DroneType {
     private int id;
     private String manufacturer;

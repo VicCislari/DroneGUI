@@ -2,6 +2,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+//AI-generated
 public class DroneTableModel {
     private final int id;
     private final String manufacturer;

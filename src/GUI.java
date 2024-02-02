@@ -14,7 +14,7 @@ public class GUI extends JFrame // class GUi extended by JFrame which is in lib
 	 * @change old prototype, refer to App folder for the real GUIs
 	 * 
 	 * @Layout BorderLayout
-	 * @author Wassabie
+	 * @author @WassabieX
 	 * @since 1.1
 	 * @last_modified 2024.01.12
 	 */
@@ -29,8 +29,8 @@ public class GUI extends JFrame // class GUi extended by JFrame which is in lib
 		add(label, BorderLayout.NORTH); // position of label is top of window
 		add(button, BorderLayout.CENTER); // position of label is center window
 
-		button.addActionListener(e -> { //
-			DroneList.rundummy(); // VICTOR: TODO: ICH WIß NICHT OB ICH HIER ZWEI BEFEHLE HABEN DARF
+		button.addActionListener(e -> {
+			DroneList.rundummy();
 		});
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // standard for closing app -> closes window
