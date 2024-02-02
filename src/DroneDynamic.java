@@ -22,6 +22,7 @@ public class DroneDynamic {
     private ZonedDateTime lastSeen; // Timestamp of the last time the drone was seen/data was logged
     private boolean isActive; // Activity status of the drone //Victor:WHAT?
 
+
     public DroneDynamic(Drone drone, String timestamp, int speed, float alignRoll, float alignYaw,
             float alignPitch, float longitude, float latitude, int batteryStatus, String lastSeen,
             boolean isActive) {
@@ -124,5 +125,17 @@ public class DroneDynamic {
 
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
+    }
+
+    public int getDroneId(){
+        return getDrone().getId();
+    }
+
+    public String getStatus(){
+        if(isActive){
+            return "ON";
+        } else {
+            return "OFF";
+        }
     }
 }

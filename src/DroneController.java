@@ -33,7 +33,6 @@ public class DroneController {
             } else {
                 status.setText("OFF");
             }
-            System.out.println("dronedyn id" + droneDynamic.getSpeed());
             speed.setText(droneDynamic.getSpeed() + "");
             lastSeen.setText("" + droneDynamic.getLastSeen().toLocalDateTime());
             flightTime.setText(getFlightTime(drone) + " min");

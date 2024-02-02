@@ -42,9 +42,7 @@ public class DroneDynamicManager {
      * @return The formatted isActive status.
      */
     private static boolean formatIsActive(String isActiveStr) {
-        boolean isActive;
-        isActive = isActiveStr.equals("ON");
-        return isActive;
+        return isActiveStr.equals("ON");
     }
 
     /**
@@ -65,6 +63,7 @@ public class DroneDynamicManager {
         int batteryStatus = droneDynJson.getInt("battery_status");
         String lastSeen = droneDynJson.getString("last_seen");
         boolean isActive = formatIsActive(droneDynJson.getString("status"));
+        System.out.println();
         DroneDynamic droneDyn = new DroneDynamic(drone, timestamp, speed, alignRoll,
                 alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
         cache.put(index, droneDyn);
