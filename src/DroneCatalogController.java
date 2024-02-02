@@ -1,10 +1,10 @@
+
 /**
  * Makes a table and shows all the Drone Types as a list.
  * @author: Bahadir
  * @version 1.0
  * @last_modified 2024.02.01
  */
-
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,8 +18,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-
-public class DroneCatalogController{
+public class DroneCatalogController {
 
     @FXML
     private VBox root;
@@ -41,8 +40,6 @@ public class DroneCatalogController{
 
         VBox.setVgrow(tableView, javafx.scene.layout.Priority.ALWAYS);
 
-
-    
     }
 
     public TableView<DroneTableModel> createDroneTypeTableView(DroneType[] droneTypeArray) {
@@ -91,7 +88,8 @@ public class DroneCatalogController{
 
         return tableView;
     }
-public static Parent loadFXML() throws IOException {
+
+    public static Parent loadFXML() throws IOException {
         FXMLLoader loader = new FXMLLoader(DroneCatalogController.class.getResource("DroneCatalog.fxml"));
         loader.load();
         return loader.getRoot();
