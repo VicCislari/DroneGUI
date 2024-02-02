@@ -14,6 +14,9 @@ public class DroneController {
     public Label flightTime;
     public Label batteryLifeEstimation;
     public Label avgSpeed;
+    public Label created;
+    public Label carriageWeight;
+    public Label carriageType;
     private DroneDynamic droneDynamic;
     private Drone drone;
     private DroneType droneType;
@@ -41,6 +44,9 @@ public class DroneController {
             flightTime.setText(getFlightTime(drone) + " min");
             batteryLifeEstimation.setText(getBatteryLifeEstimation());
             avgSpeed.setText(getAverageSpeed());
+            created.setText(""+ drone.getCreated().toLocalDateTime());
+            carriageType.setText(drone.getCarriageType());
+            carriageWeight.setText(""+drone.getCarriageWeight());
         });
     }
 
