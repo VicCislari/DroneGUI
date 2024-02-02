@@ -10,7 +10,6 @@ import java.time.ZonedDateTime;
  * @since 2024-01-26
  */
 public class DroneDynamic {
-    private int droneDynamicId; //
     private Drone drone; // Unique identifier
     private ZonedDateTime timestamp; // Drone Data Timestamp
     private int speed; // Dronespeed (unit = second)
@@ -23,10 +22,9 @@ public class DroneDynamic {
     private ZonedDateTime lastSeen; // Timestamp of the last time the drone was seen/data was logged
     private boolean isActive; // Activity status of the drone //Victor:WHAT?
 
-    public DroneDynamic(int droneDynamicId, Drone drone, String timestamp, int speed, float alignRoll, float alignYaw,
+    public DroneDynamic(Drone drone, String timestamp, int speed, float alignRoll, float alignYaw,
                         float alignPitch, float longitude, float latitude, int batteryStatus, String lastSeen,
                         boolean isActive) {
-        this.setDroneDynamicId(droneDynamicId);
         this.setDroneId(drone);
         this.setTimestamp(timestamp);
         this.setSpeed(speed);
@@ -40,10 +38,6 @@ public class DroneDynamic {
         this.setIsActive(isActive);
     }
 
-
-
-    public int getDroneDynamicId(){ return droneDynamicId; }
-    public void setDroneDynamicId(int droneDynamicsId) {this.droneDynamicId = droneDynamicsId;}
     public Drone getDrone() {
         return drone;
     }

@@ -54,7 +54,6 @@ public class DroneDynamicManager {
      * @return DroneDynamics object representing the mapped data.
      */
     private static void mapDroneDynamic(JSONObject droneDynJson) {
-        int droneDynamicId = index; //@VicCislari: verstehe Index gerade nicht ganz
         Drone drone = droneIdToDrone(droneDynJson.getString("drone"));
         String timestamp = droneDynJson.getString("timestamp");
         int speed = droneDynJson.getInt("speed");
@@ -66,7 +65,7 @@ public class DroneDynamicManager {
         int batteryStatus = droneDynJson.getInt("battery_status");
         String lastSeen = droneDynJson.getString("last_seen");
         boolean isActive = formatIsActive(droneDynJson.getString("status"));
-        DroneDynamic droneDyn = new DroneDynamic(droneDynamicId, drone, timestamp, speed, alignRoll,
+        DroneDynamic droneDyn = new DroneDynamic(drone, timestamp, speed, alignRoll,
                 alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
         cache.put(index, droneDyn);
     }
@@ -102,21 +101,11 @@ public class DroneDynamicManager {
         return result;
     }
 
-    public static DroneDynamic[] getLastDroneDynamicsForDrone(int id, int amount){
-        DroneDynamic[] result = new DroneDynamic[amount];
 
-        for(int  j= 0; j < amount; j++){
-            DroneDynamic[] droneDynamicsPage = getDroneDynamicsPage(DroneManager.getCount(), amount*-1);
-            for(int i = 0; i < DroneManager.getCount(); i++){
-                if(droneDynamicsPage[i].getDrone().getId() == id){
-                    result[j] = droneDynamicsPage[i];
-                }
-            }
-        }
-        return result;
-    }
 
-    public static int getCount(){return count;}
+    public static int getCount(){
+        System.out.println(cache.keySet());
+        return count;}
 
     private static void loadData(int startIndex, int amount){
         JSONArray apiResult = ApiAdapter.fetchDataFromCategoryOffsetwise(dataCategory, startIndex, amount);
