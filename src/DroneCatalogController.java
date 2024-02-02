@@ -93,8 +93,8 @@ public class DroneCatalogController {
         return tableView;
     }
 
-    //FXML loader class
-public static Parent loadFXML() throws IOException {
+    // FXML loader class
+    public static Parent loadFXML() throws IOException {
         FXMLLoader loader = new FXMLLoader(DroneCatalogController.class.getResource("DroneCatalog.fxml"));
         loader.load();
         return loader.getRoot();
