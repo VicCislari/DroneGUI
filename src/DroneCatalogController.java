@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -40,6 +39,9 @@ public class DroneCatalogController{
 
         root.getChildren().add(tableView);
 
+        VBox.setVgrow(tableView, javafx.scene.layout.Priority.ALWAYS);
+
+
     
     }
 
@@ -52,7 +54,7 @@ public class DroneCatalogController{
             droneTypeDataList.add(new DroneTableModel(droneType));
         }
 
-        // Create columns for the TableView
+        // Create columns for TableView
         TableColumn<DroneTableModel, Integer> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
@@ -81,7 +83,7 @@ public class DroneCatalogController{
         tableView.getColumns().addAll(idColumn, manufacturerColumn, typeNameColumn, weightColumn, maxSpeedColumn,
                 batteryCapacityColumn, controlRangeColumn, maxCarriageColumn);
 
-        // Adjust table to the size of the columns
+        // Adjust table to size of columns
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
 
         // Set the data in the TableView
