@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.Pane?>
 <AnchorPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HistoryController">
     <children>
         <BorderPane fx:id="mainBody" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -43,7 +42,7 @@
             <center>
             </center>
             <center>
-                <ImageView fx:id="mapView"  preserveRatio="true"  BorderPane.alignment="TOP_LEFT">
+                <ImageView fx:id="mapView" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
                <viewport>
                   <Rectangle2D />
                </viewport></ImageView>
@@ -60,6 +59,7 @@
                         </Label>
                         <TextField fx:id="pageInput" />
                         <Button fx:id="changePageButton" mnemonicParsing="false" text="Change Page" />
+                        <Label fx:id="wrongInput" text="Input out of Range!" textFill="RED" visible="false" />
                      </children>
                      <opaqueInsets>
                         <Insets />
