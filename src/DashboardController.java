@@ -128,6 +128,18 @@ public class DashboardController {
                     }
                 }
             });
+
+            buttonDrones.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        openDroneCatalog();
+
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
         }
 
     }
