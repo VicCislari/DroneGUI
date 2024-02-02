@@ -1,6 +1,9 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class DroneTypeManager {
     private static final String dataCategory = "dronetypes";
     private static DroneType[] droneTypeList;
@@ -27,6 +30,7 @@ public class DroneTypeManager {
         for (i = 0; i < droneTypes.length(); i++) {
             droneTypeList[i] = mapDroneType(droneTypes.getJSONObject(i));
         }
+        Arrays.sort(droneTypeList, Comparator.comparingInt(o -> o.getId()));
     }
     public static void initializeDroneTypes() {
         mapDroneTypes(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));

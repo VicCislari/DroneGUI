@@ -1,6 +1,9 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * @class DroneManager
  * @description Manages the retrieval and mapping of drone data from an API,
@@ -53,6 +56,7 @@ public class DroneManager {
         for (i = 0; i < drones.length(); i++) {
             droneList[i] = mapDrone(drones.getJSONObject(i));
         }
+        Arrays.sort(droneList, Comparator.comparingInt(o -> o.getId()));
     }
 
     /**

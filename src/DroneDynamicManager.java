@@ -1,9 +1,7 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
+
+import java.util.*;
 
 /**
  * @class DroneDynamicManager
@@ -21,9 +19,9 @@ public class DroneDynamicManager {
 
     private static int index;
     private static int count;
-    private static int currentPageIndex = 0;
-    private static boolean previousPageExists = true;
-    private static boolean nextPageExists = false;
+    private int currentPageIndex = 0;
+    private boolean previousPageExists = true;
+    private boolean nextPageExists = false;
     private static Map<Integer, DroneDynamic> cache = new HashMap<>();
 
     /**
@@ -45,7 +43,7 @@ public class DroneDynamicManager {
      */
     private static boolean formatIsActive(String isActiveStr) {
         boolean isActive;
-        isActive = Objects.equals(isActiveStr, "ON");
+        isActive = isActiveStr.equals("ON");
         return isActive;
     }
 
@@ -100,13 +98,15 @@ public class DroneDynamicManager {
         for (int l = 0; l < result.length; l++){
             result[l] = cache.get(index + l);
         }
+        Arrays.sort(result, Comparator.comparingInt(o -> o.getDrone().getId()));
         return result;
     }
 
     public static DroneDynamic[] getLastDroneDynamicsForDrone(int id, int amount){
         DroneDynamic[] result = new DroneDynamic[amount];
+
         for(int  j= 0; j < amount; j++){
-            DroneDynamic[] droneDynamicsPage = getDroneDynamicsPage(DroneManager.getCount(), amount);
+            DroneDynamic[] droneDynamicsPage = getDroneDynamicsPage(DroneManager.getCount(), amount*-1);
             for(int i = 0; i < DroneManager.getCount(); i++){
                 if(droneDynamicsPage[i].getDrone().getId() == id){
                     result[j] = droneDynamicsPage[i];
