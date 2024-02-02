@@ -96,4 +96,5 @@ public class DroneController {
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
     }
+
 }

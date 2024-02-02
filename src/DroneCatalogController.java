@@ -11,10 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -83,6 +84,7 @@ public class DroneCatalogController{
         TableColumn<DroneTableModel, Integer> maxCarriageColumn = new TableColumn<>("Max Carriage");
         maxCarriageColumn.setCellValueFactory(new PropertyValueFactory<>("maxCarriage"));
 
+        
         // Add columns to the TableView
         tableView.getColumns().addAll(idColumn, manufacturerColumn, typeNameColumn, weightColumn, maxSpeedColumn,
                 batteryCapacityColumn, controlRangeColumn, maxCarriageColumn);
