@@ -71,6 +71,8 @@ public class DashboardController {
                     }
                 }
             });
+
+
             double targetLat = droneDynamics[i].getLatitude();
             double targetLon = droneDynamics[i].getLongitude();
             double x = ((targetLon - mapWestLon) / (mapEastLon - mapWestLon)) * mapWidthPixels;
@@ -115,17 +117,18 @@ public class DashboardController {
                     }
                 }
             });
-        }
-        buttonDrones.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    openDroneCatalog();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
+            buttonFlightDynamics.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        openFlightDynamics();
+
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-            }
-        });
+            });
+        }
 
     }
 
@@ -167,5 +170,15 @@ public class DashboardController {
         droneCatalogStage.show();
     }
     
+
+    public void openFlightDynamics() throws Exception {
+        FXMLLoader loader = new FXMLLoader(DroneController.class.getResource("FlightDynamics.fxml"));
+        Parent root = loader.load(); // Load the FXML and get the root
+        FlightDynamicsController flightDynamicsController = loader.getController(); // Get the controller instance
+        Stage flightDynamics = new Stage();
+        flightDynamics.setTitle("Drone History");
+        flightDynamics.setScene(new Scene(root));
+        flightDynamics.show();
+    }
 
 }
