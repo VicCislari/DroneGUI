@@ -69,6 +69,39 @@ public class DashboardController {
         // Retrieve drone dynamics for the current page
         DroneDynamic[] droneDynamics = DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), currentPage);
 
+        // Set actions for history, flight dynamics, and drones buttons
+        buttonDrones.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    openDroneCatalog();
+
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        buttonFlightDynamics.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    openFlightDynamics();
+
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        buttonHistory.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    openHistory();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
         for (int i = 0; i < droneDynamics.length; i++) {
             int id = DroneManager.getDroneList()[i].getId();
             String droneSerialNr = DroneManager.getDroneList()[i].getSerialNumber();
@@ -141,41 +174,6 @@ public class DashboardController {
             // Set the center of the main body to the overlay with drone icons
             mainBody.setCenter(overlay);
 
-            // Set actions for history, flight dynamics, and drones buttons
-            buttonHistory.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    try {
-                        openHistory();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
-
-            buttonFlightDynamics.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    try {
-                        openFlightDynamics();
-
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
-
-            buttonDrones.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    try {
-                        openDroneCatalog();
-
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
         }
     }
 
