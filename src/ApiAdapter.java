@@ -1,6 +1,8 @@
 //package de.frauas.muellerbady.java.test;
 //author: Adizen
 
+//TODO Victor: Rename the do functions at the very end, when everything is done
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -64,33 +66,16 @@ public class ApiAdapter {
     }
 
     /**
-     * Gets the total count of data items in a given category.
+     * Fetches data from a category in a paginated manner based on the specified
+     * amount and page number.
      * 
-     * @param dataCategory URL subsection
-     * @return Total count of data items in the category.
+     * @param dataCategory The category for API data retrieval.
+     * @param amount       The number of elements to fetch per page.
+     * @param pageNr       The page number to fetch.
+     * @return JSONArray containing fetched data.
      * @since 1.0
      * @last_modified 2024.01.10
      */
-    public static int getCountOfDataFromCategory(String dataCategory) {
-        return fetchApi(dataCategory).getInt("count");
-    }
-
-    private static void setPreviousPageExists(JSONObject apiResults) {
-        previousPageExists = !apiResults.isNull("previous");
-    }
-
-    private static void setNextPageExists(JSONObject apiResults) {
-        nextPageExists = !apiResults.isNull("next");
-    }
-
-    public static boolean getNextPageExists() {
-        return nextPageExists;
-    }
-
-    public static boolean getPreviousPageExists() {
-        return previousPageExists;
-    }
-
     public static JSONArray fetchDataFromCategory(String dataCategory, int amount, int pageNr) {
         JSONArray results = new JSONArray();
         JSONObject apiResult;
@@ -120,10 +105,17 @@ public class ApiAdapter {
         return results;
     }
 
-    public static int getLastCount() {
-        return lastCount;
-    }
-
+    /**
+     * Fetches data from a category in a paginated manner based on the specified
+     * amount and page number.
+     * 
+     * @param dataCategory The category for API data retrieval.
+     * @param amount       The number of elements to fetch per page.
+     * @param pageNr       The page number to fetch.
+     * @return JSONArray containing fetched data.
+     * @since 1.0
+     * @last_modified 2024.01.10
+     */
     private static JSONArray fetchDataFromCategoryPagewise(String dataCategory, int amount, int pageNr) {
         JSONObject apiResult;
         JSONArray results;
@@ -140,6 +132,17 @@ public class ApiAdapter {
         return results;
     }
 
+    /**
+     * Fetches data from a category in a paginated manner based on the specified
+     * startIndex and amount.
+     * 
+     * @param dataCategory The category for API data retrieval.
+     * @param startIndex   The starting index for fetching data.
+     * @param amount       The number of elements to fetch.
+     * @return JSONArray containing fetched data.
+     * @since 1.0
+     * @last_modified 2024.01.10
+     */
     public static JSONArray fetchDataFromCategoryOffsetwise(String dataCategory, int startIndex, int amount) {
         JSONObject apiResult;
         JSONArray results;
@@ -152,5 +155,37 @@ public class ApiAdapter {
         offset = 0;
         limit = 10;
         return results;
+    }
+
+    public static int getLastCount() {
+        return lastCount;
+    }
+
+    /**
+     * Gets the total count of data items in a given category.
+     * 
+     * @param dataCategory URL subsection
+     * @return Total count of data items in the category.
+     * @since 1.0
+     * @last_modified 2024.01.10
+     */
+    public static int getCountOfDataFromCategory(String dataCategory) {
+        return fetchApi(dataCategory).getInt("count");
+    }
+
+    private static void setPreviousPageExists(JSONObject apiResults) {
+        previousPageExists = !apiResults.isNull("previous");
+    }
+
+    private static void setNextPageExists(JSONObject apiResults) {
+        nextPageExists = !apiResults.isNull("next");
+    }
+
+    public static boolean getNextPageExists() {
+        return nextPageExists;
+    }
+
+    public static boolean getPreviousPageExists() {
+        return previousPageExists;
     }
 }
