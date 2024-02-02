@@ -3,7 +3,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-public class Main extends Application{
+
+public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -21,15 +22,19 @@ public class Main extends Application{
         launch(args);
     }
     /*
-    public static void AdiZenTest() {
-        DroneManager.initializeDrones();
-        System.out.println(DroneManager.getDroneList()[23].getDroneType());
-        System.out.println(DroneManager.getDroneList().length);
-        System.out.println(DroneDynamicManager.getDroneDynamicsPage(7)[0].getDrone().getId());
-        System.out.println(DroneDynamicManager.getMostRecentDroneDynamicsForAllDronesPage()[3].getDrone().getId());
-        //DroneDynamicsManager.initializeDroneDynamics();
-        //System.out.println(DroneDynamicsManager.getDroneDynamicsList()[20].getTimestamp());
-        //System.out.println((DroneDynamicsManager.getDroneDynamicsList().length));
-
-    } */
+     * public static void AdiZenTest() {
+     * DroneManager.initializeDrones();
+     * System.out.println(DroneManager.getDroneList()[23].getDroneType());
+     * System.out.println(DroneManager.getDroneList().length);
+     * System.out.println(DroneDynamicManager.getDroneDynamicsPage(7)[0].getDrone().
+     * getId());
+     * System.out.println(DroneDynamicManager.
+     * getMostRecentDroneDynamicsForAllDronesPage()[3].getDrone().getId());
+     * //DroneDynamicsManager.initializeDroneDynamics();
+     * //System.out.println(DroneDynamicsManager.getDroneDynamicsList()[20].
+     * getTimestamp());
+     * //System.out.println((DroneDynamicsManager.getDroneDynamicsList().length));
+     * 
+     * }
+     */
 }

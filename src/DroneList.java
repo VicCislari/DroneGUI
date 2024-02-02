@@ -3,10 +3,10 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * The `DroneList` class represents a JFrame for displaying a list of drones.
+ * represents a JFrame for displaying a list of drones.
  * It is used to present a drone fleet list.
  *
- * @author Wassabie
+ * @author @WassabieX
  * @since 1.0
  * @last_modified 2024.01.12
  */
@@ -16,7 +16,7 @@ public class DroneList extends JFrame {
 
     /**
      * Constructs a new instance of the `DroneList` class.
-     * 
+     *  @author @WassabieX
      * @param droneList The list of drones to be displayed.
      */
     public DroneList(List<String> droneList) {
@@ -26,12 +26,11 @@ public class DroneList extends JFrame {
 
     /**
      *
-     * TODO: creates a new interface for the drone list.
      * as for now, it only presents a dummy list
      * used in GUIPT.java to list drones
      *
      * @Layout FlowLayout
-     * @author Wassabie
+     * @author @WassabieX
      * @last_modified 2024.01.12
      * @since 1.0
      */
@@ -53,7 +52,7 @@ public class DroneList extends JFrame {
      * the mentioned dummy dronelist
      * Note: TODO: returns the dummy drone list to DroneList function
      *
-     * @author Wassabie
+     * @author @WassabieX
      * @last_modified 2024.01.12
      * @since 1.0
      */

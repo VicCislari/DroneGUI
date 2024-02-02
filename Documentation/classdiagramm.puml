@@ -135,5 +135,4 @@ DroneDynamicsManager <|--- DroneDynamic
 
 Main <|--- ApiAdapter
 Drone --- DroneMapper
-GUI <|--- DroneList
 @enduml

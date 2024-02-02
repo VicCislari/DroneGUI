@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DashboardController">
@@ -25,9 +26,9 @@
                <right>
                   <HBox BorderPane.alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" text="Drones" />
-                        <Button mnemonicParsing="false" text="Flight Dynamics" />
-                        <Button mnemonicParsing="false" text="History" />
+                        <Button fx:id="buttonDrones" mnemonicParsing="false" text="Drones" />
+                        <Button fx:id="buttonFlightDynamics" mnemonicParsing="false" text="Flight Dynamics" />
+                        <Button fx:id="buttonHistory" mnemonicParsing="false" text="History" />
                      </children>
                   </HBox>
                </right>
@@ -37,16 +38,13 @@
              <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS">
                <content>
                   <VBox fx:id="vBoxButtonList">
-                  </VBox>
+                     <children>
+                     </children></VBox>
                </content>
              </ScrollPane>
          </left>
          <center>
-         </center>
-         <center>
-         </center>
-         <center>
-            <ImageView fx:id="mapView" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+            <ImageView fx:id="mapView" pickOnBounds="false" preserveRatio="true" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>

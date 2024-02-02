@@ -20,7 +20,8 @@ public class Drone {
     private int carriageWeight;
     private String carriageType;
 
-    public Drone(int id, DroneType droneType, String created, String serialNumber, int carriageWeight, String carriageType) {
+    public Drone(int id, DroneType droneType, String created, String serialNumber, int carriageWeight,
+            String carriageType) {
         setId(id);
         setDroneType(droneType);
         setCreated(created);
@@ -29,7 +30,23 @@ public class Drone {
         setCarriageType(carriageType);
     }
 
-    //TODO:
+    /*
+     * return all data related to Drone object as String
+     * 
+     * @author bahadir
+     */
+    public String toString() {
+        return "Drone{" +
+                "id=" + id +
+                ", droneType=" + droneType +
+                ", created='" + created + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", carriageWeight=" + carriageWeight +
+                ", carriageType='" + carriageType + '\'' +
+                '}';
+    }
+
+    // TODO:
     public Drone() {
     }
 

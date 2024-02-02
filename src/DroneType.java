@@ -1,14 +1,17 @@
-public class DroneType {
-    private static int id;
-    private static String manufacturer;
-    private static String typeName;
-    private static int weight;
-    private static int maxSpeed;
-    private static int batteryCapacity;
-    private static int controlRange;
-    private static int maxCarriage;
+//AI-generated
 
-    public DroneType(int id, String manufacturer, String typeName, int weight, int maxSpeed, int batteryCapacity, int controlRange, int maxCarriage) {
+public class DroneType {
+    private int id;
+    private String manufacturer;
+    private String typeName;
+    private int weight;
+    private int maxSpeed;
+    private int batteryCapacity;
+    private int controlRange;
+    private int maxCarriage;
+
+    public DroneType(int id, String manufacturer, String typeName, int weight, int maxSpeed, int batteryCapacity,
+            int controlRange, int maxCarriage) {
         setId(id);
         setManufacturer(manufacturer);
         setTypeName(typeName);
@@ -19,67 +22,67 @@ public class DroneType {
         setMaxCarriage(maxCarriage);
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
-    public static String getManufacturer() {
+    public String getManufacturer() {
         return manufacturer;
     }
 
-    public static String getTypeName() {
+    public String getTypeName() {
         return typeName;
     }
 
-    public static int getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public static int getMaxSpeed() {
+    public int getMaxSpeed() {
         return maxSpeed;
     }
 
-    public static int getBatteryCapacity() {
+    public int getBatteryCapacity() {
         return batteryCapacity;
     }
 
-    public static int getControlRange() {
+    public int getControlRange() {
         return controlRange;
     }
 
-    public static int getMaxCarriage() {
+    public int getMaxCarriage() {
         return maxCarriage;
     }
 
-    public static void setId(int id) {
-        DroneType.id = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public static void setManufacturer(String manufacturer) {
-        DroneType.manufacturer = manufacturer;
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
-    public static void setTypeName(String typeName) {
-        DroneType.typeName = typeName;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
-    public static void setWeight(int weight) {
-        DroneType.weight = weight;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
-    public static void setMaxSpeed(int maxSpeed) {
-        DroneType.maxSpeed = maxSpeed;
+    public void setMaxSpeed(int maxSpeed) {
+        this.maxSpeed = maxSpeed;
     }
 
-    public static void setBatteryCapacity(int batteryCapacity) {
-        DroneType.batteryCapacity = batteryCapacity;
+    public void setBatteryCapacity(int batteryCapacity) {
+        this.batteryCapacity = batteryCapacity;
     }
 
-    public static void setControlRange(int controlRange) {
-        DroneType.controlRange = controlRange;
+    public void setControlRange(int controlRange) {
+        this.controlRange = controlRange;
     }
 
-    public static void setMaxCarriage(int maxCarriage) {
-        DroneType.maxCarriage = maxCarriage;
+    public void setMaxCarriage(int maxCarriage) {
+        this.maxCarriage = maxCarriage;
     }
 }

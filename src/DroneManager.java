@@ -1,13 +1,16 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * @class DroneManager
  * @description Manages the retrieval and mapping of drone data from an API,
  *              providing functionality to initialize and access the drone list.
  * @author Adizen
  * @version 1.0
- * @since 2024-01-26
+ * @since 2024.01.26
  */
 public class DroneManager {
     private static final String dataCategory = "drones";
@@ -20,10 +23,9 @@ public class DroneManager {
      * @param droneTypeId The raw drone type from the API response.
      * @return The formatted drone type.
      */
-
-    private static DroneType droneTypeIdToDroneType(String droneTypeId) {
+    private static DroneType doDroneTypeIdToDroneType(String droneTypeId) {
         int i = Integer.parseInt(droneTypeId.substring(47, 49));
-        return  DroneTypeManager.getDroneTypeList()[i - 71];
+        return DroneTypeManager.getDroneTypeList()[i - 71];
     }
 
     /**
@@ -32,9 +34,9 @@ public class DroneManager {
      * @param droneJson JSON object containing drone data.
      * @return Drone object representing the mapped data.
      */
-    private static Drone mapDrone(JSONObject droneJson) {
+    private static Drone doMapDrone(JSONObject droneJson) {
         int id = droneJson.getInt("id");
-        DroneType droneType = droneTypeIdToDroneType(droneJson.getString("dronetype"));
+        DroneType droneType = doDroneTypeIdToDroneType(droneJson.getString("dronetype"));
         String created = droneJson.getString("created");
         String serialNumber = droneJson.getString("serialnumber");
         int carriageWeight = droneJson.getInt("carriage_weight");
@@ -47,37 +49,32 @@ public class DroneManager {
      *
      * @param drones JSON array containing multiple drone data.
      */
-    private static void mapDrones(JSONArray drones) {
+    private static void doMapDrones(JSONArray drones) {
         int i;
         droneList = new Drone[drones.length()];
         for (i = 0; i < drones.length(); i++) {
-            droneList[i] = mapDrone(drones.getJSONObject(i));
+            droneList[i] = doMapDrone(drones.getJSONObject(i));
         }
+        Arrays.sort(droneList, Comparator.comparingInt(o -> o.getId()));
     }
 
     /**
-     * Gets the array of Drone objects.
-     *
-     * @return The array of Drone objects.
+     * This Data can be found under the following link:
+     * https://dronesim.facets-labs.com/api/drones/?limit=10&offset=0
+     * This function maps the first 10 drones to Dronelist 
+     * @author: @VicCislari
      */
-    public static Drone[] getDroneList() {
-        return droneList;
-    }
-
-    /**
-     * this is the link which is being requested https://dronesim.facets-labs.com/api/drones/?format=json&limit=10&offset=0
-     * Initializes the drone data by fetching and mapping from the API.
-     * This Data can be found under the following link: https://dronesim.facets-labs.com/api/drones/?limit=10&offset=0
-     * This function maps the first 10 drones of the Dronelist on the web to the local droneList
-     */
-    public static void initializeDrones() {
-        mapDrones(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
+    public static void doInitializeDrones() {
+        doMapDrones(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
         count = ApiAdapter.getLastCount();
     }
 
-    // TODO: Victor
-    // this could be more automatised and oriented towards more expension for the api expansion or more drones.
-    // siehe DroneDynamicManager.java getDroneDashboardData()
-    public static int getCount(){ return count;}
+    public static int getCount() {
+        return count;
+    }
+
+    public static Drone[] getDroneList() {
+        return droneList;
+    }
 
 }
