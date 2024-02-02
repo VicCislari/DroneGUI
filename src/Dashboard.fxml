@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DashboardController">
@@ -32,6 +31,9 @@
                      </children>
                   </HBox>
                </right>
+               <center>
+                  <Button fx:id="refreshData" mnemonicParsing="false" text="Refresh Data" BorderPane.alignment="CENTER" />
+               </center>
             </BorderPane>
          </top>
          <left>

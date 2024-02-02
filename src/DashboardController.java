@@ -30,6 +30,7 @@ public class DashboardController {
     public Button buttonHistory;
     public Button buttonFlightDynamics;
     public Button buttonDrones;
+    public Button refreshData;
 
     @FXML
     private ImageView mapView;
