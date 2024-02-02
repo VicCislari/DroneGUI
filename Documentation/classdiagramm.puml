@@ -62,30 +62,25 @@ class DroneDynamic {
 
 class DroneManager {
     -category: String
-    -droneList: Drone[]
+    -droneList: List<Drone>
 
     +formatDroneType(droneType: String): int
     +mapDrone(droneJson: JSONObject): Drone
     +mapDrones(drones: JSONArray): void
-    +getDroneList(): Drone[]
+    +getDroneList(): List<Drone>
     +initializeDrones(): void
 }
 
 class DroneDynamicsManager {
     -category: String
-    -droneDynamicsList: DroneDynamic[]
+    -droneDynamicsList: List<DroneDynamic>
 
     +formatDroneId(droneId: String): int
     +formatIsActive(isActiveStr: String): boolean
     +initializeDroneDynamics(): void
     +mapDroneDynamics(droneDynJson: JSONObject): DroneDynamic
-    +getDroneDynamicsList(): DroneDynamic[]
+    +getDroneDynamicsList(): List<DroneDynamic>
     +mapAllDroneDynamics(droneDyns: JSONArray): void
-}
-
-class GUI {
-    +createGUI(): void
-    +test_GUI(): void
 }
 
 class DroneList {
@@ -94,6 +89,35 @@ class DroneList {
     +DroneList(droneList: List<String>)
     +initializeUI(): void
     +rundummy(): void
+}
+
+class DroneType {
+    -id: int
+    -manufacturer: String
+    -typeName: String
+    -weight: int
+    -maxSpeed: int
+    -batteryCapacity: int
+    -controlRange: int
+    -maxCarriage: int
+
+    +DroneType(id: int, manufacturer: String, typeName: String, weight: int, maxSpeed: int, batteryCapacity: int, controlRange: int, maxCarriage: int)
+    +getId(): int
+    +getManufacturer(): String
+    +getTypeName(): String
+    +getWeight(): int
+    +getMaxSpeed(): int
+    +getBatteryCapacity(): int
+    +getControlRange(): int
+    +getMaxCarriage(): int
+    +setId(id: int): void
+    +setManufacturer(manufacturer: String): void
+    +setTypeName(typeName: String): void
+    +setWeight(weight: int): void
+    +setMaxSpeed(maxSpeed: int): void
+    +setBatteryCapacity(batteryCapacity: int): void
+    +setControlRange(controlRange: int): void
+    +setMaxCarriage(maxCarriage: int): void
 }
 
 class ApiAdapter {
@@ -120,6 +144,54 @@ class DroneMapper {
     +map_drones(drones: JSONArray): void
 }
 
+class DroneTableModel {
+    -id: int
+    -manufacturer: String
+    -typeName: String
+    -weight: int
+    -maxSpeed: int
+    -batteryCapacity: int
+    -controlRange: int
+    -maxCarriage: int
+
+    +DroneTableModel(droneType: DroneType)
+    +getId(): int
+    +getManufacturer(): String
+    +getTypeName(): String
+    +getWeight(): int
+    +getMaxSpeed(): int
+    +getBatteryCapacity(): int
+    +getControlRange(): int
+    +getMaxCarriage(): int
+    +doCreateTableModelList(): List<DroneTableModel>
+}
+
+class FlightDynamicsController {
+    -currentPageNr: int
+    -jumpButton: Button
+    -currentPage: Label
+    -totalPages: Label
+    -dynamicsTable: TableView
+    -droneIdColumn: TableColumn
+    -statusColumn: TableColumn
+    -timestampColumn: TableColumn
+    -speedColumn: TableColumn
+    -batteryColumn: TableColumn
+    -longitudeColumn: TableColumn
+    -latitudeColumn: TableColumn
+    -lastSeenColumn: TableColumn
+    -rollColumn: TableColumn
+    -pitchColumn: TableColumn
+    -yawColumn: TableColumn
+    -pageJumper: TextField
+    -wrongInput: Label
+    -buttonNext: Button
+    -buttonPrevious: Button
+
+    +initialize(): void
+    +updateTable(): void
+}
+
 class Main {
     +AdiZenTest(): void
     +main(args: String[]): void
@@ -132,7 +204,9 @@ DroneManager <--- ApiAdapter
 DroneManager --- Drone
 DroneDynamicsManager <--- ApiAdapter
 DroneDynamicsManager <|--- DroneDynamic
-
 Main <|--- ApiAdapter
 Drone --- DroneMapper
+FlightDynamicsController --- DroneManager
+FlightDynamicsController --- DroneDynamicManager
+
 @enduml
