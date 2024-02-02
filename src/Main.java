@@ -10,7 +10,7 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
 
-        primaryStage.setTitle("My Application");
+        primaryStage.setTitle("Drone Dashboard");
 
         primaryStage.setScene(new Scene(root));
 

@@ -162,7 +162,7 @@ public class DashboardController {
         Parent root = loader.load(); // Load the FXML and get the root
         DroneCatalogController newDroneCatalog = loader.getController(); // Get the controller instance
         Stage droneCatalogStage = new Stage();
-        droneCatalogStage.setTitle("Drone Catalog");
+        droneCatalogStage.setTitle("Dronetypes");
         droneCatalogStage.setScene(new Scene(root));
         droneCatalogStage.show();
     }
@@ -178,7 +178,7 @@ public class DashboardController {
         Parent root = loader.load(); // Load the FXML and get the root
         FlightDynamicsController flightDynamicsController = loader.getController(); // Get the controller instance
         Stage flightDynamics = new Stage();
-        flightDynamics.setTitle("Drone History");
+        flightDynamics.setTitle("Flight Dynamics");
         flightDynamics.setScene(new Scene(root));
         flightDynamics.show();
     }
