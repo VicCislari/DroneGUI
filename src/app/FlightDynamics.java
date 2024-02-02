@@ -74,7 +74,7 @@ public class FlightDynamics {
     void handlePrevClick(ActionEvent event) {
 
         // PREV PAGE
-        
+
     }
 
     @FXML
@@ -84,6 +84,16 @@ public class FlightDynamics {
 
     }
 
+    void setID(String id) {
+
+        // set ID
+    }
+
+    public String getID() {
+        
+        // return ID
+    }
+    
     // function for page & totalPage missing -> setter getter
     // setter and getter methods for data missing
 
