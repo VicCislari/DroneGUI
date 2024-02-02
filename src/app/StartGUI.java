@@ -35,15 +35,10 @@ public class StartGUI {
     }
 
     @FXML
-    void handleContinueClick(ActionEvent event) {
-<<<<<<< HEAD
-
-        // HIER NÄCHSTE GUI LADNE @AdiZen
-=======
+    void doHandleContinueClick(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FlightDynamics.fxml"));
             Parent root = loader.load();
->>>>>>> 0846c00 (small changes)
 
             Scene scene = new Scene(root);
 
@@ -57,7 +52,7 @@ public class StartGUI {
     }
 
     @FXML
-    void handleExitClick(ActionEvent event) {
+    void doHandleExitClick(ActionEvent event) {
         if (stage != null) {
             stage.close();
         } else {
