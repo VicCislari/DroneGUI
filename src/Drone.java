@@ -5,9 +5,7 @@
  * @last_modified 2024.01.10
  */
 
-/* 
-TODO:
-   - add setID(String)
+/*
  * 
  */
 import java.time.ZonedDateTime;
@@ -33,7 +31,7 @@ public class Drone {
     /*
      * return all data related to Drone object as String
      * 
-     * @author bahadir
+     * @author: @aftermathlan
      */
     public String toString() {
         return "Drone{" +
@@ -44,10 +42,6 @@ public class Drone {
                 ", carriageWeight=" + carriageWeight +
                 ", carriageType='" + carriageType + '\'' +
                 '}';
-    }
-
-    // TODO:
-    public Drone() {
     }
 
     public int getId() {
