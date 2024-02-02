@@ -25,7 +25,7 @@
                <right>
                   <HBox BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="buttonDrones" mnemonicParsing="false" text="Drones" />
+                        <Button fx:id="buttonDrones" mnemonicParsing="false" text="Dronetypes" />
                         <Button fx:id="buttonFlightDynamics" mnemonicParsing="false" text="Flight Dynamics" />
                         <Button fx:id="buttonHistory" mnemonicParsing="false" text="History" />
                      </children>
