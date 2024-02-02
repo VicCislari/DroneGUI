@@ -66,7 +66,7 @@ public class DroneController {
         int j = 0;
         for (int i = currentPage - 1; Math.abs(i) > 0
                 && Math.abs(i) <= Math.ceil(DroneDynamicManager.getCount() / DroneManager.getCount()); i--) {
-            if (DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), i)[id].getIsActive()) {
+            if (DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), i)[id].getIsActive()) {
                 j++;
             } else {
                 return j;
@@ -84,8 +84,8 @@ public class DroneController {
         int j = droneDynamic.getSpeed(), k = 1;
         for (int i = currentPage - 1; Math.abs(i) > 0
                 && Math.abs(i) < Math.ceil(DroneDynamicManager.getCount() / DroneManager.getCount()); i--) {
-            if (DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), i)[id].getIsActive()) {
-                j += DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), i)[id].getSpeed();
+            if (DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), i)[id].getIsActive()) {
+                j += DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), i)[id].getSpeed();
                 k++;
             } else {
                 return j / k + "km/h";

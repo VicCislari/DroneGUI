@@ -35,17 +35,24 @@ public class DroneList extends JFrame {
      * @since 1.0
      */
     private void initializeUI() {
-        JList<String> list = new JList<>(droneList.toArray(new String[0])); // creates JList to show drones, saves the
-                                                                            // new made array in a String
-        JScrollPane scrollPane = new JScrollPane(list); // for scroll thing
+        try {
+            JList<String> list = new JList<>(droneList.toArray(new String[0])); // creates JList to show drones, saves the
+            // new made array in a String
+            JScrollPane scrollPane = new JScrollPane(list); // for scroll thing
 
-        setLayout(new FlowLayout());
-        add(scrollPane);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setLayout(new FlowLayout()); //try catch couldn't create new layout
+            add(scrollPane);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        setSize(400, 300);
-        setTitle("Dronefleet");
-        setVisible(true);
+            setSize(400, 300);
+            setTitle("Dronefleet");
+            setVisible(true);
+        }
+        catch (Exception e){
+            // Catch any exception that might occur during UI initialization
+            System.err.println("An error occurred during UI initialization:");
+            e.printStackTrace();
+        }
     }
 
     /**

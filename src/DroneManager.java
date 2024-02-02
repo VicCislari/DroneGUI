@@ -64,7 +64,7 @@ public class DroneManager {
      * This function maps the first 10 drones to Dronelist 
      * @author: @VicCislari
      */
-    public static void doInitializeDrones() {
+    public static void initializeDrones() {
         doMapDrones(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
         count = ApiAdapter.getLastCount();
     }
