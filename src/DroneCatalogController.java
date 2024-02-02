@@ -42,6 +42,10 @@ public class DroneCatalogController {
 
     }
 
+    /**
+     * @param droneTypeArray
+     * @return tableView
+     */
     public TableView<DroneTableModel> createDroneTypeTableView(DroneType[] droneTypeArray) {
         TableView<DroneTableModel> tableView = new TableView<>();
         ObservableList<DroneTableModel> droneTypeDataList = FXCollections.observableArrayList();
@@ -89,7 +93,8 @@ public class DroneCatalogController {
         return tableView;
     }
 
-    public static Parent loadFXML() throws IOException {
+    //FXML loader class
+public static Parent loadFXML() throws IOException {
         FXMLLoader loader = new FXMLLoader(DroneCatalogController.class.getResource("DroneCatalog.fxml"));
         loader.load();
         return loader.getRoot();

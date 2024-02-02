@@ -58,7 +58,7 @@ public class FlightDynamicsController {
     private void updateTable(){
         // Assuming DroneDynamicManager.getDroneDynamicsPage returns an array of DroneDynamic objects
         ObservableList<DroneDynamic> droneDynamicsList = FXCollections.observableArrayList();
-        DroneDynamic[] droneDynamics = DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), currentPageNr);
+        DroneDynamic[] droneDynamics = DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), currentPageNr);
         droneDynamicsList.addAll(Arrays.asList(droneDynamics));
 
         // Make sure the TableView is clear before adding new items

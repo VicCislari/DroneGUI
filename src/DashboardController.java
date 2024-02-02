@@ -128,6 +128,18 @@ public class DashboardController {
                     }
                 }
             });
+
+            buttonDrones.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        openDroneCatalog();
+
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
         }
 
     }
@@ -157,7 +169,7 @@ public class DashboardController {
     }
 
     /*
-     * Loads Drone Catalog via "Drones" button using FXML
+     * Loads Drone Catalog via "Drones" button using FXML in a new window
      * @author Bahadir
      */
     public void openDroneCatalog() throws Exception {
