@@ -4,8 +4,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import java.io.IOException;
+
 
 // NEEDS REVIEW AND ADJUSTMENT READ COMMENTS BELOW
 
@@ -31,9 +36,24 @@ public class StartGUI {
 
     @FXML
     void handleContinueClick(ActionEvent event) {
+<<<<<<< HEAD
 
         // HIER NÄCHSTE GUI LADNE @AdiZen
+=======
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FlightDynamics.fxml"));
+            Parent root = loader.load();
+>>>>>>> 0846c00 (small changes)
 
+            Scene scene = new Scene(root);
+
+            Stage currentStage = (Stage) continueButton.getScene().getWindow();
+
+            currentStage.setScene(scene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -46,13 +66,16 @@ public class StartGUI {
     }
 }
 
-/**
- * @functionality
- *                Controller for StartGUI.fxml
- * 
- * 
- * @author Wassabie
- * @since 1.0
- * @last_modified 2024.02.01
- * 
- */
+	/**
+	 * @functionality
+     * Controller for StartGUI.fxml
+     * 
+     * Continue -> loads next GUI
+     * Exit -> closes program
+     * 
+     * 
+	 * @author Wassabie
+	 * @since 1.1
+	 * @last_modified 2024.02.02
+     * 
+	 */
