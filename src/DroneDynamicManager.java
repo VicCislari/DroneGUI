@@ -69,7 +69,6 @@ public class DroneDynamicManager {
             int batteryStatus = droneDynJson.getInt("battery_status");
             String lastSeen = droneDynJson.getString("last_seen");
             boolean isActive = isFormatActive(droneDynJson.getString("status"));
-            System.out.println();
             DroneDynamic droneDyn = new DroneDynamic(drone, timestamp, speed, alignRoll,
                     alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
             cache.put(index, droneDyn);

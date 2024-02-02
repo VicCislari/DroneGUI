@@ -94,8 +94,6 @@ public class FlightDynamicsController {
         // Assuming you have a method to calculate total pages
         totalPages.setText(String.valueOf((int)Math.ceil(DroneDynamicManager.getCount() / DroneManager.getCount())));
 
-        System.out.println(currentPageNr);
-
         if(currentPageNr == 1){
             buttonPrevious.setVisible(false);
         } else if(currentPageNr > 1) {
@@ -114,7 +112,6 @@ public class FlightDynamicsController {
                 currentPageNr--;
                 updateTable();
             } catch (NumberFormatException e) {
-                System.out.println("Invalid page number");
             }
         });
 
@@ -123,7 +120,6 @@ public class FlightDynamicsController {
                 currentPageNr++;
                 updateTable();
             } catch (NumberFormatException e) {
-                System.out.println("Invalid page number");
             }
         });
     }
