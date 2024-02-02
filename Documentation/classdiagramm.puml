@@ -92,14 +92,6 @@ class DroneDynamicManager {
     + getCount(): int
 }
 
-class DroneList {
-    -droneList: List<String>
-
-    +DroneList(droneList: List<String>)
-    +initializeUI(): void
-    +rundummy(): void
-}
-
 class DroneType {
     - id: int
     - manufacturer: String
@@ -321,9 +313,7 @@ class Main {
     +formatJson(input: String): String
 }
 
-DroneDynamicsManager <--- ApiAdapter
 Main <|--- ApiAdapter
-Drone --- DroneMapper
 
 DroneTypeManager <--- ApiAdapter
 DashboardController --> DroneDynamicManager
@@ -333,7 +323,6 @@ DroneController --> DroneDynamic
 DroneDynamicManager --> ApiAdapter
 DroneDynamicManager --> Drone
 DroneDynamicManager --> DroneDynamic
-DroneDynamicManager --> Map
 
 DroneManager --> DroneType
 DroneManager --> DroneTypeManager
