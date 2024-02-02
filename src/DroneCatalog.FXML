@@ -5,7 +5,5 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.event.ActionEvent?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="DroneCatalog">
-    <TableView fx:id="tableView"/>
-    <Button text="Open Drone Catalog" onAction="#openDroneCatalog"/>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="DroneCatalogController" fx:id="root">
 </VBox>

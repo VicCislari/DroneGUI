@@ -23,6 +23,7 @@ public class DashboardController {
     public Button buttonHistory;
     public Button buttonFlightDynamics;
     public Button buttonDrones;
+    
     @FXML
     private ImageView mapView;
     @FXML
@@ -115,6 +116,16 @@ public class DashboardController {
                 }
             });
         }
+        buttonDrones.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    openDroneCatalog();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
     }
 
@@ -141,5 +152,16 @@ public class DashboardController {
         history.setScene(new Scene(root));
         history.show();
     }
+
+    public void openDroneCatalog() throws Exception {
+        FXMLLoader loader = new FXMLLoader(DroneController.class.getResource("DroneCatalog.fxml"));
+        Parent root = loader.load(); // Load the FXML and get the root
+        DroneCatalogController newDroneCatalog = loader.getController(); // Get the controller instance
+        Stage droneCatalogStage = new Stage();
+        droneCatalogStage.setTitle("Drone Catalog");
+        droneCatalogStage.setScene(new Scene(root));
+        droneCatalogStage.show();
+    }
+    
 
 }

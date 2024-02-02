@@ -1,4 +1,3 @@
-
 /**
  * Makes a table and shows all the Drone Types as a list.
  * @author: Bahadir
@@ -6,22 +5,30 @@
  * @last_modified 2024.02.01
  */
 
-import javafx.application.Application;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-public class DroneCatalog extends Application {
+import java.io.IOException;
 
-    @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Drone Catalog");
 
+public class DroneCatalogController{
+
+    @FXML
+    private VBox root;
+
+    @FXML
+    private TableView<DroneTableModel> tableView;
+
+    public void initialize() {
         // Initialize DroneTypeManager to fetch drone types
         DroneTypeManager.doInitializeDroneTypes();
 
@@ -31,23 +38,9 @@ public class DroneCatalog extends Application {
         // Create a TableView to display the drone type list
         TableView<DroneTableModel> tableView = createDroneTypeTableView(droneTypeArray);
 
-        // Create a VBox layout and add the TableView to it
-        VBox root = new VBox();
         root.getChildren().add(tableView);
 
-        // Create the scene and set it on the stage
-        Scene scene = new Scene(root);
-        scene.widthProperty().addListener((observable, oldValue, newValue) -> {
-            tableView.setPrefWidth(newValue.doubleValue());
-        });
-        scene.heightProperty().addListener((observable, oldValue, newValue) -> {
-            tableView.setPrefHeight(newValue.doubleValue());
-        });
-
-        primaryStage.setScene(scene);
-
-        // Show the stage
-        primaryStage.show();
+    
     }
 
     public TableView<DroneTableModel> createDroneTypeTableView(DroneType[] droneTypeArray) {
@@ -96,8 +89,10 @@ public class DroneCatalog extends Application {
 
         return tableView;
     }
-
-    public static void main(String[] args) {
-        launch(args);
+public static Parent loadFXML() throws IOException {
+        FXMLLoader loader = new FXMLLoader(DroneCatalogController.class.getResource("DroneCatalog.fxml"));
+        loader.load();
+        return loader.getRoot();
     }
+
 }
