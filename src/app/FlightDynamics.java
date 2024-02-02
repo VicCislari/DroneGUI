@@ -88,16 +88,6 @@ public class FlightDynamics {
 
     }
 
-    void setID(String id) {
-
-        // set ID
-    }
-
-    void String getID() {
-        
-        // return ID
-    }
-
     // function for page & totalPage missing -> setter getter
     // setter and getter methods for data missing
 
