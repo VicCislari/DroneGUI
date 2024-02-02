@@ -154,7 +154,7 @@ public class DashboardController {
     }
 
     /*
-     * Loads Drone Catalog via "Drones" button using FXML
+     * Loads Drone Catalog via "Drones" button using FXML in a new window
      * @author Bahadir
      */
     public void openDroneCatalog() throws Exception {
