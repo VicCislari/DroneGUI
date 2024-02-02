@@ -153,6 +153,10 @@ public class DashboardController {
         history.show();
     }
 
+    /*
+     * Loads Drone Catalog via "Drones" button using FXML
+     * @author Bahadir
+     */
     public void openDroneCatalog() throws Exception {
         FXMLLoader loader = new FXMLLoader(DroneController.class.getResource("DroneCatalog.fxml"));
         Parent root = loader.load(); // Load the FXML and get the root
