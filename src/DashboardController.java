@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  *
  * @version 1.0
  * @since 2024.01.26
- * @author @aftermathlan
+ * @author @atheesan
  */
 public class DashboardController {
 
@@ -41,12 +41,19 @@ public class DashboardController {
     private VBox vBoxButtonList;
     private int currentPage = -1;
 
+    double mapNorthLat = 50.2428;
+    double mapSouthLat = 49.7440;
+    double mapEastLon = 8.9470;
+    double mapWestLon = 8.1642;
+    int droneDynamicsCount;
+
     @FXML
     public void initialize() {
         // Initialize drone types, drones, and drone dynamics
         DroneTypeManager.doInitializeDroneTypes();
         DroneManager.initializeDrones();
         DroneDynamicManager.initialize();
+        droneDynamicsCount = DroneDynamicManager.getCount();
 
         // Load and set the background map image
         Image mapImage = new Image(getClass().getResourceAsStream("/resources/map.png"));
@@ -58,17 +65,21 @@ public class DashboardController {
         // Create an overlay pane to display drone icons on the map
         Pane overlay = new Pane();
         overlay.getChildren().add(mapView);
+        updateData(overlay);
 
-        // Define geographical boundaries of the map
-        double mapWidthPixels = mapView.getBoundsInLocal().getWidth();
-        double mapHeightPixels = mapView.getBoundsInLocal().getHeight();
-        double mapNorthLat = 50.2428;
-        double mapSouthLat = 49.7440;
-        double mapEastLon = 8.9470;
-        double mapWestLon = 8.1642;
-
-        // Retrieve drone dynamics for the current page
-        DroneDynamic[] droneDynamics = DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), currentPage);
+        refreshData.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    DroneDynamicManager.initialize();
+                    if(droneDynamicsCount < DroneDynamicManager.getCount()){
+                        updateData(overlay);
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         // Set actions for history, flight dynamics, and drones buttons
         buttonDrones.setOnAction(new EventHandler<ActionEvent>() {
@@ -103,80 +114,8 @@ public class DashboardController {
                 }
             }
         });
-        for (int i = 0; i < droneDynamics.length; i++) {
-            int id = DroneManager.getDroneList()[i].getId();
-            String droneSerialNr = DroneManager.getDroneList()[i].getSerialNumber();
-            String droneButtonText = "ID:" + (id + " ");
-            Button droneButton = new Button(droneButtonText + droneSerialNr);
-            droneButton.setMaxWidth(Double.MAX_VALUE);
-            int finalI = i;
-
-            // Set action for drone button click
-            droneButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    try {
-                        openDrone(droneDynamics[finalI]);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
-
-            // Calculate the position of the drone icon on the map
-            double targetLat = droneDynamics[i].getLatitude();
-            double targetLon = droneDynamics[i].getLongitude();
-            double x = ((targetLon - mapWestLon) / (mapEastLon - mapWestLon)) * mapWidthPixels;
-            double y = ((mapNorthLat - targetLat) / (mapNorthLat - mapSouthLat)) * mapHeightPixels;
-
-            // Create an SVGPath representing the drone icon
-            SVGPath svgPath = new SVGPath();
-            svgPath.setContent("M 50,5 95,97.5 5,97.5 z");
-            svgPath.setLayoutX(x - 50);
-            svgPath.setLayoutY(y - (5 + (97.5 - 5) / 2));
-            svgPath.setScaleX(0.1);
-            svgPath.setScaleY(0.1);
-
-            // Set color and rotation for the drone icon
-            double hueStep = 360.0 / droneDynamics.length;
-            double hue = i * hueStep;
-            Color color = Color.hsb(hue, 1.0, 1.0);
-            svgPath.setFill(color);
-            svgPath.setStroke(Color.BLACK);
-            svgPath.setStrokeWidth(10);
-
-            // Set rotation for the drone icon
-            double pivotX = x + svgPath.getBoundsInLocal().getWidth() / 2.0 * 0.1;
-            double pivotY = y + svgPath.getBoundsInLocal().getHeight() / 2.0 * 0.1;
-            Rotate rotate = new Rotate();
-            rotate.setAngle(droneDynamics[i].getAlignYaw());
-            rotate.setPivotX(pivotX);
-            rotate.setPivotY(pivotY);
-            svgPath.getTransforms().add(rotate);
-
-            // Add the drone icon to the overlay
-            overlay.getChildren().add(svgPath);
-
-            // Create a colored rectangle next to the drone button
-            Rectangle rectangle = new Rectangle(10, 10);
-            rectangle.setFill(color);
-            rectangle.setStroke(Color.BLACK);
-            rectangle.setStrokeWidth(2);
-
-            // Create an HBox to hold the drone button and rectangle
-            HBox hbox = new HBox(5);
-            hbox.getChildren().addAll(droneButton, rectangle);
-            hbox.setAlignment(Pos.BASELINE_RIGHT);
-            droneButton.setAlignment(Pos.BASELINE_LEFT);
-
-            // Add the HBox to the VBox (vertical box) for displaying drone buttons
-            vBoxButtonList.getChildren().add(hbox);
-
-            // Set the center of the main body to the overlay with drone icons
-            mainBody.setCenter(overlay);
 
         }
-    }
 
     /**
      * Opens a new window displaying details of a selected drone.
@@ -245,4 +184,87 @@ public class DashboardController {
         flightDynamics.show();
     }
 
+    public void updateData(Pane overlay) {
+        vBoxButtonList.getChildren().clear();
+        overlay.getChildren().clear();
+        overlay.getChildren().add(mapView);
+        // Retrieve drone dynamics for the current page
+        DroneDynamic[] droneDynamics = DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), currentPage);
+        for (int i = 0; i < droneDynamics.length; i++) {
+            int id = DroneManager.getDroneList()[i].getId();
+            String droneSerialNr = DroneManager.getDroneList()[i].getSerialNumber();
+            String droneButtonText = "ID:" + (id + " ");
+            Button droneButton = new Button(droneButtonText + droneSerialNr);
+            droneButton.setMaxWidth(Double.MAX_VALUE);
+            int finalI = i;
+
+            // Set action for drone button click
+            droneButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        openDrone(droneDynamics[finalI]);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+
+            // Calculate the position of the drone icon on the map
+            double targetLat = droneDynamics[i].getLatitude();
+            double targetLon = droneDynamics[i].getLongitude();
+            // Define geographical boundaries of the map
+            double mapWidthPixels = mapView.getBoundsInLocal().getWidth();
+            double mapHeightPixels = mapView.getBoundsInLocal().getHeight();
+            double x = ((targetLon - mapWestLon) / (mapEastLon - mapWestLon)) * mapWidthPixels;
+            double y = ((mapNorthLat - targetLat) / (mapNorthLat - mapSouthLat)) * mapHeightPixels;
+
+
+            // Create an SVGPath representing the drone icon
+            SVGPath svgPath = new SVGPath();
+            svgPath.setContent("M 50,5 95,97.5 5,97.5 z");
+            svgPath.setLayoutX(x - 50);
+            svgPath.setLayoutY(y - (5 + (97.5 - 5) / 2));
+            svgPath.setScaleX(0.1);
+            svgPath.setScaleY(0.1);
+
+            // Set color and rotation for the drone icon
+            double hueStep = 360.0 / droneDynamics.length;
+            double hue = i * hueStep;
+            Color color = Color.hsb(hue, 1.0, 1.0);
+            svgPath.setFill(color);
+            svgPath.setStroke(Color.BLACK);
+            svgPath.setStrokeWidth(10);
+
+            // Set rotation for the drone icon
+            double pivotX = x + svgPath.getBoundsInLocal().getWidth() / 2.0 * 0.1;
+            double pivotY = y + svgPath.getBoundsInLocal().getHeight() / 2.0 * 0.1;
+            Rotate rotate = new Rotate();
+            rotate.setAngle(droneDynamics[i].getAlignYaw());
+            rotate.setPivotX(pivotX);
+            rotate.setPivotY(pivotY);
+            svgPath.getTransforms().add(rotate);
+
+            // Add the drone icon to the overlay
+            overlay.getChildren().add(svgPath);
+
+            // Create a colored rectangle next to the drone button
+            Rectangle rectangle = new Rectangle(10, 10);
+            rectangle.setFill(color);
+            rectangle.setStroke(Color.BLACK);
+            rectangle.setStrokeWidth(2);
+
+            // Create an HBox to hold the drone button and rectangle
+            HBox hbox = new HBox(5);
+            hbox.getChildren().addAll(droneButton, rectangle);
+            hbox.setAlignment(Pos.BASELINE_RIGHT);
+            droneButton.setAlignment(Pos.BASELINE_LEFT);
+
+            // Add the HBox to the VBox (vertical box) for displaying drone buttons
+            vBoxButtonList.getChildren().add(hbox);
+
+            // Set the center of the main body to the overlay with drone icons
+            mainBody.setCenter(overlay);
+    }
+    }
 }
