@@ -29,6 +29,7 @@ public class FlightDynamicsController {
     public TableColumn pitchColumn;
     public TableColumn yawColumn;
     public TextField pageJumper;
+    public Label wrongInput;
 
     private int currentPageNr = 1;
 
@@ -40,13 +41,22 @@ public class FlightDynamicsController {
 
 
     public void initialize() {
+        totalPages.setText(String.valueOf((int)Math.ceil(DroneDynamicManager.getCount() / DroneManager.getCount())));
         updateTable();
         jumpButton.setOnAction(event -> {
             try {
                 // Update currentPageNr based on the input from pageInput
-                currentPageNr = Integer.parseInt(pageJumper.getText());
+                int pageInput = Integer.parseInt(pageJumper.getText());
+                int totalPagesNr = Integer.parseInt(totalPages.getText());
+                if((pageInput > 0) && (pageInput <= totalPagesNr)){
+                    wrongInput.setVisible(false);
+                    currentPageNr = pageInput;
+                    updateTable();
+                } else {
+                    wrongInput.setVisible(true);
+                }
                 // Update the page content based on the new currentPageNr
-                updateTable();
+
             } catch (NumberFormatException e) {
                 // Handle the case where the input is not a valid integer
                 System.out.println("Invalid page number");
