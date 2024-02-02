@@ -76,6 +76,17 @@ public class DroneDynamicManager {
     }
 
     // TODO: testing
+    /**
+     * Retrieves a page of DroneDynamic objects based on the specified amount and
+     * page number.
+     * 
+     * @param amount The number of DroneDynamic objects to retrieve per page.
+     * @param pageNr The page number of DroneDynamic objects to retrieve.
+     * @return An array of DroneDynamic objects representing the requested page.
+     * @since 1.0
+     * @last_modified 2024.01.10
+     * @author @plotarmor27
+     */
     public static DroneDynamic[] doGetDroneDynamicsPage(int amount, int pageNr) {
         // Initialize the array to hold the result
         DroneDynamic[] result = new DroneDynamic[amount];
@@ -161,6 +172,12 @@ public class DroneDynamicManager {
         return count;
     }
 
+    /**
+     * Loads (maps) missing drone dynamics data into the cache. The cache private variable in the class.
+     * 
+     * @param startIndex The starting index for loading data.
+     * @param amount     The number of elements to load.
+     */
     private static void doLoadData(int startIndex, int amount) {
         JSONArray apiResult = ApiAdapter.fetchDataFromCategoryOffsetwise(dataCategory, startIndex, amount);
         for (int i = 0; i < amount; i++) {
