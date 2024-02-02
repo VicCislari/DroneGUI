@@ -21,20 +21,4 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    /*
-     * public static void AdiZenTest() {
-     * DroneManager.initializeDrones();
-     * System.out.println(DroneManager.getDroneList()[23].getDroneType());
-     * System.out.println(DroneManager.getDroneList().length);
-     * System.out.println(DroneDynamicManager.getDroneDynamicsPage(7)[0].getDrone().
-     * getId());
-     * System.out.println(DroneDynamicManager.
-     * getMostRecentDroneDynamicsForAllDronesPage()[3].getDrone().getId());
-     * //DroneDynamicsManager.initializeDroneDynamics();
-     * //System.out.println(DroneDynamicsManager.getDroneDynamicsList()[20].
-     * getTimestamp());
-     * //System.out.println((DroneDynamicsManager.getDroneDynamicsList().length));
-     * 
-     * }
-     */
 }
