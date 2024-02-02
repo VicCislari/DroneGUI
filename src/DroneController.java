@@ -19,6 +19,9 @@ public class DroneController {
     private DroneType droneType;
     private int currentPage;
 
+    /**
+     * Initializes the UI components with drone information.
+     */
     @FXML
     public void initialize() {
         Platform.runLater(() -> {
@@ -41,6 +44,11 @@ public class DroneController {
         });
     }
 
+    /**
+     * Sets the drone dynamic information to be displayed in the UI.
+     * 
+     * @param droneDyn The DroneDynamic object containing dynamic information.
+     */
     public void setDroneDyn(DroneDynamic droneDyn) {
 
         this.droneDynamic = droneDyn;

@@ -13,7 +13,6 @@ import java.util.*;
  * @version 1.0
  * @since 2024.01.26
  */
-
 public class DroneDynamicManager {
     private static final String dataCategory = "dronedynamics";
 
@@ -23,6 +22,10 @@ public class DroneDynamicManager {
     private boolean previousPageExists = true;
     private boolean nextPageExists = false;
     private static Map<Integer, DroneDynamic> cache = new HashMap<>();
+
+    public static void initialize() {
+        count = ApiAdapter.getCountOfDataFromCategory(dataCategory);
+    }
 
     /**
      * Formats the drone ID from the API response.
@@ -167,13 +170,9 @@ public class DroneDynamicManager {
          */
     }
 
-    public static int getCount() {
-        System.out.println(cache.keySet());
-        return count;
-    }
-
     /**
-     * Loads (maps) missing drone dynamics data into the cache. The cache private variable in the class.
+     * Loads (maps) missing drone dynamics data into the cache. The cache private
+     * variable in the class.
      * 
      * @param startIndex The starting index for loading data.
      * @param amount     The number of elements to load.
@@ -186,7 +185,8 @@ public class DroneDynamicManager {
         }
     }
 
-    public static void initialize() {
-        count = ApiAdapter.getCountOfDataFromCategory(dataCategory);
+    public static int getCount() {
+        System.out.println(cache.keySet());
+        return count;
     }
 }
