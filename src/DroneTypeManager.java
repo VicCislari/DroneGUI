@@ -16,7 +16,7 @@ public class DroneTypeManager {
      * @param droneTypeJson The JSONObject representing a drone type.
      * @return A DroneType object mapped from the JSON data.
      */
-    private static DroneType mapDroneType(JSONObject droneTypeJson) {
+    private static DroneType doMapDroneType(JSONObject droneTypeJson) {
         int id = droneTypeJson.getInt("id");
         String manufacturer = droneTypeJson.getString("manufacturer");
         String typeName = droneTypeJson.getString("typename");
@@ -36,11 +36,11 @@ public class DroneTypeManager {
      * @since 1.1
      * @param droneTypes The JSONArray containing drone type data.
      */
-    private static void mapDroneTypes(JSONArray droneTypes) {
+    private static void doMapDroneTypes(JSONArray droneTypes) {
         int i;
         droneTypeList = new DroneType[droneTypes.length()];
         for (i = 0; i < droneTypes.length(); i++) {
-            droneTypeList[i] = mapDroneType(droneTypes.getJSONObject(i));
+            droneTypeList[i] = doMapDroneType(droneTypes.getJSONObject(i));
         }
         Arrays.sort(droneTypeList, Comparator.comparingInt(o -> o.getId()));
     }
@@ -51,8 +51,8 @@ public class DroneTypeManager {
      *        Initializes the drone types by fetching data from the API and mapping
      *        it.
      */
-    public static void initializeDroneTypes() {
-        mapDroneTypes(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
+    public static void doInitializeDroneTypes() {
+        doMapDroneTypes(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
         count = ApiAdapter.getLastCount();
     }
 

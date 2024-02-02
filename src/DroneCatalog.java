@@ -23,7 +23,7 @@ public class DroneCatalog extends Application {
         primaryStage.setTitle("Drone Catalog");
 
         // Initialize DroneTypeManager to fetch drone types
-        DroneTypeManager.initializeDroneTypes();
+        DroneTypeManager.doInitializeDroneTypes();
 
         // Get the list of drone types as objects
         DroneType[] droneTypeArray = DroneTypeManager.getDroneTypeList();
