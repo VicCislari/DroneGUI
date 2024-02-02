@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+// NEEDS REVIEW AND ADJUSTMENT READ COMMENTS BELOW
+
 public class FlightDynamics {
 
     @FXML
@@ -93,7 +95,7 @@ public class FlightDynamics {
         
         // return ID
     }
-    
+
     // function for page & totalPage missing -> setter getter
     // setter and getter methods for data missing
 
