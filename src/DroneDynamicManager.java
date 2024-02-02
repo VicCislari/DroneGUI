@@ -54,7 +54,7 @@ public class DroneDynamicManager {
      * @return DroneDynamics object representing the mapped data.
      */
     private static void mapDroneDynamic(JSONObject droneDynJson) {
-        Drone drone = droneIdToDrone(droneDynJson.getString("drone"));
+       try{ Drone drone = droneIdToDrone(droneDynJson.getString("drone"));
         String timestamp = droneDynJson.getString("timestamp");
         int speed = droneDynJson.getInt("speed");
         float alignRoll = droneDynJson.getFloat("align_roll");
@@ -68,6 +68,9 @@ public class DroneDynamicManager {
         DroneDynamic droneDyn = new DroneDynamic(drone, timestamp, speed, alignRoll,
                 alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
         cache.put(index, droneDyn);
+    } catch (Exception e){
+        System.err.println("Error mapping drone dynamic data: " + e.getMessage());
+    }
     }
 
     public static DroneDynamic[] getDroneDynamicsPage(int amount, int pageNr) {
