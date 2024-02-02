@@ -63,7 +63,7 @@ public class DroneTableModel {
      *
      * @return List of DroneTableModel instances.
      */
-    public static List<DroneTableModel> createTableModelList() {
+    public static List<DroneTableModel> doCreateTableModelList() {
         List<DroneTableModel> modelList = new ArrayList<>();
         for (DroneType droneType : DroneTypeManager.getDroneTypeList()) {
             modelList.add(new DroneTableModel(droneType));
