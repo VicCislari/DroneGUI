@@ -29,7 +29,7 @@ public class GUI extends JFrame // class GUi extended by JFrame which is in lib
 		add(label, BorderLayout.NORTH); // position of label is top of window
 		add(button, BorderLayout.CENTER); // position of label is center window
 
-		button.addActionListener(e -> { // 
+		button.addActionListener(e -> { //
 			DroneList.rundummy(); // VICTOR: TODO: ICH WIß NICHT OB ICH HIER ZWEI BEFEHLE HABEN DARF
 		});
 

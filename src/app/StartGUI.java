@@ -31,7 +31,7 @@ public class StartGUI {
 
     @FXML
     void handleContinueClick(ActionEvent event) {
-        
+
         // HIER NÄCHSTE GUI LADNE @AdiZen
 
     }
@@ -46,13 +46,13 @@ public class StartGUI {
     }
 }
 
-	/**
-	 * @functionality
-     * Controller for StartGUI.fxml
-     * 
-     * 
-	 * @author Wassabie
-	 * @since 1.0
-	 * @last_modified 2024.02.01
-     * 
-	 */
+/**
+ * @functionality
+ *                Controller for StartGUI.fxml
+ * 
+ * 
+ * @author Wassabie
+ * @since 1.0
+ * @last_modified 2024.02.01
+ * 
+ */

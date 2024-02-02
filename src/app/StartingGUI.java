@@ -1,21 +1,24 @@
 package app;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-	/**
-	 * @functionality
-     * uses StartGUI.fxml as GUI, needs the StartGUI.java in addition to launch the GUI.
-     * to work in vscode, package app; must be implemented -> automatically created the "App" folder.
-     * 
-     * Simple FXML Loader
-     * 
-	 * @author Wassabie
-	 * @since 1.0
-	 * @last_modified 2024.01.30
-	 */
+/**
+ * @functionality
+ *                uses StartGUI.fxml as GUI, needs the StartGUI.java in addition
+ *                to launch the GUI.
+ *                to work in vscode, package app; must be implemented ->
+ *                automatically created the "App" folder.
+ * 
+ *                Simple FXML Loader
+ * 
+ * @author Wassabie
+ * @since 1.0
+ * @last_modified 2024.01.30
+ */
 
 public class StartingGUI extends Application {
     @Override

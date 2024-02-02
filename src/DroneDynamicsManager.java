@@ -5,19 +5,22 @@ import java.util.Objects;
 public class DroneDynamicsManager {
     private static final String category = "dronedynamics";
     private static DroneDynamics[] droneDynamicsList;
-    private static int formatDroneId(String droneId){
-        return Integer.parseInt(droneId.substring(43,45));
+
+    private static int formatDroneId(String droneId) {
+        return Integer.parseInt(droneId.substring(43, 45));
     }
-    private static boolean formatIsActive(String isActiveStr){
+
+    private static boolean formatIsActive(String isActiveStr) {
         boolean isActive;
         isActive = Objects.equals(isActiveStr, "ON");
         return isActive;
     }
-    public static void initializeDroneDynamics(){
+
+    public static void initializeDroneDynamics() {
         mapAllDroneDynamics(ApiAdapter.apiResults(category));
     }
 
-    private static DroneDynamics mapDroneDynamics(JSONObject droneDynJson){
+    private static DroneDynamics mapDroneDynamics(JSONObject droneDynJson) {
         int droneId = formatDroneId(droneDynJson.getString("drone"));
         String timestamp = droneDynJson.getString("timestamp");
         int speed = droneDynJson.getInt("speed");
@@ -30,18 +33,18 @@ public class DroneDynamicsManager {
         String lastSeen = droneDynJson.getString("last_seen");
         boolean isActive = formatIsActive(droneDynJson.getString("status"));
         return new DroneDynamics(droneId, timestamp, speed, alignRoll,
-                alignYaw, alignPitch, longitude, latitude, batteryStatus,lastSeen, isActive);
+                alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
     }
 
-    public static DroneDynamics[] getDroneDynamicsList(){
+    public static DroneDynamics[] getDroneDynamicsList() {
         return droneDynamicsList;
     }
 
-    private static void mapAllDroneDynamics(JSONArray droneDyns){
+    private static void mapAllDroneDynamics(JSONArray droneDyns) {
         int i;
         droneDynamicsList = new DroneDynamics[droneDyns.length()];
-        for (i = 0; i < droneDyns.length(); i++){
-            //System.out.println(droneDyns.getJSONObject(i).toString());
+        for (i = 0; i < droneDyns.length(); i++) {
+            // System.out.println(droneDyns.getJSONObject(i).toString());
             droneDynamicsList[i] = mapDroneDynamics(droneDyns.getJSONObject(i));
         }
     }

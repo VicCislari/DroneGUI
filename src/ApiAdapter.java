@@ -63,8 +63,6 @@ public class ApiAdapter {
         return jsonResponse;
     }
 
-
-
     /**
      * Gets the total count of data items in a given category.
      * 
@@ -73,44 +71,48 @@ public class ApiAdapter {
      * @since 1.0
      * @last_modified 2024.01.10
      */
-    public static int getCountOfDataFromCategory(String dataCategory){return fetchApi(dataCategory).getInt("count");}
+    public static int getCountOfDataFromCategory(String dataCategory) {
+        return fetchApi(dataCategory).getInt("count");
+    }
 
-    private static void setPreviousPageExists (JSONObject apiResults){previousPageExists = !apiResults.isNull("previous");}
+    private static void setPreviousPageExists(JSONObject apiResults) {
+        previousPageExists = !apiResults.isNull("previous");
+    }
 
-    private static void setNextPageExists (JSONObject apiResults){
+    private static void setNextPageExists(JSONObject apiResults) {
         nextPageExists = !apiResults.isNull("next");
     }
 
-    public static boolean getNextPageExists(){
+    public static boolean getNextPageExists() {
         return nextPageExists;
     }
 
-    public static boolean getPreviousPageExists(){
+    public static boolean getPreviousPageExists() {
         return previousPageExists;
     }
-
 
     public static JSONArray fetchDataFromCategory(String dataCategory, int amount, int pageNr) {
         JSONArray results = new JSONArray();
         JSONObject apiResult;
         lastCount = getCountOfDataFromCategory(dataCategory);
-        if(amount == 0 && pageNr == 0){ //fetch all elements inside category
-            for (offset = 0; offset < lastCount; offset += limit){
+        if (amount == 0 && pageNr == 0) { // fetch all elements inside category
+            for (offset = 0; offset < lastCount; offset += limit) {
                 apiResult = fetchApi(dataCategory);
                 results.putAll(addFetchedResultIntoNewList(apiResult));
             }
             offset = 0;
-        } else if (amount > 0 && pageNr != 0){ //fetch page with amount of elements in it
+        } else if (amount > 0 && pageNr != 0) { // fetch page with amount of elements in it
             limit = amount;
             results = fetchDataFromCategoryPagewise(dataCategory, amount, pageNr);
-        } else if (amount > 0){ //fetch elements with default limit = 10
+        } else if (amount > 0) { // fetch elements with default limit = 10
             results = fetchDataFromCategoryPagewise(dataCategory, amount, pageNr);
         } else {
             System.out.println("Amount can't be negative!");
         }
         return results;
     }
-    private static JSONArray addFetchedResultIntoNewList(JSONObject apiResult){
+
+    private static JSONArray addFetchedResultIntoNewList(JSONObject apiResult) {
         JSONArray results = new JSONArray();
         for (int i = 0; i < apiResult.getJSONArray("results").length(); i++) {
             results.put(apiResult.getJSONArray("results").getJSONObject(i));
@@ -118,13 +120,17 @@ public class ApiAdapter {
         return results;
     }
 
-    public static int getLastCount(){return lastCount;}
+    public static int getLastCount() {
+        return lastCount;
+    }
 
-    private static JSONArray fetchDataFromCategoryPagewise(String dataCategory, int amount, int pageNr){
+    private static JSONArray fetchDataFromCategoryPagewise(String dataCategory, int amount, int pageNr) {
         JSONObject apiResult;
         JSONArray results;
-        if (pageNr > 0){pageNr -= 1;}
-        offset= (lastCount+(pageNr)*amount)%lastCount;
+        if (pageNr > 0) {
+            pageNr -= 1;
+        }
+        offset = (lastCount + (pageNr) * amount) % lastCount;
         apiResult = fetchApi(dataCategory);
         setNextPageExists(apiResult);
         setPreviousPageExists(apiResult);
@@ -134,7 +140,7 @@ public class ApiAdapter {
         return results;
     }
 
-    public static JSONArray fetchDataFromCategoryOffsetwise(String dataCategory, int startIndex, int amount){
+    public static JSONArray fetchDataFromCategoryOffsetwise(String dataCategory, int startIndex, int amount) {
         JSONObject apiResult;
         JSONArray results;
         offset = startIndex;
@@ -148,4 +154,3 @@ public class ApiAdapter {
         return results;
     }
 }
-

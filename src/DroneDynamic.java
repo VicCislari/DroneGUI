@@ -23,8 +23,8 @@ public class DroneDynamic {
     private boolean isActive; // Activity status of the drone //Victor:WHAT?
 
     public DroneDynamic(Drone drone, String timestamp, int speed, float alignRoll, float alignYaw,
-                        float alignPitch, float longitude, float latitude, int batteryStatus, String lastSeen,
-                        boolean isActive) {
+            float alignPitch, float longitude, float latitude, int batteryStatus, String lastSeen,
+            boolean isActive) {
         this.setDroneId(drone);
         this.setTimestamp(timestamp);
         this.setSpeed(speed);

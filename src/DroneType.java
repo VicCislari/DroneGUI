@@ -8,7 +8,8 @@ public class DroneType {
     private int controlRange;
     private int maxCarriage;
 
-    public DroneType(int id, String manufacturer, String typeName, int weight, int maxSpeed, int batteryCapacity, int controlRange, int maxCarriage) {
+    public DroneType(int id, String manufacturer, String typeName, int weight, int maxSpeed, int batteryCapacity,
+            int controlRange, int maxCarriage) {
         setId(id);
         setManufacturer(manufacturer);
         setTypeName(typeName);

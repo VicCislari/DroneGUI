@@ -8,6 +8,7 @@ public class DroneTypeManager {
     private static final String dataCategory = "dronetypes";
     private static DroneType[] droneTypeList;
     private static int count;
+
     public static DroneType[] getDroneTypeList() {
         return droneTypeList;
     }
@@ -32,9 +33,13 @@ public class DroneTypeManager {
         }
         Arrays.sort(droneTypeList, Comparator.comparingInt(o -> o.getId()));
     }
+
     public static void initializeDroneTypes() {
         mapDroneTypes(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
         count = ApiAdapter.getLastCount();
     }
-    public static int getCount(){return count;}
+
+    public static int getCount() {
+        return count;
+    }
 }

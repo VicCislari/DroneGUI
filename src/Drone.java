@@ -20,7 +20,8 @@ public class Drone {
     private int carriageWeight;
     private String carriageType;
 
-    public Drone(int id, DroneType droneType, String created, String serialNumber, int carriageWeight, String carriageType) {
+    public Drone(int id, DroneType droneType, String created, String serialNumber, int carriageWeight,
+            String carriageType) {
         setId(id);
         setDroneType(droneType);
         setCreated(created);
@@ -28,8 +29,10 @@ public class Drone {
         setCarriageWeight(carriageWeight);
         setCarriageType(carriageType);
     }
+
     /*
      * return all data related to Drone object as String
+     * 
      * @author bahadir
      */
     public String toString() {
@@ -43,8 +46,7 @@ public class Drone {
                 '}';
     }
 
-
-    //TODO:
+    // TODO:
     public Drone() {
     }
 

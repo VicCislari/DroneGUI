@@ -18,7 +18,6 @@ import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
-
 public class DashboardController {
 
     public Button buttonHistory;
@@ -32,6 +31,7 @@ public class DashboardController {
     @FXML
     private VBox vBoxButtonList;
     private int currentPage = -1;
+
     @FXML
     public void initialize() {
         DroneTypeManager.initializeDroneTypes();

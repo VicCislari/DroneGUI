@@ -1,19 +1,20 @@
 package app;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-	/**
-	 * @functionality
-     * Simple FXML Loader for DroneGUI 
-     * 
-     * 
-	 * @author Wassabie // NEEDS FURTHER MODIFICATION FOR OTHER SPECS
-	 * @since 1.0
-	 * @last_modified 2024.01.31
-	 */
+/**
+ * @functionality
+ *                Simple FXML Loader for DroneGUI
+ * 
+ * 
+ * @author Wassabie // NEEDS FURTHER MODIFICATION FOR OTHER SPECS
+ * @since 1.0
+ * @last_modified 2024.01.31
+ */
 
 public class DroneGUIx extends Application {
     @Override

@@ -26,7 +26,7 @@ public class DroneManager {
 
     private static DroneType droneTypeIdToDroneType(String droneTypeId) {
         int i = Integer.parseInt(droneTypeId.substring(47, 49));
-        return  DroneTypeManager.getDroneTypeList()[i - 71];
+        return DroneTypeManager.getDroneTypeList()[i - 71];
     }
 
     /**
@@ -69,10 +69,13 @@ public class DroneManager {
     }
 
     /**
-     * this is the link which is being requested https://dronesim.facets-labs.com/api/drones/?format=json&limit=10&offset=0
+     * this is the link which is being requested
+     * https://dronesim.facets-labs.com/api/drones/?format=json&limit=10&offset=0
      * Initializes the drone data by fetching and mapping from the API.
-     * This Data can be found under the following link: https://dronesim.facets-labs.com/api/drones/?limit=10&offset=0
-     * This function maps the first 10 drones of the Dronelist on the web to the local droneList
+     * This Data can be found under the following link:
+     * https://dronesim.facets-labs.com/api/drones/?limit=10&offset=0
+     * This function maps the first 10 drones of the Dronelist on the web to the
+     * local droneList
      */
     public static void initializeDrones() {
         mapDrones(ApiAdapter.fetchDataFromCategory(dataCategory, 0, 0));
@@ -80,8 +83,11 @@ public class DroneManager {
     }
 
     // TODO: Victor
-    // this could be more automatised and oriented towards more expension for the api expansion or more drones.
+    // this could be more automatised and oriented towards more expension for the
+    // api expansion or more drones.
     // siehe DroneDynamicManager.java getDroneDashboardData()
-    public static int getCount(){ return count;}
+    public static int getCount() {
+        return count;
+    }
 
 }

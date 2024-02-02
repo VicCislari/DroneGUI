@@ -19,7 +19,6 @@ public class DroneController {
     private DroneType droneType;
     private int currentPage;
 
-
     @FXML
     public void initialize() {
         Platform.runLater(() -> {
@@ -27,16 +26,17 @@ public class DroneController {
             serialNr.setText(drone.getSerialNumber());
             model.setText(droneType.getTypeName());
             manufacturer.setText(droneType.getManufacturer());
-            batteryPercentage.setText(getBatteryPercentage(droneDynamic.getBatteryStatus(), droneType.getBatteryCapacity()));
+            batteryPercentage
+                    .setText(getBatteryPercentage(droneDynamic.getBatteryStatus(), droneType.getBatteryCapacity()));
             if (droneDynamic.getIsActive()) {
                 status.setText("ON");
             } else {
                 status.setText("OFF");
             }
             System.out.println("dronedyn id" + droneDynamic.getSpeed());
-            speed.setText(droneDynamic.getSpeed()+"");
-            lastSeen.setText(""+droneDynamic.getLastSeen().toLocalDateTime());
-            flightTime.setText(getFlightTime(drone) +" min");
+            speed.setText(droneDynamic.getSpeed() + "");
+            lastSeen.setText("" + droneDynamic.getLastSeen().toLocalDateTime());
+            flightTime.setText(getFlightTime(drone) + " min");
             batteryLifeEstimation.setText(getBatteryLifeEstimation());
             avgSpeed.setText(getAverageSpeed());
         });
@@ -62,35 +62,36 @@ public class DroneController {
     }
 
     private int getFlightTime(Drone drone) {
-        int id = drone.getId()-71;
-        int j=0;
-        for(int i = currentPage-1; Math.abs(i) > 0 && Math.abs(i) <= Math.ceil(DroneDynamicManager.getCount() / DroneManager.getCount()); i--){
-            if(DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(),i)[id].getIsActive()){
+        int id = drone.getId() - 71;
+        int j = 0;
+        for (int i = currentPage - 1; Math.abs(i) > 0
+                && Math.abs(i) <= Math.ceil(DroneDynamicManager.getCount() / DroneManager.getCount()); i--) {
+            if (DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), i)[id].getIsActive()) {
                 j++;
             } else {
                 return j;
             }
         }
-       return j;
+        return j;
     }
 
-
-    private String getBatteryLifeEstimation(){
-        return droneDynamic.getBatteryStatus()/125 + " min left";
+    private String getBatteryLifeEstimation() {
+        return droneDynamic.getBatteryStatus() / 125 + " min left";
     }
 
-    private String getAverageSpeed(){
-        int id = drone.getId()-71;
-        int j= droneDynamic.getSpeed(), k = 1;
-        for(int i = currentPage-1; Math.abs(i) > 0 && Math.abs(i) < Math.ceil(DroneDynamicManager.getCount() / DroneManager.getCount()); i--){
-            if(DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(),i)[id].getIsActive()){
-                j+= DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(),i)[id].getSpeed();
+    private String getAverageSpeed() {
+        int id = drone.getId() - 71;
+        int j = droneDynamic.getSpeed(), k = 1;
+        for (int i = currentPage - 1; Math.abs(i) > 0
+                && Math.abs(i) < Math.ceil(DroneDynamicManager.getCount() / DroneManager.getCount()); i--) {
+            if (DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), i)[id].getIsActive()) {
+                j += DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), i)[id].getSpeed();
                 k++;
             } else {
-                    return j/k + "km/h";
+                return j / k + "km/h";
             }
         }
-            return j/k + "km/h";
+        return j / k + "km/h";
     }
 
     public void setCurrentPage(int currentPage) {

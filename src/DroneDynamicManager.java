@@ -32,7 +32,7 @@ public class DroneDynamicManager {
      */
     private static Drone droneIdToDrone(String droneId) {
         int i = Integer.parseInt(droneId.substring(43, 45));
-        return  DroneManager.getDroneList()[i - 71];
+        return DroneManager.getDroneList()[i - 71];
     }
 
     /**
@@ -75,47 +75,46 @@ public class DroneDynamicManager {
         int i, index;
         ArrayList<Integer> missingIds = new ArrayList<>();
         int[] tuple = new int[2];
-        if(pageNr > 0){
+        if (pageNr > 0) {
             pageNr -= 1;
         }
-        index = (count + pageNr*amount)%count;
-        for (i = index; i < index+amount; i++) {
+        index = (count + pageNr * amount) % count;
+        for (i = index; i < index + amount; i++) {
             if (!cache.containsKey(i)) {
                 missingIds.add(i);
             }
         }
-        for (i=0; i < missingIds.size(); i++){
+        for (i = 0; i < missingIds.size(); i++) {
             int k;
-            for (k = i; k+1 < missingIds.size() && missingIds.get(k) == missingIds.get(k+1)-1; k++){
+            for (k = i; k + 1 < missingIds.size() && missingIds.get(k) == missingIds.get(k + 1) - 1; k++) {
             }
             tuple[0] = missingIds.get(i);
-            tuple[1] = k+1-i;
+            tuple[1] = k + 1 - i;
             loadData(tuple[0], tuple[1]);
             i = k;
         }
 
-        for (int l = 0; l < result.length; l++){
+        for (int l = 0; l < result.length; l++) {
             result[l] = cache.get(index + l);
         }
         Arrays.sort(result, Comparator.comparingInt(o -> o.getDrone().getId()));
         return result;
     }
 
-
-
-    public static int getCount(){
+    public static int getCount() {
         System.out.println(cache.keySet());
-        return count;}
+        return count;
+    }
 
-    private static void loadData(int startIndex, int amount){
+    private static void loadData(int startIndex, int amount) {
         JSONArray apiResult = ApiAdapter.fetchDataFromCategoryOffsetwise(dataCategory, startIndex, amount);
-        for(int i = 0; i < amount; i++){
-            index = startIndex+i;
+        for (int i = 0; i < amount; i++) {
+            index = startIndex + i;
             mapDroneDynamic(apiResult.getJSONObject(i));
         }
     }
 
-    public static void initialize(){
+    public static void initialize() {
         count = ApiAdapter.getCountOfDataFromCategory(dataCategory);
     }
 }

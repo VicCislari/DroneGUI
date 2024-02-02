@@ -43,7 +43,6 @@ public class HistoryController {
 
     public void initialize() {
 
-
         Image mapImage = new Image(getClass().getResourceAsStream("/resources/map.png"));
         mapView.setImage(mapImage);
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
@@ -54,7 +53,7 @@ public class HistoryController {
         mainBody.setCenter(overlay);
         overlay.getChildren().add(mapView);
         firstPage.setText("1");
-        int lastPageNr = (int) Math.ceil(DroneDynamicManager.getCount()/DroneManager.getCount());
+        int lastPageNr = (int) Math.ceil(DroneDynamicManager.getCount() / DroneManager.getCount());
         lastPage.setText(String.valueOf(lastPageNr));
         pageSlider.setMin(1);
         pageSlider.setMax(lastPageNr);
@@ -93,7 +92,7 @@ public class HistoryController {
 
     }
 
-    private void updatePage(Pane overlay){
+    private void updatePage(Pane overlay) {
         vBoxButtonList.getChildren().clear();
         overlay.getChildren().clear();
         overlay.getChildren().add(mapView);
