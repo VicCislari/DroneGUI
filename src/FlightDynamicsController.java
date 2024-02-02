@@ -65,7 +65,7 @@ public class FlightDynamicsController {
 
     }
 
-    private void updateTable(){
+    private void doUpdateTable(){
         // Assuming DroneDynamicManager.getDroneDynamicsPage returns an array of DroneDynamic objects
         ObservableList<DroneDynamic> droneDynamicsList = FXCollections.observableArrayList();
         DroneDynamic[] droneDynamics = DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), currentPageNr);
