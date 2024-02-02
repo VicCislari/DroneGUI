@@ -18,12 +18,19 @@ import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
+/**
+ * Controller class for managing the dashboard UI and interaction.
+ *
+ * @version 1.0
+ * @since 2024.01.26
+ * @author @aftermathlan
+ */
 public class DashboardController {
 
     public Button buttonHistory;
     public Button buttonFlightDynamics;
     public Button buttonDrones;
-    
+
     @FXML
     private ImageView mapView;
     @FXML
@@ -35,23 +42,33 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
+        // Initialize drone types, drones, and drone dynamics
         DroneTypeManager.doInitializeDroneTypes();
         DroneManager.initializeDrones();
         DroneDynamicManager.initialize();
+
+        // Load and set the background map image
         Image mapImage = new Image(getClass().getResourceAsStream("/resources/map.png"));
         mapView.setImage(mapImage);
         mapView.setFitWidth(700);
         mapView.setFitHeight(700);
         mapView.setPreserveRatio(true);
+
+        // Create an overlay pane to display drone icons on the map
         Pane overlay = new Pane();
         overlay.getChildren().add(mapView);
-        double mapWidthPixels = mapView.getBoundsInLocal().getWidth(); // Adjust based on your actual image width
-        double mapHeightPixels = mapView.getBoundsInLocal().getHeight();// Adjust based on your actual image height
+
+        // Define geographical boundaries of the map
+        double mapWidthPixels = mapView.getBoundsInLocal().getWidth();
+        double mapHeightPixels = mapView.getBoundsInLocal().getHeight();
         double mapNorthLat = 50.2428;
         double mapSouthLat = 49.7440;
         double mapEastLon = 8.9470;
         double mapWestLon = 8.1642;
+
+        // Retrieve drone dynamics for the current page
         DroneDynamic[] droneDynamics = DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), currentPage);
+
         for (int i = 0; i < droneDynamics.length; i++) {
             int id = DroneManager.getDroneList()[i].getId();
             String droneSerialNr = DroneManager.getDroneList()[i].getSerialNumber();
@@ -60,53 +77,71 @@ public class DashboardController {
             droneButton.setMaxWidth(Double.MAX_VALUE);
             int finalI = i;
 
+            // Set action for drone button click
             droneButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
                         openDrone(droneDynamics[finalI]);
-
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                 }
             });
 
-
+            // Calculate the position of the drone icon on the map
             double targetLat = droneDynamics[i].getLatitude();
             double targetLon = droneDynamics[i].getLongitude();
             double x = ((targetLon - mapWestLon) / (mapEastLon - mapWestLon)) * mapWidthPixels;
             double y = ((mapNorthLat - targetLat) / (mapNorthLat - mapSouthLat)) * mapHeightPixels;
+
+            // Create an SVGPath representing the drone icon
             SVGPath svgPath = new SVGPath();
             svgPath.setContent("M 50,5 95,97.5 5,97.5 z");
             svgPath.setLayoutX(x - 50);
             svgPath.setLayoutY(y - (5 + (97.5 - 5) / 2));
             svgPath.setScaleX(0.1);
             svgPath.setScaleY(0.1);
+
+            // Set color and rotation for the drone icon
             double hueStep = 360.0 / droneDynamics.length;
             double hue = i * hueStep;
-            Color color = Color.hsb(hue, 1.0, 1.0); // Full saturation and brightness for vivid colors
+            Color color = Color.hsb(hue, 1.0, 1.0);
             svgPath.setFill(color);
-            svgPath.setStroke(Color.BLACK); // Outline color
+            svgPath.setStroke(Color.BLACK);
             svgPath.setStrokeWidth(10);
-            double pivotX = x + svgPath.getBoundsInLocal().getWidth() / 2.0 * 0.1; // Adjust for scale
-            double pivotY = y + svgPath.getBoundsInLocal().getHeight() / 2.0 * 0.1; // Adjust for scale
+
+            // Set rotation for the drone icon
+            double pivotX = x + svgPath.getBoundsInLocal().getWidth() / 2.0 * 0.1;
+            double pivotY = y + svgPath.getBoundsInLocal().getHeight() / 2.0 * 0.1;
             Rotate rotate = new Rotate();
             rotate.setAngle(droneDynamics[i].getAlignYaw());
             rotate.setPivotX(pivotX);
             rotate.setPivotY(pivotY);
             svgPath.getTransforms().add(rotate);
+
+            // Add the drone icon to the overlay
             overlay.getChildren().add(svgPath);
+
+            // Create a colored rectangle next to the drone button
             Rectangle rectangle = new Rectangle(10, 10);
             rectangle.setFill(color);
             rectangle.setStroke(Color.BLACK);
             rectangle.setStrokeWidth(2);
-            HBox hbox = new HBox(5); // 5 is the spacing between elements
+
+            // Create an HBox to hold the drone button and rectangle
+            HBox hbox = new HBox(5);
             hbox.getChildren().addAll(droneButton, rectangle);
             hbox.setAlignment(Pos.BASELINE_RIGHT);
             droneButton.setAlignment(Pos.BASELINE_LEFT);
+
+            // Add the HBox to the VBox (vertical box) for displaying drone buttons
             vBoxButtonList.getChildren().add(hbox);
+
+            // Set the center of the main body to the overlay with drone icons
             mainBody.setCenter(overlay);
+
+            // Set actions for history, flight dynamics, and drones buttons
             buttonHistory.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -117,6 +152,7 @@ public class DashboardController {
                     }
                 }
             });
+
             buttonFlightDynamics.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -141,9 +177,15 @@ public class DashboardController {
                 }
             });
         }
-
     }
 
+    /**
+     * Opens a new window displaying details of a selected drone.
+     *
+     * @param droneDynamics The DroneDynamic object representing the drone's
+     *                      dynamics.
+     * @throws Exception if an error occurs while opening the drone details window.
+     */
     public void openDrone(DroneDynamic droneDynamics) throws Exception {
         FXMLLoader loader = new FXMLLoader(DroneController.class.getResource("Drone.fxml"));
         Parent root = loader.load(); // Load the FXML and get the root
@@ -158,6 +200,11 @@ public class DashboardController {
 
     }
 
+    /**
+     * Opens a new window displaying drone history.
+     *
+     * @throws Exception if an error occurs while opening the history window.
+     */
     public void openHistory() throws Exception {
         FXMLLoader loader = new FXMLLoader(DroneController.class.getResource("History.fxml"));
         Parent root = loader.load(); // Load the FXML and get the root
@@ -170,7 +217,8 @@ public class DashboardController {
 
     /*
      * Loads Drone Catalog via "Drones" button using FXML in a new window
-     * @author Bahadir
+     * 
+     * @author @aftermathlan
      */
     public void openDroneCatalog() throws Exception {
         FXMLLoader loader = new FXMLLoader(DroneController.class.getResource("DroneCatalog.fxml"));
@@ -181,8 +229,13 @@ public class DashboardController {
         droneCatalogStage.setScene(new Scene(root));
         droneCatalogStage.show();
     }
-    
 
+    /**
+     * Opens a new window displaying flight dynamics.
+     *
+     * @throws Exception if an error occurs while opening the flight dynamics
+     *                   window.
+     */
     public void openFlightDynamics() throws Exception {
         FXMLLoader loader = new FXMLLoader(DroneController.class.getResource("FlightDynamics.fxml"));
         Parent root = loader.load(); // Load the FXML and get the root
