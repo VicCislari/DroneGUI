@@ -54,56 +54,106 @@ public class DroneDynamicManager {
      * @return DroneDynamics object representing the mapped data.
      */
     private static void doMapDroneDynamic(JSONObject droneDynJson) {
-       try{ Drone drone = doDroneIdToDrone(droneDynJson.getString("drone"));
-        String timestamp = droneDynJson.getString("timestamp");
-        int speed = droneDynJson.getInt("speed");
-        float alignRoll = droneDynJson.getFloat("align_roll");
-        float alignYaw = droneDynJson.getFloat("align_yaw");
-        float alignPitch = droneDynJson.getFloat("align_pitch");
-        float longitude = droneDynJson.getFloat("longitude");
-        float latitude = droneDynJson.getFloat("latitude");
-        int batteryStatus = droneDynJson.getInt("battery_status");
-        String lastSeen = droneDynJson.getString("last_seen");
-        boolean isActive = isFormatActive(droneDynJson.getString("status"));
-        System.out.println();
-        DroneDynamic droneDyn = new DroneDynamic(drone, timestamp, speed, alignRoll,
-                alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
-        cache.put(index, droneDyn);
-    } catch (Exception e){
-        System.err.println("Error mapping drone dynamic data: " + e.getMessage());
-    }
+        try {
+            Drone drone = doDroneIdToDrone(droneDynJson.getString("drone"));
+            String timestamp = droneDynJson.getString("timestamp");
+            int speed = droneDynJson.getInt("speed");
+            float alignRoll = droneDynJson.getFloat("align_roll");
+            float alignYaw = droneDynJson.getFloat("align_yaw");
+            float alignPitch = droneDynJson.getFloat("align_pitch");
+            float longitude = droneDynJson.getFloat("longitude");
+            float latitude = droneDynJson.getFloat("latitude");
+            int batteryStatus = droneDynJson.getInt("battery_status");
+            String lastSeen = droneDynJson.getString("last_seen");
+            boolean isActive = isFormatActive(droneDynJson.getString("status"));
+            System.out.println();
+            DroneDynamic droneDyn = new DroneDynamic(drone, timestamp, speed, alignRoll,
+                    alignYaw, alignPitch, longitude, latitude, batteryStatus, lastSeen, isActive);
+            cache.put(index, droneDyn);
+        } catch (Exception e) {
+            System.err.println("Error mapping drone dynamic data: " + e.getMessage());
+        }
     }
 
-    //TODO: try catch
+    // TODO: testing
     public static DroneDynamic[] doGetDroneDynamicsPage(int amount, int pageNr) {
+        // Initialize the array to hold the result
         DroneDynamic[] result = new DroneDynamic[amount];
-        int i, index;
+
+        // List to store missing IDs
         ArrayList<Integer> missingIds = new ArrayList<>();
-        int[] tuple = new int[2];
+
+        // Adjust page number to 0-based index
         if (pageNr > 0) {
             pageNr -= 1;
         }
-        index = (count + pageNr * amount) % count;
-        for (i = index; i < index + amount; i++) {
+
+        // Calculate the starting index based on page number and amount
+        int index = (count + pageNr * amount) % count;
+
+        // Loop to identify missing IDs
+        for (int i = index; i < index + amount; i++) {
             if (!cache.containsKey(i)) {
                 missingIds.add(i);
             }
         }
-        for (i = 0; i < missingIds.size(); i++) {
+
+        // Loop to load missing data into the cache
+        for (int i = 0; i < missingIds.size(); i++) {
             int k;
             for (k = i; k + 1 < missingIds.size() && missingIds.get(k) == missingIds.get(k + 1) - 1; k++) {
+                // Identify consecutive missing IDs
             }
-            tuple[0] = missingIds.get(i);
-            tuple[1] = k + 1 - i;
-            doLoadData(tuple[0], tuple[1]);
-            i = k;
+            int startId = missingIds.get(i);
+            int length = k + 1 - i;
+            doLoadData(startId, length); // Load missing data
+            i = k; // Skip the consecutive IDs
         }
 
-        for (int l = 0; l < result.length; l++) {
-            result[l] = cache.get(index + l);
+        // Loop to populate the result array from the cache
+        int resultIndex = 0;
+        for (int id : missingIds) {
+            result[resultIndex++] = cache.get(id);
         }
+
+        // Sort the result array based on Drone IDs
         Arrays.sort(result, Comparator.comparingInt(o -> o.getDrone().getId()));
+
+        // Return the final result
         return result;
+
+        /*
+         * TODO: remove old version after testing
+         * DroneDynamic[] result = new DroneDynamic[amount];
+         * int i, index;
+         * ArrayList<Integer> missingIds = new ArrayList<>();
+         * int[] tuple = new int[2];
+         * if (pageNr > 0) {
+         * pageNr -= 1;
+         * }
+         * index = (count + pageNr * amount) % count;
+         * for (i = index; i < index + amount; i++) {
+         * if (!cache.containsKey(i)) {
+         * missingIds.add(i);
+         * }
+         * }
+         * for (i = 0; i < missingIds.size(); i++) {
+         * int k;
+         * for (k = i; k + 1 < missingIds.size() && missingIds.get(k) ==
+         * missingIds.get(k + 1) - 1; k++) {
+         * }
+         * tuple[0] = missingIds.get(i);
+         * tuple[1] = k + 1 - i;
+         * doLoadData(tuple[0], tuple[1]);
+         * i = k;
+         * }
+         * 
+         * for (int l = 0; l < result.length; l++) {
+         * result[l] = cache.get(index + l);
+         * }
+         * Arrays.sort(result, Comparator.comparingInt(o -> o.getDrone().getId()));
+         * return result;
+         */
     }
 
     public static int getCount() {
