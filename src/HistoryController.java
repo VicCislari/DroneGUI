@@ -89,14 +89,13 @@ public class HistoryController {
         droneHistory.setTitle("Drone Details");
         droneHistory.setScene(new Scene(root));
         droneHistory.show();
-
     }
 
     private void updatePage(Pane overlay) {
         vBoxButtonList.getChildren().clear();
         overlay.getChildren().clear();
         overlay.getChildren().add(mapView);
-        DroneDynamic[] droneDynamics = DroneDynamicManager.getDroneDynamicsPage(DroneManager.getCount(), currentPageNr);
+        DroneDynamic[] droneDynamics = DroneDynamicManager.doGetDroneDynamicsPage(DroneManager.getCount(), currentPageNr);
         for (int i = 0; i < droneDynamics.length; i++) {
             int id = droneDynamics[i].getDrone().getId();
             String droneSerialNr = droneDynamics[i].getDrone().getSerialNumber();
